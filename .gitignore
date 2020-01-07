@@ -349,4 +349,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-Backend\HartslagQuiz\HartslagQuiz\Repos\QuestionRepo.cs
+Backend/HartslagQuiz/HartslagQuiz/Models/Secret.cs
