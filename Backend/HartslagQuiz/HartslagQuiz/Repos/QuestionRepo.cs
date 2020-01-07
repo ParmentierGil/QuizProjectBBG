@@ -12,7 +12,7 @@ namespace HartslagQuiz.Repos
         public async Task PostQuestion(Question question)
         {
 
-            using (SqlConnection con = new SqlConnection())
+            using (SqlConnection con = new SqlConnection(Secret.ServerString))
             {
                 await con.OpenAsync();
                 using (SqlCommand command = new SqlCommand())
