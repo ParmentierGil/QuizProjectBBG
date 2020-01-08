@@ -34,7 +34,7 @@ namespace HartslagQuiz.Repos
 
             foreach (Question question in questions)
             {
-                using (SqlConnection con = new SqlConnection(Secret.ServerString))
+                using (SqlConnection con = new SqlConnection(Secret.DBServerString))
                 {
                     await con.OpenAsync();
                     using (SqlCommand command = new SqlCommand())

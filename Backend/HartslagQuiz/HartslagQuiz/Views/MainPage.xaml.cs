@@ -21,17 +21,13 @@ namespace HartslagQuiz.Views
         public MainPage()
         {
             InitializeComponent();
-            InitializeGameServer();
-            //TestRepo();      
-        }
+            Quizmaster quizmaster = new Quizmaster();
+            Gamelobby ActiveGame = new Gamelobby(quizmaster);
 
-        private void InitializeGameServer()
-        {
-            WarpClient.initialize("934647c97c9f269851eada6fcad0abe58508c1abbb62487d77c7a0b0fa19305a", "07ab110a3e745c47511145c5b97ef69dfd78628f45b84b7aabae844c3d78c2bb");
-            WarpClient myGame = WarpClient.GetInstance();
-            myGame.AddConnectionRequestListener(new GameServerConListener());
-            myGame.Connect("TestUserName");
-            myGame.Disconnect();
+            if (ActiveGame.MyGame.GetConnectionState() == WarpConnectionState.CONNECTED)
+            {
+                Console.WriteLine("We're done now");
+            }   
         }
 
         private async Task TestRepo()
