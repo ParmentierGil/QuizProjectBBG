@@ -7,10 +7,9 @@
              x:Class="HartslagQuiz.Views.MainPage">
 
     <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+        <Entry Placeholder="Game Code"></Entry>
+        <Button Text="Make Lobby" FontSize="Micro" x:Name="btnMakeLobby" />
+        <Button Text="Join Lobby" FontSize="Micro" x:Name="btnJoinLobby" />
     </StackLayout>
 
 </ContentPage>
