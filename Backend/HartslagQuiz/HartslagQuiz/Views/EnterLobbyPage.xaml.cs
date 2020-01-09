@@ -15,11 +15,13 @@ namespace HartslagQuiz.Views
     public partial class EnterLobbyPage : ContentPage
     {
         IDevice HeartbeatSensor;
+        Player Tester;
         public EnterLobbyPage(IDevice connecteddevice)
         {
             HeartbeatSensor = connecteddevice;
             InitializeComponent();
             ReadHeartbeatData();
+            Tester = new Player("tester");
         }
 
         private async void ReadHeartbeatData()
@@ -34,9 +36,12 @@ namespace HartslagQuiz.Views
                     var descs = await chars[0].GetDescriptorsAsync();
                     bool canw = chars[0].CanWrite;
                     await chars[0].StartUpdatesAsync();
+                    Heartbeat hb;
                     chars[0].ValueUpdated += (s, e) =>
                     {
-                        Heartbeat hb = new Heartbeat(e.ToString().Length, DateTime.Now);
+                        hb = new Heartbeat(e.Characteristic.Value[1], DateTime.Now);
+                        Tester.HeartbeatLatest = hb;
+                        Console.WriteLine("Hartslag: " + hb.HeartRate);
                     };
                 }
             }

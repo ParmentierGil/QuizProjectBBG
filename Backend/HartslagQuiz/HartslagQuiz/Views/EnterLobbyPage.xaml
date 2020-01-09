@@ -7,9 +7,8 @@
              x:Class="HartslagQuiz.Views.EnterLobbyPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Label x:Name="lblName"/>
+            <Label x:Name="lblHeartbeat"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
