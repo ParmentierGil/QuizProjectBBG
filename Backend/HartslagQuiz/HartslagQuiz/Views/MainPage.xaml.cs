@@ -18,21 +18,19 @@ namespace HartslagQuiz.Views
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        Gamelobby ActiveGame;
         public MainPage()
         {
+
             InitializeComponent();
             Quizmaster quizmaster = new Quizmaster();
-            Gamelobby ActiveGame = new Gamelobby(quizmaster);
+            //ActiveGame = new Gamelobby(quizmaster);
 
-            if (ActiveGame.MyGame.GetConnectionState() == WarpConnectionState.CONNECTED)
-            {
-                Console.WriteLine("We're done now");
-            }   
         }
 
-        private async Task TestRepo()
+        private void btnLeave_Clicked(object sender, EventArgs e)
         {
-            //await QuestionRepo.PostQuestions();
+            //ActiveGame.Exit();
         }
     }
 }

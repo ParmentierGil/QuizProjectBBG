@@ -10,6 +10,7 @@
         <Entry Placeholder="Game Code"></Entry>
         <Button Text="Make Lobby" FontSize="Micro" x:Name="btnMakeLobby" />
         <Button Text="Join Lobby" FontSize="Micro" x:Name="btnJoinLobby" />
+        <Button Text="Leav" FontSize="Micro" x:Name="btnLeave" Clicked="btnLeave_Clicked" />
     </StackLayout>
 
 </ContentPage>
