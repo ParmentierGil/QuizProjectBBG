@@ -6,7 +6,13 @@ namespace HartslagQuiz.Models
 {
     class Heartbeat
     {
-        public int HeartbeatValue { get; set; }
+        public int HeartRate { get; set; }
         public DateTime Time { get; set; }
+
+        public Heartbeat(int heartrate, DateTime time)
+        {
+            HeartRate = heartrate;
+            Time = time;
+        }
     }
 }

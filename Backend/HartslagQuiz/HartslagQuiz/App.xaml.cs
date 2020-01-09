@@ -1,6 +1,7 @@
 ﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using HartslagQuiz.Views;
 
 namespace HartslagQuiz
 {
@@ -10,7 +11,7 @@ namespace HartslagQuiz
         {
             InitializeComponent();
 
-            MainPage = new Views.MainPage();
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()

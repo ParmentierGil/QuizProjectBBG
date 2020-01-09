@@ -2,8 +2,6 @@
 using HartslagQuiz.Models;
 using HartslagQuiz.Repos;
 using Newtonsoft.Json;
-using Plugin.BLE;
-using Plugin.BLE.Abstractions.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,21 +22,9 @@ namespace HartslagQuiz.Views
         Gamelobby ActiveGame;
         Quizmaster ActiveQuizmaster;
 
-        IBluetoothLE ble;
-        IAdapter adapter;
-        ObservableCollection<IDevice> deviceList;
         public MainPage()
         {
-
             InitializeComponent();
-            Bluetooth();
-        }
-
-        private void Bluetooth()
-        {
-            ble = CrossBluetoothLE.Current;
-            adapter = CrossBluetoothLE.Current.Adapter;
-            deviceList = new ObservableCollection<IDevice>();
         }
 
         private void btnLeave_Clicked(object sender, EventArgs e)
@@ -57,20 +43,10 @@ namespace HartslagQuiz.Views
             RoomCode.Text = ActiveGame.ActiveRoom.JoinCode.ToString();
         }
 
-        private void Button_Clicked(object sender, EventArgs e)
-        {
 
-        }
-
-        private async void btnScan_Clicked(object sender, EventArgs e)
+        private void btnPlay_Clicked(object sender, EventArgs e)
         {
-            deviceList.Clear();
-            adapter.DeviceDiscovered += (s, a) =>
-            {
-                deviceList.Add(a.Device);
-            };
-            await adapter.StartScanningForDevicesAsync();
-            
+            Navigation.PushAsync(new ConnectToBluetoothDevicePage());
         }
     }
 }
