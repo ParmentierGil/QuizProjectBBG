@@ -8,9 +8,11 @@
 
     <StackLayout>
         <Entry Placeholder="Game Code"></Entry>
-        <Button Text="Make Lobby" FontSize="Micro" x:Name="btnMakeLobby" />
+        <Button Text="Make Lobby" FontSize="Micro" x:Name="btnMakeLobby" Clicked="btnMakeLobby_Clicked" />
+        <Label x:Name="RoomCode"/>
         <Button Text="Join Lobby" FontSize="Micro" x:Name="btnJoinLobby" />
-        <Button Text="Leav" FontSize="Micro" x:Name="btnLeave" Clicked="btnLeave_Clicked" />
+        <Button Text="Leave" FontSize="Micro" x:Name="btnLeave" Clicked="btnLeave_Clicked" />
+        <Button Text="Scan" x:Name="btnScan" Clicked="btnScan_Clicked"/>
     </StackLayout>
 
 </ContentPage>

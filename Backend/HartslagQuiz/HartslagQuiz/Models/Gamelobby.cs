@@ -10,16 +10,14 @@ namespace HartslagQuiz.Models
     public class Gamelobby
     {
         public WarpClient MyGame { get; set; }
-        public List<Room> ActiveRooms { get; set; }
+        public Room ActiveRoom { get; set; }
         public Quizmaster GameQuizMaster { get; set; }
         public ConnectionListener GameConListener { get; set; }
         public ZoneRequestListener GameZoneRequestListener { get; set; }
 
-
         public Gamelobby(Quizmaster quizmaster)
         {
             GameQuizMaster = quizmaster;
-            ActiveRooms = new List<Room>();
 
             WarpClient.initialize(Secret.GameServerAPIKey, Secret.GameServerAPIPassword);
             MyGame = WarpClient.GetInstance();
@@ -35,19 +33,15 @@ namespace HartslagQuiz.Models
 
         public void Exit()
         {
-            foreach(Room r in ActiveRooms)
-            {
-                MyGame.DeleteRoom(r.RoomId);
-            }  
+            MyGame.DeleteRoom(ActiveRoom.RoomId);  
         }
 
         public void connectDone()
         {
             try
             {
-                Room newRoom = new Room();
-                ActiveRooms.Add(newRoom);
-                MyGame.CreateRoom(newRoom.RoomName, GameQuizMaster.QuizmasterName, 10, null);
+                ActiveRoom = new Room();
+                MyGame.CreateRoom(ActiveRoom.RoomName, GameQuizMaster.QuizmasterName, 10, null);
             }
             catch (Exception ex)
             {
@@ -58,29 +52,16 @@ namespace HartslagQuiz.Models
 
         public void createRoomDone(RoomData roomdata)
         {
-            foreach(Room r in ActiveRooms)
-            {
-                if (r.RoomName == roomdata.getName())
-                {
-                    r.RoomId = roomdata.getId();
-                }
-            }
+            ActiveRoom.RoomId = roomdata.getId();
+            ActiveRoom.Active = true;
+
             Console.WriteLine("Room Created, players can now join");
         }
 
 
         public void deleteRoomDone()
         {
-            bool stillActiveRooms = false;
-            foreach(Room r in ActiveRooms)
-            {
-                if (r.Active = true)
-                {
-                    stillActiveRooms = true;
-                }
-            }
-
-            if (!stillActiveRooms)
+            if (!ActiveRoom.Active)
             {
                 MyGame.Disconnect();
             }    
