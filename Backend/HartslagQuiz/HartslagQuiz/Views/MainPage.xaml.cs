@@ -4,6 +4,7 @@ using HartslagQuiz.Repos;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -19,18 +20,33 @@ namespace HartslagQuiz.Views
     public partial class MainPage : ContentPage
     {
         Gamelobby ActiveGame;
+        Quizmaster ActiveQuizmaster;
+
         public MainPage()
         {
-
             InitializeComponent();
-            Quizmaster quizmaster = new Quizmaster();
-            //ActiveGame = new Gamelobby(quizmaster);
-
         }
 
         private void btnLeave_Clicked(object sender, EventArgs e)
         {
-            //ActiveGame.Exit();
+            ActiveGame.Exit();
+        }
+
+        private void btnMakeLobby_Clicked(object sender, EventArgs e)
+        {
+            ActiveQuizmaster = new Quizmaster();
+            ActiveGame = new Gamelobby(ActiveQuizmaster);
+            while (ActiveGame.ActiveRoom == null)
+            {
+                Console.WriteLine("Waiting for room to be made");
+            }
+            RoomCode.Text = ActiveGame.ActiveRoom.JoinCode.ToString();
+        }
+
+
+        private void btnPlay_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new ConnectToBluetoothDevicePage());
         }
     }
 }

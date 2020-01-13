@@ -30,13 +30,8 @@ namespace HartslagQuiz.Models
         public void onDeleteRoomDone(RoomEvent eventObj)
         {
             Console.WriteLine("Succesfully deleted room");
-            foreach(Room r in ActiveGamelobby.ActiveRooms)
-            {
-                if (eventObj.getData().getId() == r.RoomId)
-                {
-                    r.Active = false;
-                }
-            }
+
+            ActiveGamelobby.ActiveRoom.Active = false;
             ActiveGamelobby.deleteRoomDone();
         }
 
