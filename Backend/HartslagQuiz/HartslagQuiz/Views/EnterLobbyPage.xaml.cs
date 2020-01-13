@@ -14,37 +14,24 @@ namespace HartslagQuiz.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class EnterLobbyPage : ContentPage
     {
-        IDevice HeartbeatSensor;
         Player Tester;
-        public EnterLobbyPage(IDevice connecteddevice)
+        public Heartbeat HeartRate
         {
-            HeartbeatSensor = connecteddevice;
-            InitializeComponent();
-            ReadHeartbeatData();
-            Tester = new Player("tester");
-        }
-
-        private async void ReadHeartbeatData()
-        {
-            var services = await HeartbeatSensor.GetServicesAsync();
-            foreach (var service in services)
+            get { return HeartRate; }
+            set
             {
-                if (service.Name == "Heart Rate")
-                {
-                    var chars = await service.GetCharacteristicsAsync();
-                    bool canr = chars[0].CanRead;
-                    var descs = await chars[0].GetDescriptorsAsync();
-                    bool canw = chars[0].CanWrite;
-                    await chars[0].StartUpdatesAsync();
-                    Heartbeat hb;
-                    chars[0].ValueUpdated += (s, e) =>
-                    {
-                        hb = new Heartbeat(e.Characteristic.Value[1], DateTime.Now);
-                        Tester.HeartbeatLatest = hb;
-                        Console.WriteLine("Hartslag: " + hb.HeartRate);
-                    };
-                }
+                HeartRate = value;
+                OnPropertyChanged(nameof(HeartRate)); // Notify that there was a change on this property
             }
         }
+        public EnterLobbyPage(IDevice connecteddevice)
+        {
+            InitializeComponent();
+            BindingContext = this;
+            Tester = new Player("tester", connecteddevice);
+            HeartRate = Tester.HeartbeatLatest;
+            lblHeartbeat.Text = HeartRate.HeartRate.ToString();
+        }
+
     }
 }

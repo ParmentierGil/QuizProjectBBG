@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HartslagQuiz.Models
 {
-    class Heartbeat
+    public class Heartbeat
     {
         public int HeartRate { get; set; }
         public DateTime Time { get; set; }
