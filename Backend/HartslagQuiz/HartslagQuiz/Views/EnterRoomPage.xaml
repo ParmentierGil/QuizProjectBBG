@@ -4,11 +4,12 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="HartslagQuiz.Views.EnterLobbyPage">
+             x:Class="HartslagQuiz.Views.EnterRoomPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="lblName"/>
-            <Label x:Name="lblHeartbeat"/>
+            <Label Text="{Binding LatestHeartbeat}" TextColor="Black"/>
+            <Entry Text="{Binding JoinCode}" Placeholder="Spelcode" TextColor="Black"/>
+            <Button x:Name="btnJoinRoom" Text="Deelnemen" Command="{Binding JoinRoomCommand}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -8,17 +8,18 @@ namespace HartslagQuiz.Models
 {
     public class ZoneRequestListener : com.shephertz.app42.gaming.multiplayer.client.listener.ZoneRequestListener
     {
-        public Gamelobby ActiveGamelobby { get; set; }
-        public ZoneRequestListener(Gamelobby gamelobby)
+        public User Listener { get; set; }
+        public ZoneRequestListener(User user)
         {
-            ActiveGamelobby = gamelobby;
+            Listener = user;
         }
         public void onCreateRoomDone(RoomEvent eventObj)
         {
+            Quizmaster quizmaster = Listener as Quizmaster;
             if (eventObj.getResult() == WarpResponseResultCode.SUCCESS)
             {
                 Console.WriteLine("Room Created");
-                ActiveGamelobby.createRoomDone(eventObj.getData());
+                quizmaster.CreateRoomDone(eventObj.getData());
             }
             else
             {
@@ -29,15 +30,18 @@ namespace HartslagQuiz.Models
 
         public void onDeleteRoomDone(RoomEvent eventObj)
         {
+            Quizmaster quizmaster = Listener as Quizmaster;
             Console.WriteLine("Succesfully deleted room");
 
-            ActiveGamelobby.ActiveRoom.Active = false;
-            ActiveGamelobby.deleteRoomDone();
+            quizmaster.ActiveRoom.Active = false;
+            quizmaster.DeleteRoomDone();
         }
 
         public void onGetAllRoomsDone(AllRoomsEvent eventObj)
         {
             string[] roomIds = eventObj.getRoomIds();
+
+            Player p = Listener as Player;
         }
 
         public void onGetLiveUserInfoDone(LiveUserInfoEvent eventObj)
@@ -47,7 +51,8 @@ namespace HartslagQuiz.Models
 
         public void onGetMatchedRoomsDone(MatchedRoomsEvent matchedRoomsEvent)
         {
-            throw new NotImplementedException();
+            Player p = Listener as Player;
+            p.GetRoomWithProperties(matchedRoomsEvent);
         }
 
         public void onGetOnlineUsersDone(AllUsersEvent eventObj)
