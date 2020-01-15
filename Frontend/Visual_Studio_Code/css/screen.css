@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'ProzaLibre';
+    font-weight: 400;
+    src: url('../fonts/ProzaLibre-Medium.ttf') format('ttf');
+  }
+
+@font-face {
+    font-family: 'ProzaLibre';
+    font-weight: 600;
+    src: url('../fonts/ProzaLibre-Bold.ttf') format('ttf');
+  }
+
+
+
+html{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'ProzaLibre', Arial, Helvetica, sans-serif;
+}
+
+.grote_titel{
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.titel{
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.medium_tekst{
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.medium_tekst_vet {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.kleine_tekst{
+    font-size: 16px;
+    font-weight: 400;
+}
