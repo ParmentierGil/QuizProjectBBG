@@ -16,6 +16,10 @@ html{
     padding: 0px;
     margin: 0px;
     font-family: 'ProzaLibre', Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(#845EC2, #D65DB1);
+    background-repeat: no-repeat;
+    height: 100%;
+    color: White;
 }
 
 .grote_titel{
