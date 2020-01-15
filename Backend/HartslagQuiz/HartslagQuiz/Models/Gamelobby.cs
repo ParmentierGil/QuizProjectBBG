@@ -1,5 +1,6 @@
 ﻿using com.shephertz.app42.gaming.multiplayer.client;
 using com.shephertz.app42.gaming.multiplayer.client.events;
+using Microsoft.AspNetCore.DataProtection;
 using System;
 using System.Collections.Generic;
 using System.Text;
