@@ -23,7 +23,6 @@ html{
 }
 
 body{
-    height: 100%;
     margin: 0px;
     padding: 0px;
 }
@@ -56,6 +55,11 @@ body{
     font-weight: 400;
 }
 
+.kleine_tekst_vet{
+    font-size: 16px;
+    font-weight: 600;
+}
+
 .container{
     height: 100%;
     display: flex;
@@ -70,5 +74,60 @@ body{
     margin-bottom: 24px;
 }
 
+.top-bar{
+    display: flex;
+    margin-top: 40px;
+}
 
+.hartslag{
+    margin-left: 16px;
+}
+
+.vragenteller{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tijd{
+    margin-right: 16px;
+}
+
+hr{
+    border-width: 1px;
+    border: none;
+    height: 1px;
+    background-color: White;
+    color: White;
+    margin-top: 16px;
+    margin-bottom: 24px;
+}
+
+.vraag{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.square{
+    width: 150px;
+    height: 100px;
+    background-image: linear-gradient(#008F7A,#00483D);
+    border-radius: 25px;
+}
+
+.square_left{
+    margin-left: 16px;
+    margin-right: 28px;
+}
+
+.square_right{
+    margin-right: 16px;
+}
+
+.rij_antwoorden{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 24px;
+}
 
