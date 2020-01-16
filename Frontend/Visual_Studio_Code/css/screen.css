@@ -22,6 +22,15 @@ html{
     color: White;
 }
 
+body{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+
+/* COMPONENTS */
+
 .grote_titel{
     font-size: 40px;
     font-weight: 600;
@@ -46,3 +55,20 @@ html{
     font-size: 16px;
     font-weight: 400;
 }
+
+.container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.margin-bottom{
+    margin-bottom: 24px;
+}
+
+
+
