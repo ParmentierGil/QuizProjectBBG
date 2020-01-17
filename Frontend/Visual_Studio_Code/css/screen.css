@@ -188,3 +188,36 @@ hr{
     width: 100%;
     color: #FFC75F;
 }
+
+.centerBtn{
+    bottom: 24px;
+  position: absolute;
+  width: 100%;
+}
+
+.centerButton2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button{
+    background-color: #2c73d2;
+  border-radius: 35px;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 16px 48px;
+  box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+  border: none;
+  outline: none;
+}
+
+.legediv{
+    display: flex;
+  justify-content: center;
+  margin-bottom: 124px;
+}
