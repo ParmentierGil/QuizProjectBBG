@@ -115,6 +115,19 @@ hr{
     border-radius: 25px;
 }
 
+.square1{
+    background-image: linear-gradient(#008F7A,#00483D);
+}
+.square2{
+    background-image: linear-gradient(#2C73D2,#163A69);
+}
+.square3{
+    background-image: linear-gradient(#F9F871,#7D7C39);
+}
+.square4{
+    background-image: linear-gradient(#FF6F91,#803849);
+}
+
 .square_left{
     margin-left: 16px;
     margin-right: 28px;
@@ -129,5 +142,10 @@ hr{
     flex-direction: row;
     justify-content: center;
     margin-bottom: 24px;
+}
+
+.optie{
+    text-align: center;
+    padding-top: 39px;
 }
 
