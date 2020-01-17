@@ -81,6 +81,19 @@ body{
 
 .hartslag{
     margin-left: 16px;
+    display: flex;
+}
+
+.hartslag_logo{
+    width: 24px;
+    height: 21.86px;
+    margin-right: 8px;
+}
+
+.klok_logo{
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
 }
 
 .vragenteller{
@@ -90,6 +103,7 @@ body{
 
 .tijd{
     margin-right: 16px;
+    display: flex;
 }
 
 hr{
@@ -99,13 +113,19 @@ hr{
     background-color: White;
     color: White;
     margin-top: 16px;
-    margin-bottom: 24px;
 }
 
 .vraag{
     display: flex;
     justify-content: center;
     margin-bottom: 50px;
+}
+
+.rangschikking{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+    margin-top: 24px;
 }
 
 .square{
@@ -149,3 +169,22 @@ hr{
     padding-top: 39px;
 }
 
+.rangschikking_list{
+    padding: 24px;
+}
+
+.speler{
+    float: left;
+}
+
+.aantal_seconden{
+    float: right;
+}
+
+.wachten{
+    position: absolute;
+    bottom: 24px;
+    text-align: center;
+    width: 100%;
+    color: #FFC75F;
+}
