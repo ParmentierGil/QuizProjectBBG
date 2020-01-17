@@ -20,6 +20,11 @@ html {
   color: White;
 }
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .grote_titel {
   font-size: 40px;
   font-weight: 600;
@@ -85,10 +90,16 @@ html {
 }
 
 .centerBtn2 {
-  padding-top: 200px;
-  display: flex;
-  justify-content: center;
-  padding-bottom: 24px;
+  position: absolute;
+  bottom: 24px;
+  width: 100%;
+  text-align: center;
+}
+
+.centerBtnVolgende {
+  bottom: 24px;
+  position: absolute;
+  width: 100%;
 }
 
 .logodiv {
@@ -140,7 +151,6 @@ hr {
   background-color: White;
   color: White;
   margin-top: 16px;
-  margin-bottom: 24px;
 }
 
 .centerButton2 {
@@ -150,17 +160,33 @@ hr {
   flex-direction: column;
 }
 
-.input {
+.centerScreen {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.inputbox {
   background-color: #203159;
   border: none;
   border-radius: 35px;
   outline: none;
-  font-size: 16px;
-  font-weight: 600;
   box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
-  padding: 8px 8px;
+  padding: 16px 33px;
 }
 
+.inputColor {
+  background-color: #203159;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  font-size: 24px;
+  width: 132px;
+  color: #b3b3b3;
+  text-align: center;
+}
 .button {
   background-color: #2c73d2;
   border-radius: 35px;
@@ -169,10 +195,45 @@ hr {
   text-align: center;
   text-decoration: none;
   font-weight: 600;
-  padding: 16px 66.7px;
-  border: none;
+  padding: 16px 48px;
   box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
   border: none;
   outline: none;
-  transition: 0.3;
+}
+
+.SpacebetweenBtns {
+  padding-bottom: 40px;
+}
+
+.BTDeviceList {
+  padding: 24px;
+}
+
+.device {
+  float: left;
+  font-size: 20px;
+}
+
+.verbind {
+  float: right;
+}
+
+.legediv {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 124px;
+}
+
+.buttonCodeScreen {
+  background-color: #2c73d2;
+  border-radius: 35px;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 16px 66.7px;
+  box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+  border: none;
+  outline: none;
 }
