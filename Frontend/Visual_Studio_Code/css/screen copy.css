@@ -1,0 +1,239 @@
+@font-face {
+  font-family: 'ProzaLibre';
+  font-weight: 400;
+  src: url('../fonts/ProzaLibre-Medium.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'ProzaLibre';
+  font-weight: 600;
+  src: url('../fonts/ProzaLibre-Bold.ttf') format('ttf');
+}
+
+html {
+  padding: 0px;
+  margin: 0px;
+  font-family: 'ProzaLibre', Arial, Helvetica, sans-serif;
+  background-image: linear-gradient(#845ec2, #d65db1);
+  background-repeat: no-repeat;
+  height: 100%;
+  color: White;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.grote_titel {
+  font-size: 40px;
+  font-weight: 600;
+}
+
+.titel {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.medium_tekst {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.medium_tekst_vet {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.kleine_tekst {
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.startcenterItems {
+  padding-top: 200px;
+}
+.StartTitle {
+  text-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+  padding-bottom: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  background-color: #2c73d2;
+  border-radius: 35px;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 16px 66.7px;
+  border: none;
+  box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+  border: none;
+  outline: none;
+  transition: 0.3;
+}
+
+.centerButton {
+  display: flex;
+  justify-content: center;
+}
+
+.btn2 {
+  cursor: pointer;
+  font-size: 16px;
+  border: none;
+  text-decoration: underline;
+}
+
+.centerBtn2 {
+  position: absolute;
+  bottom: 24px;
+  width: 100%;
+  text-align: center;
+}
+
+.centerBtnVolgende {
+  bottom: 24px;
+  position: absolute;
+  width: 100%;
+}
+
+.logodiv {
+  padding-top: 32px;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.logo {
+  width: 48px;
+  height: 24.62px;
+}
+
+.logo2 {
+  width: 23.69px;
+  height: 32px;
+}
+
+.logo3 {
+  width: 48px;
+  height: 13.32px;
+}
+
+.logo4 {
+  width: 48px;
+  height: 25.67px;
+}
+
+.TopTekst {
+  font-size: 24px;
+  font-weight: 600;
+  text-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+}
+
+.top-bar {
+  display: flex;
+  margin-top: 40px;
+}
+
+.Tekst {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+hr {
+  border-width: 1px;
+  border: none;
+  height: 1px;
+  background-color: White;
+  color: White;
+  margin-top: 16px;
+}
+
+.centerButton2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.centerScreen {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.inputbox {
+  background-color: #203159;
+  border: none;
+  border-radius: 35px;
+  outline: none;
+  box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+  padding: 16px 33px;
+}
+
+.inputColor {
+  background-color: #203159;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  font-size: 24px;
+  width: 132px;
+  color: #b3b3b3;
+  text-align: center;
+}
+.button {
+  background-color: #2c73d2;
+  border-radius: 35px;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 16px 48px;
+  box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+  border: none;
+  outline: none;
+}
+
+.SpacebetweenBtns {
+  padding-bottom: 40px;
+}
+
+.BTDeviceList {
+  padding: 24px;
+}
+
+.device {
+  float: left;
+  font-size: 20px;
+}
+
+.verbind {
+  float: right;
+}
+
+.legediv {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 124px;
+}
+
+.buttonCodeScreen {
+  background-color: #2c73d2;
+  border-radius: 35px;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 16px 66.7px;
+  box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+  border: none;
+  outline: none;
+}
