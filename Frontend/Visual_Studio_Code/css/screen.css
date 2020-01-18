@@ -221,3 +221,9 @@ hr{
   justify-content: center;
   margin-bottom: 124px;
 }
+
+.fout_img{
+    width: 100px;
+    height: 100px;
+    margin-left: 26px;
+}
