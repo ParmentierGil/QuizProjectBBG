@@ -53,6 +53,7 @@ body {
 .startcenterItems {
   padding-top: 200px;
 }
+
 .StartTitle {
   text-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
   padding-bottom: 40px;
@@ -236,4 +237,107 @@ hr {
   box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
   border: none;
   outline: none;
+}
+
+@media(min-width: 768px){
+
+  .grote_titel {
+    font-size: 64px;
+    font-weight: 600;
+  }
+
+  .button {
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  .button2 {
+    font-size: 32px;
+    font-weight: 600;
+    width: 140px;
+    background-color: #2c73d2;
+    border-radius: 35px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 16px 66.7px;
+    border: none;
+    box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+    border: none;
+    outline: none;
+    transition: 0.3;
+  }
+
+  .btn2 {
+    font-size: 32px;
+    font-weight: 400;
+  }
+
+  .TopTekst {
+    font-size: 40px;
+    font-weight: 600;
+  }
+
+  .inputColor {
+    font-weight: 600;
+    font-size: 32px;
+    width: 200px;
+  }
+  
+  .logodiv {
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  
+  .logo {
+    width: 136.5px;
+    height: 70px;
+  }
+  
+  .logo2 {
+    width: 51.83px;
+    height: 70px;
+  }
+  
+  .logo3 {
+    width: 126.12px;
+    height: 35px;
+  }
+  
+  .logo4 {
+    width: 130.45px;
+    height: 70px;
+  }
+
+  .BTDeviceList {
+    padding-left: 150px;
+    padding-bottom: 32px;
+    padding-top: 8px;
+  }
+
+  .horizontal_rule {
+    border-width: 3px;
+    margin-top: 16px;
+    margin-left: 150px;
+    margin-right: 175px;
+  }
+
+  .verbind {
+    padding-right: 150px;
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  .device {
+    font-size: 32px;
+    font-weight: 400;
+  }
+
+  .buttonCodeScreen {
+    font-size: 32px;
+    font-weight: 600;
+    padding: 16px 66.7px;
+    width: 130px;
+  }
 }
