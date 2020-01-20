@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SlimFit Quiz</title>
     <link rel="stylesheet" href="css/screen.css"/>
-    <script src="script/main.js"></script>
+    <script src="script/speler_antwoordenscherm.js"></script>
 </head>
 <body>
     <container class="top-bar">
@@ -19,7 +19,7 @@
         </div>
         <div class="tijd">
             <img src="img/KLOK.png" class="klok_logo" alt="Tijd">
-            <div class="kleine_tekst_vet">Tijd</div>
+            <div class="kleine_tekst_vet" id="tijd">0</div>
         </div>
     </container>
     <hr>
@@ -28,20 +28,20 @@
 
     <container class="antwoorden">
         <div class="rij_antwoorden">
-            <div class="square square1 square_left">
+            <div class="square square1 square_left" id="optie1">
                 <img class="fout_img" src="img/1024px-Red_X.svg.png" alt="Fout">
                 <div class="optie kleine_tekst">9</div>
             </div>
-            <div class="square square2 square_right">
+            <div class="square square2 square_right" id="optie2">
                 <img class="fout_img" src="img/Vinkje_creativ_media.png" alt="Fout">
                 <div class="optie kleine_tekst">10</div>
             </div>
         </div>
         <div class="rij_antwoorden">
-            <div class="square square3 square_left">
+            <div class="square square3 square_left" id="optie3">
                 <div class="optie kleine_tekst">8</div>
             </div>
-            <div class="square square4 square_right">
+            <div class="square square4 square_right" id="optie4">
                 <div class="optie kleine_tekst">6</div>
             </div>
         </div>
