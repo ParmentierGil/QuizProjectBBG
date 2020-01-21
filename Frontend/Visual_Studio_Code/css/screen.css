@@ -232,6 +232,14 @@ hr{
     width: 100px;
     height: 100px;
     margin-left: 26px;
+    display: none;
+}
+
+.juist_img{
+    width: 100px;
+    height: 100px;
+    margin-left: 26px;
+    display: none;
 }
 
 
@@ -364,6 +372,12 @@ hr{
    
 
     .fout_img{
+        width: 200px;
+        height: 200px;
+        margin-left: 100px;
+    }
+
+    .juist_img{
         width: 200px;
         height: 200px;
         margin-left: 100px;

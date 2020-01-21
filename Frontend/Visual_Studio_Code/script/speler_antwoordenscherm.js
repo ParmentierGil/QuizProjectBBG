@@ -10,15 +10,14 @@ var timerfunctie = function(){
         timer.innerHTML = counter;  
     }
 
-    var optie1 = document.getElementById("optie1")
-    var optie3 = document.getElementById("optie3")
-    var optie4 = document.getElementById("optie4")
 
-    optie1.addEventListener("click", straf);
-    optie3.addEventListener("click", straf);
-    optie4.addEventListener("click", straf);
+    var foute_antwoorden = document.querySelectorAll(".fout_antwoord")
 
-    function straf(){
+    for(var antwoord of foute_antwoorden){
+        antwoord.addEventListener("click", fout);
+    }
+
+    function fout(){
         counter = counter +10;
         timer.innerHTML = counter;  
     }
