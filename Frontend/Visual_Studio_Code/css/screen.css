@@ -1,46 +1,392 @@
 @font-face {
-  font-family: 'ProzaLibre';
-  font-weight: 400;
-  src: url('../fonts/ProzaLibre-Medium.ttf') format('ttf');
-}
+    font-family: 'ProzaLibre';
+    font-weight: 400;
+    src: url('../fonts/ProzaLibre-Medium.ttf') format('ttf');
+  }
 
 @font-face {
-  font-family: 'ProzaLibre';
-  font-weight: 600;
-  src: url('../fonts/ProzaLibre-Bold.ttf') format('ttf');
+    font-family: 'ProzaLibre';
+    font-weight: 600;
+    src: url('../fonts/ProzaLibre-Bold.ttf') format('ttf');
+  }
+
+
+
+html{
+    padding: 0px;
+    margin: 0px;
+    font-family: 'ProzaLibre', Arial, Helvetica, sans-serif;
+    background-image: linear-gradient(#845EC2, #D65DB1);
+    background-repeat: no-repeat;
+    height: 100%;
+    color: White;
+    overflow: hidden;
 }
 
-html {
-  padding: 0px;
-  margin: 0px;
-  font-family: 'ProzaLibre', Arial, Helvetica, sans-serif;
-  background-image: linear-gradient(#845ec2, #d65db1);
-  background-repeat: no-repeat;
-  height: 100%;
-  color: White;
+body{
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
 }
 
-.grote_titel {
-  font-size: 40px;
-  font-weight: 600;
+
+/* COMPONENTS */
+
+.grote_titel{
+    font-size: 40px;
+    font-weight: 600;
+    text-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
 }
 
-.titel {
-  font-size: 24px;
-  font-weight: 600;
+.titel{
+    font-size: 24px;
+    font-weight: 600;
+    text-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
 }
 
-.medium_tekst {
-  font-size: 20px;
-  font-weight: 400;
+.medium_tekst{
+    font-size: 20px;
+    font-weight: 400;
 }
 
 .medium_tekst_vet {
-  font-size: 20px;
-  font-weight: 600;
+    font-size: 20px;
+    font-weight: 600;
 }
 
-.kleine_tekst {
-  font-size: 16px;
-  font-weight: 400;
+.kleine_tekst{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.kleine_tekst_vet{
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.container{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: center;
+    flex-direction: column;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.margin-bottom{
+    margin-bottom: 24px;
+}
+
+.top-bar{
+    display: flex;
+    margin-top: 40px;
+}
+
+.hartslag{
+    margin-left: 16px;
+    display: flex;
+}
+
+.hartslag_logo{
+    width: 24px;
+    height: 21.86px;
+    margin-right: 8px;
+}
+
+.klok_logo{
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
+.vragenteller{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tijd{
+    margin-right: 16px;
+    display: flex;
+}
+
+hr{
+    border-width: 1px;
+    border: none;
+    height: 1px;
+    background-color: White;
+    color: White;
+    margin-top: 16px;
+}
+
+.vraag{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    margin-top: 24px;
+}
+
+.rangschikking{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 80px;
+    margin-top: 24px;
+}
+
+.square{
+    width: 150px;
+    height: 100px;
+    background-image: linear-gradient(#008F7A,#00483D);
+    border-radius: 25px;
+}
+
+.square1{
+    background-image: linear-gradient(#008F7A,#00483D);
+}
+.square2{
+    background-image: linear-gradient(#2C73D2,#163A69);
+}
+.square3{
+    background-image: linear-gradient(#F9F871,#7D7C39);
+}
+.square4{
+    background-image: linear-gradient(#FF6F91,#803849);
+}
+
+.square_left{
+    margin-left: 16px;
+    margin-right: 28px;
+}
+
+.square_right{
+    margin-right: 16px;
+}
+
+.rij_antwoorden{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.optie{
+    text-align: center;
+    padding-top: 39px;
+}
+
+.rangschikking_list{
+    padding: 24px;
+}
+
+.speler{
+    float: left;
+}
+
+.aantal_seconden{
+    float: right;
+}
+
+.wachten{
+    position: absolute;
+    bottom: 24px;
+    text-align: center;
+    width: 100%;
+    color: #FFC75F;
+}
+
+.centerBtn{
+    bottom: 24px;
+  position: absolute;
+  width: 100%;
+}
+
+.centerButton2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.button{
+    background-color: #2c73d2;
+  border-radius: 35px;
+  font-size: 24px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 16px 48px;
+  box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+  border: none;
+  outline: none;
+}
+
+.legediv{
+    display: flex;
+  justify-content: center;
+  margin-bottom: 124px;
+}
+
+.fout_img{
+    width: 100px;
+    height: 100px;
+    margin-left: 26px;
+    display: none;
+}
+
+.juist_img{
+    width: 100px;
+    height: 100px;
+    margin-left: 26px;
+    display: none;
+}
+
+
+
+@media(min-width: 768px){
+    .titel{
+        font-size: 40px;
+        font-weight: 600;
+        text-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+    }
+
+    .medium_tekst{
+        font-size: 32px;
+        font-weight: 400;
+    }
+
+    .medium_tekst_vet{
+        font-size: 32px;
+        font-weight: 600;
+    }
+
+    .speler{
+        float: left;
+        padding-left: 150px;
+    }
+
+    .aantal_seconden{
+        float: right;
+        padding-right: 150px;
+    }
+
+    .horizontal_rule {
+        border-width: 3px;
+        margin-top: 16px;
+        margin-left: 175px;
+        margin-right: 175px;
+      }
+
+    .rangschikking_list{
+        padding-bottom: 32px;
+        padding-top: 16px;
+    }
+
+    .wachten{
+        position: absolute;
+        bottom: 24px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 600;
+        width: 100%;
+        color: #FFC75F;
+    }
+
+    .kleine_tekst_vet{
+        font-size: 32px;
+        font-weight: 600;
+    }
+
+    .hartslag_logo{
+        width: 36px;
+        height: 32px;
+        margin-right: 16px;
+    }
+    
+    .klok_logo{
+        width: 36px;
+        height: 36px;
+        margin-right: 16px;
+    }
+
+    .tijd{
+        margin-right: 40px;
+        display: flex;
+    }
+
+    .hartslag{
+        margin-left: 40px;
+        display: flex;
+    }
+    
+    .square{
+        width: 400px;
+        height: 200px;
+        background-image: linear-gradient(#008F7A,#00483D);
+        border-radius: 75px;
+    }
+    
+    .square1{
+        background-image: linear-gradient(#008F7A,#00483D);
+    }
+    .square2{
+        background-image: linear-gradient(#2C73D2,#163A69);
+    }
+    .square3{
+        background-image: linear-gradient(#F9F871,#7D7C39);
+    }
+    .square4{
+        background-image: linear-gradient(#FF6F91,#803849);
+    }
+    
+    .square_left{
+        margin-left: 16px;
+        margin-right: 28px;
+    }
+    
+    .square_right{
+        margin-right: 16px;
+    }
+    
+    .vraag{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 50px;
+        margin-top: 50px;
+    }
+
+    
+    .rij_antwoorden{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-bottom: 50px;
+    }
+
+
+    .optie{
+        text-align: center;
+        padding-top: 90px;
+    }
+   
+
+    .fout_img{
+        width: 200px;
+        height: 200px;
+        margin-left: 100px;
+    }
+
+    .juist_img{
+        width: 200px;
+        height: 200px;
+        margin-left: 100px;
+    }
+
+    .kleine_tekst{
+        font-size: 32px;
+        font-weight: 400;
+    }
+
+    
 }
