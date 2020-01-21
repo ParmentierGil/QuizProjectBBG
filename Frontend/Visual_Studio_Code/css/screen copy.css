@@ -98,9 +98,8 @@ body {
 }
 
 .centerBtnVolgende {
-  bottom: 24px;
-  position: absolute;
   width: 100%;
+  display: none;
 }
 
 .logodiv {
@@ -188,6 +187,30 @@ hr {
   color: #b3b3b3;
   text-align: center;
 }
+
+.inputColor2 {
+  background-color: #203159;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  font-size: 24px;
+  width: 175px;
+  color: #b3b3b3;
+  text-align: center;
+}
+
+.aantal_vragen {
+  background-color: #203159;
+  border: none;
+  outline: none;
+  font-weight: 600;
+  font-size: 20px;
+  width: 132px;
+  color: #b3b3b3;
+  text-align: center;
+}
+
+
 .button {
   background-color: #2c73d2;
   border-radius: 35px;
@@ -203,7 +226,7 @@ hr {
 }
 
 .SpacebetweenBtns {
-  padding-bottom: 40px;
+  padding-bottom: 24px;
 }
 
 .BTDeviceList {
@@ -239,6 +262,32 @@ hr {
   outline: none;
 }
 
+.alert{
+  margin-bottom: 8px;
+  font-size: 16px;
+  color: #FFC75F;
+  display: none;
+}
+
+.decoration {
+  text-decoration: none;
+  color: white;
+}
+
+.ShowTekst {
+  font-weight: 600;
+  font-size: 20px;
+  text-align: center;
+  color: #1fad61;
+}
+.CenterfindBT {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
 @media(min-width: 768px){
 
   .grote_titel {
@@ -271,6 +320,7 @@ hr {
   .btn2 {
     font-size: 32px;
     font-weight: 400;
+    color: White;
   }
 
   .TopTekst {
@@ -281,6 +331,19 @@ hr {
   .inputColor {
     font-weight: 600;
     font-size: 32px;
+    width: 200px;
+  }
+
+  
+  .inputColor2 {
+    font-weight: 600;
+    font-size: 32px;
+    width: 200px;
+  }
+
+  .aantal_vragen {
+    font-weight: 600;
+    font-size: 24px;
     width: 200px;
   }
   
@@ -339,5 +402,16 @@ hr {
     font-weight: 600;
     padding: 16px 66.7px;
     width: 130px;
+  }
+
+  .SpacebetweenBtns {
+    padding-bottom: 40px;
+  }
+
+  .ShowTekst {
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+    color: #1fad61;
   }
 }

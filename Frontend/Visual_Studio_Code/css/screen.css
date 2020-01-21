@@ -242,6 +242,31 @@ hr{
     display: none;
 }
 
+.live_hartslag{
+    position: relative;
+    text-align: center;
+}
+
+.live_hart_logo{
+    width: 149px;
+    height: 115px;
+    padding-bottom: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.live_hartslagteller{
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding-bottom: 15px;
+    z-index: 1;
+}
+
 
 
 @media(min-width: 768px){
@@ -386,6 +411,33 @@ hr{
     .kleine_tekst{
         font-size: 32px;
         font-weight: 400;
+    }
+
+
+    .live_hartslag{
+        position: relative;
+        text-align: center;
+    }
+    
+    .live_hart_logo{
+        width: 313px;
+        height: 242px;
+        padding-bottom: 50px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    
+    .live_hartslagteller{
+        text-align: center;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding-bottom: 25px;
+        z-index: 1;
+        font-size: 64px;
     }
 
     
