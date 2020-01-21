@@ -14,13 +14,18 @@ function onButtonClick() {
   navigator.bluetooth
     .requestDevice({
       // filters: [...] <- Prefer filters to save energy & show relevant devices.
-      acceptAllDevices: true
+      filters: [
+        {
+          services: ['heart_rate']
+        }
+      ]
     })
     .then(device => {
       bluetoothDevice = device;
       bluetoothDevice.addEventListener('gattserverdisconnected', onDisconnected);
       connect();
     })
+    .then(ShowButton)
     .catch(error => {
       console.log('Argh! ' + error);
     });
@@ -71,7 +76,10 @@ function exponentialBackoff(max, delay, toTry, success, fail) {
 function time(text) {
   console.log('[' + new Date().toJSON().substr(11, 8) + '] ' + text);
 }
-
+function ShowButton() {
+  document.getElementById('Volgende').style.display = 'block';
+  document.getElementById('Zoekweg').style.display = 'none';
+}
 document.querySelector('form').addEventListener('submit', function(event) {
   event.stopPropagation();
   event.preventDefault();
