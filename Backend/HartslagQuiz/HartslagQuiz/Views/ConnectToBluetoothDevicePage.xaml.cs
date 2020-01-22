@@ -1,4 +1,5 @@
-﻿using Plugin.BLE;
+﻿using HartslagQuiz.Models;
+using Plugin.BLE;
 using Plugin.BLE.Abstractions.Contracts;
 using Plugin.BLE.Abstractions.Exceptions;
 using System;
@@ -19,9 +20,11 @@ namespace HartslagQuiz.Views
         IBluetoothLE ble;
         IAdapter adapter;
         ObservableCollection<IDevice> deviceList;
-        public ConnectToBluetoothDevicePage()
+        Player CurrentPlayer;
+        public ConnectToBluetoothDevicePage(Player player)
         {
             InitializeComponent();
+            CurrentPlayer = player;
             ble = CrossBluetoothLE.Current;
             adapter = CrossBluetoothLE.Current.Adapter;
             deviceList = new ObservableCollection<IDevice>();
@@ -53,7 +56,9 @@ namespace HartslagQuiz.Views
                     await adapter.ConnectToDeviceAsync(selected);
                     lblConnectionMessage.Text = "Verbonden met de Polar hartslagmeter";
                     lblConnectionMessage.TextColor = Color.Green;
-                    Navigation.PushAsync(new EnterLobbyPage(selected));
+                    CurrentPlayer.Sensor = selected;
+                    CurrentPlayer.StartReadingHeartRate();
+                    await Navigation.PushAsync(new EnterRoomPage(CurrentPlayer));
                 }
                 catch (DeviceConnectionException ex)
                 {
