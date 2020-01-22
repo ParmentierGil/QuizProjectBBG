@@ -107,8 +107,8 @@ body{
 }
 
 .tijd{
-    margin-right: 16px;
     display: flex;
+    margin-right: 16px;
 }
 
 hr{
@@ -267,6 +267,11 @@ hr{
     z-index: 1;
 }
 
+.straftijd{
+    color: #FF9671;
+    margin-left: 16px;
+    display: none;
+}
 
 
 @media(min-width: 768px){

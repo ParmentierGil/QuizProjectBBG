@@ -25,9 +25,11 @@ var timerfunctie = function(){
     var kruis3  = document.querySelector(".kruis3");
     var juist = document.querySelector(".juist");
     var vinkje = document.querySelector(".vinkje");
+    var straftijd = document.querySelector(".straftijd");
 
     
     fout1.addEventListener("click", async function(){
+        straftijd.style.display = "block";
         counter = counter +10;
         timer.innerHTML = counter; 
         kruis1.style.display = "flex";
