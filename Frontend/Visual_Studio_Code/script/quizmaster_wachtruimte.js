@@ -1,3 +1,5 @@
+var socket;
+
 //#region FUNCTIONS
 
 //#region GET
@@ -15,6 +17,10 @@ var nextpage = function(){
 //#region init
 const init = function() {
     nextpage();
+    socket = io('http://localhost:5000');
+    socket.on('connect', function() {
+        socket.emit('clientconnected', {data: 'I\'m connected!'});
+    });
 };
 
 
