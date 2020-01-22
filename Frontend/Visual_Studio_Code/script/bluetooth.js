@@ -15,7 +15,8 @@ function handleHeartRateMeasurementCharacteristic(characteristic) {
 function onHeartRateChanged(event) {
   const characteristic = event.target;
   console.log(parseHeartRate(characteristic.value));
-  document.querySelector('#HeartRate').innerHTML = parseHeartRate(characteristic.value).heartRate;
+  // document.querySelector('#HeartRate').innerHTML = parseHeartRate(characteristic.value).heartRate;
+  // geef hartslag weer
 }
 
 function parseHeartRate(data) {
@@ -46,13 +47,18 @@ function getDeviceInfo() {
       ]
     })
     .then(device => device.gatt.connect())
+
     .then(server => server.getPrimaryService('heart_rate'))
     .then(service => {
       chosenHeartRateService = service;
-      return Promise.all(service.getCharacteristic(service.getCharacteristic('heart_rate_measurement').then(handleHeartRateMeasurementCharacteristic)));
-    });
+      Promise.all(service.getCharacteristic(service.getCharacteristic('heart_rate_measurement').then(handleHeartRateMeasurementCharacteristic)));
+    })
+    .then(ShowButton);
 }
-
+function ShowButton() {
+  document.getElementById('Volgende').style.display = 'block';
+  document.getElementById('Zoekweg').style.display = 'none';
+}
 document.querySelector('form').addEventListener('submit', function(event) {
   event.stopPropagation();
   event.preventDefault();

@@ -4,7 +4,7 @@ function connect() {
     2 /* seconds delay */,
     function toTry() {
       time('Connecting to Bluetooth Device... ');
-      return bluetoothDevice.gatt.connect();
+      bluetoothDevice.gatt.connect();
     },
     function success() {
       console.log('> Bluetooth Device connected. Try disconnect it now.');
