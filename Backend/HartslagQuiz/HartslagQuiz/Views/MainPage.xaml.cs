@@ -1,6 +1,7 @@
 ﻿using com.shephertz.app42.gaming.multiplayer.client;
 using HartslagQuiz.Models;
 using HartslagQuiz.Repos;
+using HartslagQuiz.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -19,34 +20,37 @@ namespace HartslagQuiz.Views
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
-        Gamelobby ActiveGame;
         Quizmaster ActiveQuizmaster;
+        MainPageViewModel pageViewModel;
 
         public MainPage()
         {
             InitializeComponent();
+            ActiveQuizmaster = new Quizmaster();
+            pageViewModel = new MainPageViewModel(ActiveQuizmaster);
+            BindingContext = pageViewModel;
         }
 
         private void btnLeave_Clicked(object sender, EventArgs e)
         {
-            ActiveGame.Exit();
+            ActiveQuizmaster.Exit();
         }
 
         private void btnMakeLobby_Clicked(object sender, EventArgs e)
         {
-            ActiveQuizmaster = new Quizmaster();
-            ActiveGame = new Gamelobby(ActiveQuizmaster);
-            while (ActiveGame.ActiveRoom == null)
-            {
-                Console.WriteLine("Waiting for room to be made");
-            }
-            RoomCode.Text = ActiveGame.ActiveRoom.JoinCode.ToString();
+            ActiveQuizmaster.ConnectToGameServer();
+            //while (ActiveQuizmaster.ActiveRoom == null)
+            //{
+            //    Console.WriteLine("Waiting for room to be made");
+            //}
+            //RoomCode.Text = ActiveQuizmaster.ActiveRoom.JoinCode.ToString();
         }
 
 
         private void btnPlay_Clicked(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ConnectToBluetoothDevicePage());
+            Player player = new Player();
+            Navigation.PushAsync(new EnterNamePage(player));
         }
     }
 }
