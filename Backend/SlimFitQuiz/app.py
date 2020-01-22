@@ -1,12 +1,13 @@
 from flask import Flask
 from flask import request
-from flask_mqtt import Mqtt
+from flask_socketio import SocketIO, send, emit
 from flask import jsonify
 from urllib import parse
 import sqlalchemy as db
 from sqlalchemy.orm import sessionmaker
 import random
 import string
+import json
 
 
 app = Flask(__name__)
@@ -21,19 +22,15 @@ connection = engine.connect();
 Session = sessionmaker()
 Session.configure(bind=engine)
 
-app.config['MQTT_BROKER_URL'] = 'broker.hivemq.com'  # use the free broker from HIVEMQ
-app.config['MQTT_BROKER_PORT'] = 1883  # default port for non-tls connection
-app.config['MQTT_USERNAME'] = ''  # set the username here if you need authentication for the broker
-app.config['MQTT_PASSWORD'] = ''  # set the password here if the broker demands authentication
-app.config['MQTT_KEEPALIVE'] = 5  # set the time interval for sending a ping to the broker to 5 seconds
-app.config['MQTT_TLS_ENABLED'] = False  # set TLS to disabled for testing purposes
+app.config['SECRET_KEY'] = 'slimfit8500$'
+socketio = SocketIO(app)
 
-mqtt = Mqtt(app)
-
+'''
 #example
 result = connection.execute('select * from Question')
 for row in result:
     print("res:", row['QuestionText'])
+'''
 
 def random_string(string_length):
     letters = string.ascii_uppercase
@@ -43,6 +40,7 @@ def random_string(string_length):
 def hello_world():
     return 'Hello World'
 
+
 @app.route(baseURI+'makegame')
 def make_game():
     joincode = random_string(4)
@@ -50,65 +48,87 @@ def make_game():
     try:
         sql = "insert into Game (GameId, JoinCode, QuestionCount) values (NEWID(), ?, ?)"
         result = connection.execute(sql, joincode, question_count)
-        return jsonify("Game created!")
+        return jsonify("Game created!"), 201
     except Exception as e:
-        return jsonify('Error while creating room'+str(e)), 500
+        return jsonify('Error while creating game'+str(e)), 500
 
-@app.route(baseURI+'gamequestions')
-def game_questions():
-    session = Session()
+
+@app.route(baseURI+'playerjoin', methods=['GET', 'POST'])
+def player():
+    username = 'gil'
     joincode = 'KBIS'
+    if(request.method == 'GET'):
+        try:
+            sql = "insert into Player (PlayerId, Username) values (NEWID(), ?)"
+            result = connection.execute(sql, username)
+            sql2 = "select PlayerId from Player where username = ?"
+            result2 = connection.execute(sql2, username)
+            playerid = ''
+            for row in result:
+                playerid = row['PlayerId']
+            return jsonify("Joined game"), 201
+        except Exception as e:
+            return jsonify('Error while joining game ' + str(e)), 500
+
+
+def get_game_questions(question_count):
+    session = Session()
     questions = []
     try:
-        question_count_sql = 'SELECT QuestionCount FROM Game WHERE JoinCode = :joincode'
-        qc_result = session.execute(question_count_sql, {'joincode': joincode})
-        for row in qc_result:
-            question_count = row['QuestionCount']
-            print("res:", row['QuestionCount'])
-
         sql = f'SELECT TOP {question_count} * FROM Question ORDER BY NEWID()'
         result = session.execute(sql)
         for row in result:
             d = dict(row.items())
             questions.append(d)
             print("res:", row['QuestionText'])
-        session.close();
-        return jsonify(questions),200
+        session.close()
+        return questions
     except Exception as e:
-        return jsonify('Error while getting gamequestions'+str(e)), 500
+        print('Error while getting questions  '+str(e))
 
 
-@app.route(baseURI+'exercises')
-def exercises():
+def get_exercises(question_count):
     session = Session()
-    joincode = 'KBIS'
     exercises = []
     try:
-        question_count_sql = 'SELECT QuestionCount FROM Game WHERE JoinCode = :joincode'
-        qc_result = session.execute(question_count_sql, {'joincode': joincode})
-        for row in qc_result:
-            question_count = row['QuestionCount']
-            print("res:", row['QuestionCount'])
-
         sql = f'SELECT TOP {question_count} * FROM Exercise ORDER BY NEWID()'
         result = session.execute(sql)
         for row in result:
             d = dict(row.items())
             exercises.append(d)
             print("res:", row['Description'])
-        session.close();
-        return jsonify(exercises), 200
+        session.close()
+        return exercises
     except Exception as e:
-        return jsonify('Error while getting exercises'+str(e)), 500
+        print('Error while getting exercises   '+str(e))
+
+
+def get_question_count(joincode):
+    session = Session()
+    try:
+        question_count_sql = 'SELECT QuestionCount FROM Game WHERE JoinCode = :joincode'
+        qc_result = session.execute(question_count_sql, {'joincode': joincode})
+        for row in qc_result:
+            return row['QuestionCount']
+    except Exception as e:
+        print('Error while getting question count   '+str(e))
+
+
+#SOCKET IO
+
+#@socketio.on('start game')
+def start_game(joincode):
+    question_count = get_question_count(joincode)
+    game_questions = get_game_questions(question_count)
+    exercises = get_exercises(question_count)
+    q_and_e_json = game_questions + exercises
+    print(q_and_e_json)
+    emit('game started', q_and_e_json)
 
 
 
 if __name__ == '__main__':
-    app.run()
-    mqtt.init_app(app)
-'''    
-result = session.execute(
-            text("SELECT * FROM user WHERE id=:param"),
-            {"param":5}
-        )
-'''
+    app.run(debug=True, use_reloader=False)
+
+
+
