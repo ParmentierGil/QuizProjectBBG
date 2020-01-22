@@ -8,11 +8,11 @@ namespace HartslagQuiz.Models
 {
     public class ConnectionListener : com.shephertz.app42.gaming.multiplayer.client.listener.ConnectionRequestListener
     {
-        public Gamelobby ActiveGamelobby { get; set; }
+        public User Listener { get; set; }
 
-        public ConnectionListener(Gamelobby gamelobby)
+        public ConnectionListener(User user)
         {
-            ActiveGamelobby = gamelobby;
+            Listener = user;
         }
 
         public void onConnectDone(ConnectEvent eventObj)
@@ -20,7 +20,7 @@ namespace HartslagQuiz.Models
             if (eventObj.getResult() == WarpResponseResultCode.SUCCESS)
             {
                 Console.WriteLine("connection success2");
-                ActiveGamelobby.connectDone();
+                Listener.ConnectDone();
             }
             else
             {
