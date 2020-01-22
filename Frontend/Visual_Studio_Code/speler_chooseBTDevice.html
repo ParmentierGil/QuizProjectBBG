@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>SlimFit Quiz</title>
+    <link rel="stylesheet" href="css/screen copy.css" />
+  </head>
+</html>
+<body>
+  <container class="top-bar">
+    <div class="Tekst">
+      <div class="TopTekst">Verbind je hartslagmeter</div>
+    </div>
+    <div class="horizontale_lijn"></div>
+  </container>
+  <hr />
+  <div class="legediv"></div>
+
+  <form>
+    <div id="Zoekweg" class="centerButton2 CenterfindBT ">
+      <button class="button buttonBTVerbind">Zoek</button>
+    </div>
+  </form>
+
+  <div id="Volgende" class="centerBtnVolgende CenterfindBT">
+    <div class="centerButton2">
+      <p class="ShowTekst">Verbonden met hartslagmeter</p>
+
+      <div id="clickable" class="button">
+        <a class="decoration" href="speler_spelcode.html">Volgende</a>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="script/chooseBTDevice.js"></script>
+<!-- <script>
+  function isWebBLEAvailable() {
+    if (!navigator.bluetooth) {
+      console.log('Not available!');
+      return false;
+    }
+    return true;
+  }
+
+  function getDeviceInfo() {
+    let chosenHeartRateService = null;
+    console.log('Requesting device info');
+    navigator.bluetooth
+      .requestDevice({
+        filters: [
+          {
+            services: ['heart_rate']
+          }
+        ]
+      })
+      .then(device => device.gatt.connect())
+      .then(ShowButton)
+      .then(server => server.getPrimaryService('heart_rate'))
+      .then(service => {
+        chosenHeartRateService = service;
+        return Promise.all(service.getCharacteristic(service.getCharacteristic('heart_rate_measurement').then(handleHeartRateMeasurementCharacteristic)));
+      });
+  }
+
+  function handleHeartRateMeasurementCharacteristic(characteristic) {
+    return characteristic.startNotifications().then(char => {
+      characteristic.addEventListener('characteristicvaluechanged', onHeartRateChanged);
+    });
+  }
+
+  function onHeartRateChanged(event) {
+    const characteristic = event.target;
+    console.log(parseHeartRate(characteristic.value));
+    document.querySelector('#HeartRate').innerHTML = parseHeartRate(characteristic.value).heartRate;
+  }
+
+  function parseHeartRate(data) {
+    const flags = data.getUint8(0);
+    const rate16Bits = flags & 0x1;
+    const result = {};
+    let index = 1;
+    if (rate16Bits) {
+      result.heartRate = data.getUint16(index, /*littleEndian=*/ true);
+      index += 2;
+    } else {
+      result.heartRate = data.getUint8(index);
+      index += 1;
+    }
+
+    return result;
+  }
+
+  function ShowButton() {
+    document.getElementById('Volgende').style.display = 'block';
+    document.getElementById('Zoekweg').style.display = 'none';
+  }
+
+  function clickDiv() {}
+  document.getElementById('clickable').addEventListener('click', clickDiv);
+
+  document.querySelector('form').addEventListener('submit', function(event) {
+    event.stopPropagation();
+    event.preventDefault();
+
+    if (isWebBLEAvailable) {
+      getDeviceInfo();
+    }
+  });
+</script> -->
