@@ -329,6 +329,7 @@ hr {
     font-weight: 600;
     font-size: 32px;
     width: 200px;
+    text-transform: uppercase;
   }
 
   .inputColor2 {

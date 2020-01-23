@@ -7,6 +7,7 @@
     <title>SlimFit Quiz</title>
     <link rel="stylesheet" href="css/screen copy.css" />
     <script src="script/speler_spelcode.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
   </head>
 </html>
 <body>
@@ -22,7 +23,7 @@
       <div class="kleine_tekst alert"></div>
       <div class="SpacebetweenBtns">
         <div class="inputbox">
-          <input class="inputColor" placeholder="Code" required />
+          <input id="uppercase" style="text-transform: uppercase" class="inputColor" placeholder="Code" required />
         </div>
       </div>
       <div class="buttonCodeScreen">

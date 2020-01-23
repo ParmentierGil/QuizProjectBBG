@@ -1,5 +1,5 @@
 var bluetoothDevice;
-var playerId;
+var playerId = 'be5e2892-c170-472e-8bab-cafc3bfa1746';
 var socket;
 
 function isWebBLEAvailable() {
@@ -35,7 +35,7 @@ function parseHeartRate(data) {
     result.heartRate = data.getUint8(index);
     index += 1;
   }
-
+  socket.emit('newheartrate', { heartrate: result, playerid: playerId });
   return result;
 }
 
@@ -47,12 +47,11 @@ function onButtonClick() {
   navigator.bluetooth
     .requestDevice({
       // filters: [...] <- Prefer filters to save energy & show relevant devices.
-      // filters: [
-      //   {
-      //     services: ['heart_rate']
-      //   }
-      // ]
-      acceptAllDevices: true
+      filters: [
+        {
+          services: ['heart_rate']
+        }
+      ]
     })
     .then(
       device => {
@@ -131,9 +130,23 @@ function ShowButton() {
 document.querySelector('form').addEventListener('submit', function(event) {
   event.stopPropagation();
   event.preventDefault();
+});
 
+//#region init
+const init = function() {
   if (isWebBLEAvailable) {
     onButtonClick();
     // getDevice();
   }
+  socket = io('http://172.30.248.71:5500');
+
+  socket.on('connect', function() {
+    socket.emit('clientconnected', { data: "I'm connected!" });
+  });
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.info('Page loaded');
+  init();
 });
+//#endregion

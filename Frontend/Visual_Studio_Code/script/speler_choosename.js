@@ -16,18 +16,13 @@ var alertfunctie = function() {
   var alert = document.querySelector('.alert');
 
   submit.addEventListener('click', async function() {
-    valid = true;
-
     if (input.value == '') {
-      alert.style.display = 'block';
-      valid = false;
+      alert.innerHTML = 'Vul je naam in';
       await delay(3000);
-      alert.style.display = 'none';
+      alert.innerHTML = '';
     } else {
       socket.emit('makeplayer', { username: input.value });
     }
-
-    return valid;
   });
 };
 //#region init
