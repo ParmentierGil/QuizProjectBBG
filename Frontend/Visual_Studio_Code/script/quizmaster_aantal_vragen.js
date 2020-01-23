@@ -6,39 +6,34 @@
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 //#region ListenTo
-var alertfunctie = function(){
-    var input = document.querySelector(".aantal_vragen");
-    var submit = document.querySelector(".buttonCodeScreen");
-    var alert = document.querySelector(".alert");
+var alertfunctie = function() {
+  var input = document.querySelector('.aantal_vragen');
+  var submit = document.querySelector('.buttonCodeScreen');
+  var alert = document.querySelector('.alert');
 
-    submit.addEventListener("click", async function(){
-        valid = true;
+  submit.addEventListener('click', async function() {
+    valid = true;
 
-        if(input.value == "") {
-            alert.style.display = "block";
-            valid = false;
-            await delay(3000);
-            alert.style.display = "none"
-        }
+    if (input.value == '') {
+      alert.style.display = 'block';
+      valid = false;
+      await delay(3000);
+      alert.style.display = 'none';
+    } else {
+      location.href = 'quizmaster_wachtruimte.html';
+    }
 
-        else{
-            location.href="quizmaster_wachtruimte.html";
-        }
-
-        return valid;
-    });
-    
-}
-
+    return valid;
+  });
+};
 
 //#region init
 const init = function() {
-    alertfunctie();
-  };
+  alertfunctie();
+};
 
-
-document.addEventListener('DOMContentLoaded', function(){
-    console.info("Page loaded");
-    init();
+document.addEventListener('DOMContentLoaded', function() {
+  console.info('Page loaded');
+  init();
 });
 //#endregion

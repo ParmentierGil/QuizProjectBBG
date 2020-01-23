@@ -210,7 +210,6 @@ hr {
   text-align: center;
 }
 
-
 .button {
   background-color: #2c73d2;
   border-radius: 35px;
@@ -262,11 +261,10 @@ hr {
   outline: none;
 }
 
-.alert{
+.alert {
   margin-bottom: 8px;
   font-size: 16px;
-  color: #FFC75F;
-  display: none;
+  color: #ffc75f;
 }
 
 .decoration {
@@ -288,8 +286,7 @@ hr {
   transform: translate(-50%, -50%);
 }
 
-@media(min-width: 768px){
-
+@media (min-width: 768px) {
   .grote_titel {
     font-size: 64px;
     font-weight: 600;
@@ -334,7 +331,6 @@ hr {
     width: 200px;
   }
 
-  
   .inputColor2 {
     font-weight: 600;
     font-size: 32px;
@@ -346,28 +342,28 @@ hr {
     font-size: 24px;
     width: 200px;
   }
-  
+
   .logodiv {
     padding-top: 32px;
     display: flex;
     justify-content: space-evenly;
   }
-  
+
   .logo {
     width: 136.5px;
     height: 70px;
   }
-  
+
   .logo2 {
     width: 51.83px;
     height: 70px;
   }
-  
+
   .logo3 {
     width: 126.12px;
     height: 35px;
   }
-  
+
   .logo4 {
     width: 130.45px;
     height: 70px;
