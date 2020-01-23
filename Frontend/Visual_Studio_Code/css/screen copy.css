@@ -136,7 +136,7 @@ body {
 
 .top-bar {
   display: flex;
-  margin-top: 40px;
+  margin-top: 24px;
 }
 
 .Tekst {
@@ -150,7 +150,7 @@ hr {
   height: 1px;
   background-color: White;
   color: White;
-  margin-top: 16px;
+  margin-top: 24px;
 }
 
 .centerButton2 {

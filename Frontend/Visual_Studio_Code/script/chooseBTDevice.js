@@ -17,8 +17,8 @@ function handleHeartRateMeasurementCharacteristic(characteristic) {
 function onHeartRateChanged(event) {
   const characteristic = event.target;
   console.log(parseHeartRate(characteristic.value));
-  // document.querySelector('#HeartRate').innerHTML = parseHeartRate(characteristic.value).heartRate;
-  // geef hartslag weer
+  //document.querySelector('#HeartRate').innerHTML = parseHeartRate(characteristic.value).heartRate;
+  //geef hartslag weer
 }
 
 function parseHeartRate(data) {
