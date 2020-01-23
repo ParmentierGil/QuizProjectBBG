@@ -59,10 +59,11 @@ class GamePlayer(Base):
     __tablename__ = 'GamePlayer'
     PlayerId = Column(String(50), primary_key=True)
     GameId = Column(String(50))
+    Heartrate = Column(Integer)
 
     def __repr__(self):
-        return "<Player(PlayerId='%s', GameId='%s')>" % (
-                                self.PlayerId, self.GameId)
+        return "<Player(PlayerId='%s', GameId='%s', Heartrate='%s')>" % (
+                                self.PlayerId, self.GameId, self.Heartrate)
 # </editor-fold>
 
 #<editor-fold desc="Useful Functions">
@@ -216,9 +217,17 @@ def make_player(data):
     print(username)
     save_player(username)
 
-@socketio.on('newheartrate', )
+@socketio.on('newheartrate')
 def new_heartrate(data):
+    session = Session()
+    player_id = data['playerid']
     heartrate = data['heartrate']
+    #gameplayer = session.query(GamePlayer).filter_by(PlayerId=player_id).first()
+    #gameplayer.Heartrate = heartrate
+    #session.commit()
+    print('hartslag')
+    socketio.emit('newheartrate'+player_id, str(heartrate))
+
 
 if __name__ == '__main__':
     socketio.run(app, host="0.0.0.0", port="5500", debug=True)
