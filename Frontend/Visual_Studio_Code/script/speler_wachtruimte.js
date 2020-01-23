@@ -1,5 +1,5 @@
 var socket;
-var playerId;
+var playerId = 'be5e2892-c170-472e-8bab-cafc3bfa1746';
 
 //#region FUNCTIONS
 
@@ -43,6 +43,9 @@ const init = function() {
   socket.on('game_started_exercises', function(data) {
     localStorage.setItem('gameExercises', JSON.stringify(data));
 
+    console.log(data);
+  });
+  socket.on('newheartrate' + playerId, function(data) {
     console.log(data);
   });
 };

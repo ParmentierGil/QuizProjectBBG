@@ -18,8 +18,11 @@ function handleHeartRateMeasurementCharacteristic(characteristic) {
 
 function onHeartRateChanged(event) {
   const characteristic = event.target;
-  console.log(parseHeartRate(characteristic.value));
-  document.querySelector('#HeartRate').innerHTML = parseHeartRate(characteristic.value).heartRate;
+  const heartrate = parseHeartRate(characteristic.value);
+  socket.emit('newheartrate', { playerid: playerId, heartrate: heartrate.heartRate });
+
+  console.log(heartrate);
+  document.querySelector('#HeartRate').innerHTML = heartrate.heartRate;
   // geef hartslag weer
 }
 
@@ -35,7 +38,6 @@ function parseHeartRate(data) {
     result.heartRate = data.getUint8(index);
     index += 1;
   }
-  socket.emit('newheartrate', { heartrate: result, playerid: playerId });
   return result;
 }
 
@@ -130,14 +132,15 @@ function ShowButton() {
 document.querySelector('form').addEventListener('submit', function(event) {
   event.stopPropagation();
   event.preventDefault();
-});
 
-//#region init
-const init = function() {
   if (isWebBLEAvailable) {
     onButtonClick();
     // getDevice();
   }
+});
+
+//#region init
+const init = function() {
   socket = io('http://172.30.248.71:5500');
 
   socket.on('connect', function() {
