@@ -122,6 +122,7 @@ function time(text) {
 }
 function ShowButton() {
   document.getElementById('Volgende').style.display = 'block';
+  document.getElementById('heartbeat_display').style.display = "block";
   document.getElementById('Zoekweg').style.display = 'none';
 }
 
