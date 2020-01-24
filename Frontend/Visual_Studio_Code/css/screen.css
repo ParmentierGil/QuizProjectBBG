@@ -64,14 +64,13 @@ body{
 }
 
 .container{
-    height: 100%;
     display: flex;
-    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     align-items: center;
-    vertical-align: center;
     flex-direction: column;
-    margin-left: 24px;
-    margin-right: 24px;
 }
 
 .margin-bottom{
@@ -89,17 +88,19 @@ body{
 .hartslag{
     margin-left: 16px;
     display: flex;
+    width: 75px;
 }
 
 .hartslag_logo{
-    width: 24px;
-    height: 21.86px;
+    width: 20px;
+    height: 21px;
     margin-right: 8px;
 }
 
+
 .klok_logo{
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     margin-right: 8px;
 }
 
@@ -111,6 +112,8 @@ body{
 .tijd{
     margin-right: 16px;
     display: flex;
+    width: 75px;
+    justify-content: flex-end;
 }
 
 hr{
@@ -125,8 +128,8 @@ hr{
 .vraag{
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
-    margin-top: 24px;
+    margin-bottom: 64px;
+    margin-top: 40px;
 }
 
 .rangschikking{
@@ -302,6 +305,58 @@ hr{
     margin-top: 2px;
 }
 
+.vragentitel{
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.vraagtekst{
+    width: 350px;
+    text-align: center;
+}
+
+.heartbeat_small{
+    width: 35px;
+    margin-right: 4px;
+}
+
+.seconden{
+    width: 15px;
+}
+
+.antwoord{
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    padding-top: 12px;
+}
+
+.antwoord1{
+    background-color: #5CBA47;
+}
+
+.antwoord2{
+    background-color: #2C73D2;
+}
+
+.antwoord3{
+    background-color: #FFC611;
+}
+
+.antwoord4{
+    background-color: #F56A8B;
+}
+
+.box{
+    width: 250px;
+    height: 50px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+}
+
+
 
 @media(min-width: 768px){
     .titel{
@@ -338,8 +393,8 @@ hr{
       }
 
     .rangschikking_list{
-        padding-bottom: 20px;
-        padding-top: 20px;
+        padding-bottom: 15px;
+        padding-top: 15px;
         width: 350px;
         margin-bottom: 24px;
     }
@@ -489,5 +544,57 @@ hr{
         display: flex;
         flex-wrap: wrap;
     }
+
+
+    .hartslag_wachtruimte{
+        font-size: 32px;
+        font-weight: 400;
+    }
     
+    .speler_wachtruimte{
+        font-size: 32px;
+        font-weight: 400;
+        width: 220px;
+        margin-left: 16px;
+    }
+    
+    .hartslag_container{
+        display: flex;
+        position: relative;
+        left: 8px;
+    }
+    
+    .hartslag_logo2{
+        width: 36px;
+        height: 32px;
+        margin-right: 16px;
+        margin-top: 2px;
+    }
+
+    
+    .vragentitel{
+        font-size: 40px;
+        font-weight: 600;
+    }
+
+    .vraagtekst{
+        width: 600px;
+        text-align: center;
+    }
+
+    .heartbeat_small{
+        width: 55px;
+        margin-right: 10px;
+    }
+
+    .seconden{
+        width: 20px;
+    }
+    
+    
+    .antwoord{
+        font-size: 32px;
+        font-weight: 400;
+        padding: 16px 190px;
+    }
 }
