@@ -7,6 +7,7 @@
     <title>SlimFit Quiz</title>
     <link rel="stylesheet" href="css/screen.css" />
     <script src="script/speler_antwoordenscherm.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
   </head>
   <body>
     <container class="top-bar">
@@ -40,7 +41,7 @@
       </div>
 
       <div class="live_hartslag">
-        <div class="titel live_hartslagteller">101</div>
+        <div id="hartslag" class="titel live_hartslagteller">101</div>
         <img class="live_hart_logo" src="img/hartje-png-4.png" alt="live hartslag" />
       </div>
 

@@ -1,23 +1,42 @@
 var playerId;
 var socket;
 var questionNumber;
+var questions;
 
 //#region FUNCTIONS
 
 //#region GET
+var getAntwoorden = function() {
+  var opties = document.querySelectorAll('.optie');
+  var randomIndex = Math.floor(Math.random() * 4);
+  var juistAntwoord = questions[questionNumber].CorrectAnswer;
+  opties[randomIndex].innerHTML = juistAntwoord;
+  var fouteAntwoorden = [];
+  fouteAntwoorden.push(questions[questionNumber].WrongAnswer1);
+  fouteAntwoorden.push(questions[questionNumber].WrongAnswer2);
+  fouteAntwoorden.push(questions[questionNumber].WrongAnswer3);
+  for (let i = 0; i < 4; i++) {
+    if (i != randomIndex) {
+      if (i == 3) {
+        opties[i].innerHTML = fouteAntwoorden[2];
+      } else {
+        opties[i].innerHTML = fouteAntwoorden[i];
+      }
+    }
+  }
+};
 
 var getNumberQuestion = function() {
-  questions = JSON.parse(localStorage.getItem('gameQuestions'));
   number = questionNumber;
   console.log(number);
   numberweergave = document.getElementById('questionCount');
-  numberweergave.innerHTML = 'Vraag ' + parseInt(number + 1) + 'van de' questions.length;
+  numberweergave.innerHTML = 'Vraag ' + parseInt(number + 1) + ' van de ' + questions.length;
 };
 var getGameQuestions = function() {
-  questions = JSON.parse(localStorage.getItem('gameQuestions'))[questionNumber].QuestionText;
-  console.log(questions);
+  var questiontext = questions[questionNumber].QuestionText;
+  console.log(questiontext);
   questionweergave = document.getElementById('gameQuestion');
-  questionweergave.innerHTML = questions;
+  questionweergave.innerHTML = questiontext;
 };
 //#region show
 const delay = ms => new Promise(res => setTimeout(res, ms));
@@ -81,10 +100,24 @@ var timerfunctie = function() {
 //#region init
 const init = function() {
   questionNumber = parseInt(localStorage.getItem('questionNumber'));
+  questions = JSON.parse(localStorage.getItem('gameQuestions'));
+  playerId = localStorage.getItem('playerId');
 
   timerfunctie();
   getGameQuestions();
   getNumberQuestion();
+  getAntwoorden();
+
+  socket = io('http://172.30.248.93:5500');
+  //   listenToSocket();
+
+  socket.on('connect', function() {
+    socket.emit('clientconnected', { data: "I'm connected!" });
+  });
+  socket.on('newheartrate' + playerId, function(data) {
+    console.log(data);
+    document.getElementById('hartslag').innerHTML = data;
+  });
 };
 
 document.addEventListener('DOMContentLoaded', function() {
