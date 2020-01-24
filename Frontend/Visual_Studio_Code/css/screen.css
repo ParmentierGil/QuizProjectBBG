@@ -16,8 +16,7 @@ html{
     padding: 0px;
     margin: 0px;
     font-family: 'ProzaLibre', Arial, Helvetica, sans-serif;
-    background-image: linear-gradient(#845EC2, #D65DB1);
-    background-repeat: no-repeat;
+    background-color: #59499E;
     height: 100%;
     color: White;
     overflow: hidden;
@@ -39,7 +38,7 @@ body{
 }
 
 .titel{
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     text-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
 }
@@ -81,7 +80,10 @@ body{
 
 .top-bar{
     display: flex;
-    margin-top: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border: none;
+  background-color: #243668;
 }
 
 .hartslag{
@@ -130,8 +132,10 @@ hr{
 .rangschikking{
     display: flex;
     justify-content: center;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
     margin-top: 24px;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .square{
@@ -176,23 +180,23 @@ hr{
 }
 
 .rangschikking_list{
-    padding: 24px;
+    padding: 6px 24px;
+    background-color: #8589EF;
+    border: none;
+    display: flex;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
 }
 
-.speler{
-    float: left;
-}
-
-.aantal_seconden{
-    float: right;
-}
 
 .wachten{
     position: absolute;
     bottom: 24px;
     text-align: center;
     width: 100%;
-    color: #FFC75F;
+    color: #FFC611;
 }
 
 .centerBtn{
@@ -274,6 +278,31 @@ hr{
 }
 
 
+.hartslag_wachtruimte{
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.speler_wachtruimte{
+    font-size: 24px;
+    font-weight: 400;
+    width: 180px;
+}
+
+.hartslag_container{
+    display: flex;
+    position: relative;
+    left: 8px;
+}
+
+.hartslag_logo2{
+    width: 24px;
+    height: 21.86px;
+    margin-right: 8px;
+    margin-top: 2px;
+}
+
+
 @media(min-width: 768px){
     .titel{
         font-size: 40px;
@@ -309,8 +338,19 @@ hr{
       }
 
     .rangschikking_list{
-        padding-bottom: 32px;
-        padding-top: 16px;
+        padding-bottom: 20px;
+        padding-top: 20px;
+        width: 350px;
+        margin-bottom: 24px;
+    }
+
+    .rangschikking{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+        margin-top: 40px;
+        font-size: 40px;
+        font-weight: 600;
     }
 
     .wachten{
@@ -445,5 +485,9 @@ hr{
         font-size: 64px;
     }
 
+    .flex-wrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
     
 }
