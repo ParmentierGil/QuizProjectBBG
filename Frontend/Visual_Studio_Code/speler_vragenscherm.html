@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>SlimFit Quiz</title>
-    <link rel="stylesheet" href="css/screen.css"/>
-    <script src="script/main.js"></script>
-</head>
-<body>
+    <link rel="stylesheet" href="css/screen.css" />
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+    <script src="script/speler_vragenscherm.js"></script>
+  </head>
+  <body>
+    <a href="speler_antwoordenscherm.html">bklalbl</a>
+
     <div class="container">
-        <div class="grote_titel margin-bottom">Vraag 1</div>
-        <div class="medium_tekst margin-bottom">Hoeveel kegels zijn er bij het bowlen?</div>
-        <div class="grote_titel margin-bottom">Oefening</div>
-        <div class="medium_tekst">Springtouwen</div>
+      <div id="questionCount" class="grote_titel margin-bottom"></div>
+      <div id="gameQuestion" class="medium_tekst margin-bottom"></div>
+      <div class="grote_titel margin-bottom">Oefening</div>
+      <div id="gameExercise" class="medium_tekst"></div>
     </div>
 
-
     <div class="wachten">wachten op de quizmaster</div>
-</body>
+  </body>
 </html>

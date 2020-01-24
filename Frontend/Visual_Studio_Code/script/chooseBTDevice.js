@@ -1,6 +1,7 @@
 var bluetoothDevice;
-var playerId = 'be5e2892-c170-472e-8bab-cafc3bfa1746';
+var playerId;
 var socket;
+var joinCode;
 
 function isWebBLEAvailable() {
   if (!navigator.bluetooth) {
@@ -19,7 +20,8 @@ function handleHeartRateMeasurementCharacteristic(characteristic) {
 function onHeartRateChanged(event) {
   const characteristic = event.target;
   const heartrate = parseHeartRate(characteristic.value);
-  socket.emit('newheartrate', { playerid: playerId, heartrate: heartrate.heartRate });
+  console.log(joinCode);
+  socket.emit('newheartrate', { playerid: playerId, joincode: joinCode, heartrate: heartrate.heartRate });
 
   console.log(heartrate);
   document.querySelector('#HeartRate').innerHTML = heartrate.heartRate;
@@ -141,7 +143,9 @@ document.querySelector('form').addEventListener('submit', function(event) {
 
 //#region init
 const init = function() {
-  socket = io('http://172.30.248.71:5500');
+  socket = io('http://172.30.248.93:5500');
+  playerId = localStorage.getItem('playerId');
+  joinCode = localStorage.getItem('joinCode');
 
   socket.on('connect', function() {
     socket.emit('clientconnected', { data: "I'm connected!" });

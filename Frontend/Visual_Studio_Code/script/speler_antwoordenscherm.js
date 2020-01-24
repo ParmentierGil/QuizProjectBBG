@@ -1,10 +1,24 @@
 var playerId;
 var socket;
+var questionNumber;
 
 //#region FUNCTIONS
 
 //#region GET
 
+var getNumberQuestion = function() {
+  questions = JSON.parse(localStorage.getItem('gameQuestions'));
+  number = questionNumber;
+  console.log(number);
+  numberweergave = document.getElementById('questionCount');
+  numberweergave.innerHTML = 'Vraag ' + parseInt(number + 1) + 'van de' questions.length;
+};
+var getGameQuestions = function() {
+  questions = JSON.parse(localStorage.getItem('gameQuestions'))[questionNumber].QuestionText;
+  console.log(questions);
+  questionweergave = document.getElementById('gameQuestion');
+  questionweergave.innerHTML = questions;
+};
 //#region show
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
@@ -66,7 +80,11 @@ var timerfunctie = function() {
 
 //#region init
 const init = function() {
+  questionNumber = parseInt(localStorage.getItem('questionNumber'));
+
   timerfunctie();
+  getGameQuestions();
+  getNumberQuestion();
 };
 
 document.addEventListener('DOMContentLoaded', function() {
