@@ -34,22 +34,27 @@ var timerfunctie = function(){
         timer.innerHTML = counter; 
         kruis1.style.display = "flex";
         await delay(2000);
+        straftijd.style.display = "none";
         kruis1.style.display = "none";
     });
 
     fout2.addEventListener("click", async function(){
+        straftijd.style.display = "block";
         counter = counter +10;
         timer.innerHTML = counter; 
         kruis2.style.display = "flex";
         await delay(2000);
+        straftijd.style.display = "none";
         kruis2.style.display = "none";
     });
 
     fout3.addEventListener("click", async function(){
+        straftijd.style.display = "block";
         counter = counter +10;
         timer.innerHTML = counter; 
         kruis3.style.display = "flex";
         await delay(2000);
+        straftijd.style.display = "none";
         kruis3.style.display = "none";
     });
 
