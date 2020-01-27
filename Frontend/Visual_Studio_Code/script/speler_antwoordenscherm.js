@@ -2,6 +2,8 @@ var playerId;
 var socket;
 var questionNumber;
 var questions;
+var score;
+var joinCode;
 
 //#region FUNCTIONS
 
@@ -11,19 +13,21 @@ var getAntwoorden = function() {
   var randomIndex = Math.floor(Math.random() * 4);
   var juistAntwoord = questions[questionNumber].CorrectAnswer;
   opties[randomIndex].innerHTML = juistAntwoord;
+  opties[randomIndex].parentElement.classList.add('juist');
   var fouteAntwoorden = [];
   fouteAntwoorden.push(questions[questionNumber].WrongAnswer1);
   fouteAntwoorden.push(questions[questionNumber].WrongAnswer2);
   fouteAntwoorden.push(questions[questionNumber].WrongAnswer3);
+  let foutIndex = 0;
   for (let i = 0; i < 4; i++) {
     if (i != randomIndex) {
-      if (i == 3) {
-        opties[i].innerHTML = fouteAntwoorden[2];
-      } else {
-        opties[i].innerHTML = fouteAntwoorden[i];
-      }
+      opties[i].innerHTML = fouteAntwoorden[foutIndex];
+      opties[i].parentElement.classList.add('fout' + (foutIndex + 1));
+      foutIndex++;
     }
   }
+  listenToCorrectAnswer();
+  //listenToWrongAnswer();
 };
 
 var getNumberQuestion = function() {
@@ -44,13 +48,13 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 //#region ListenTo
 var timerfunctie = function() {
   var timer = document.querySelector('#tijd');
-  var counter = 0;
+  score = 0;
   var interval = setInterval(timeIt, 1000);
-  timer.innerhtml = counter;
+  timer.innerhtml = score;
 
   function timeIt() {
-    counter++;
-    timer.innerHTML = counter;
+    score++;
+    timer.innerHTML = score;
   }
 
   var fout1 = document.querySelector('.fout1');
@@ -65,24 +69,24 @@ var timerfunctie = function() {
 
   fout1.addEventListener('click', async function() {
     straftijd.style.display = 'block';
-    counter = counter + 10;
-    timer.innerHTML = counter;
+    score = score + 10;
+    timer.innerHTML = score;
     kruis1.style.display = 'flex';
     await delay(2000);
     kruis1.style.display = 'none';
   });
 
   fout2.addEventListener('click', async function() {
-    counter = counter + 10;
-    timer.innerHTML = counter;
+    score = score + 10;
+    timer.innerHTML = score;
     kruis2.style.display = 'flex';
     await delay(2000);
     kruis2.style.display = 'none';
   });
 
   fout3.addEventListener('click', async function() {
-    counter = counter + 10;
-    timer.innerHTML = counter;
+    score = score + 10;
+    timer.innerHTML = score;
     kruis3.style.display = 'flex';
     await delay(2000);
     kruis3.style.display = 'none';
@@ -93,7 +97,18 @@ var timerfunctie = function() {
     clearInterval(interval);
     vinkje.style.display = 'flex';
     await delay(3000);
-    location.href = 'speler_rangschikking_scherm.html';
+  });
+};
+
+const listenToCorrectAnswer = function() {
+  let correctAnswer = document.querySelector('.juist');
+  correctAnswer.addEventListener('click', function() {
+    socket.emit('answeredcorrectly', {
+      playerid: playerId,
+      joincode: joinCode,
+      questionid: questions[questionNumber].QuestionId,
+      score: score
+    });
   });
 };
 
@@ -102,13 +117,14 @@ const init = function() {
   questionNumber = parseInt(localStorage.getItem('questionNumber'));
   questions = JSON.parse(localStorage.getItem('gameQuestions'));
   playerId = localStorage.getItem('playerId');
+  joinCode = localStorage.getItem('joinCode');
 
   timerfunctie();
   getGameQuestions();
   getNumberQuestion();
   getAntwoorden();
 
-  socket = io('http://172.30.248.93:5500');
+  socket = io('http://172.30.248.137:5500');
   //   listenToSocket();
 
   socket.on('connect', function() {
@@ -117,6 +133,9 @@ const init = function() {
   socket.on('newheartrate' + playerId, function(data) {
     console.log(data);
     document.getElementById('hartslag').innerHTML = data;
+  });
+  socket.on('scoresaved' + playerId, function() {
+    location.href = 'speler_rangschikking_scherm.html';
   });
 };
 

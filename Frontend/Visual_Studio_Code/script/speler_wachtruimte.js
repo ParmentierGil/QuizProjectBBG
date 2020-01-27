@@ -29,7 +29,7 @@ var listenToSocket = function() {
 
 const init = function() {
   //   nextpage();
-  socket = io('http://172.30.248.93:5500');
+  socket = io('http://172.30.248.137:5500');
   //   listenToSocket();
 
   socket.on('connect', function() {

@@ -13,7 +13,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 var listenToKeypress = function() {
   return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123);
 };
-var alertfunctie = function() { 
+var alertfunctie = function() {
   var input = document.querySelector('.inputColor2');
   var submit = document.querySelector('.buttonCodeScreen');
   var alert = document.querySelector('.alert');
@@ -31,7 +31,7 @@ var alertfunctie = function() {
 //#region init
 const init = function() {
   alertfunctie();
-  socket = io('http://172.30.248.93:5500');
+  socket = io('http://172.30.248.137:5500');
 
   socket.on('connect', function() {
     socket.emit('clientconnected', { data: "I'm connected!" });

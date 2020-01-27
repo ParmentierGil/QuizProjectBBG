@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SlimFit Quiz</title>
+    <link rel="stylesheet" href="css/screen.css"/>
+    <!-- <script src="script/speler_vragenscherm.js"></script> -->
+</head>
+<body>
+    <container class="top-bar">
+        <div class="hartslag">
+            <img src="img/Heart.png" class="hartslag_logo" alt="Hartslag">
+            <div class="kleine_tekst_vet">120</div>
+        </div>
+        <div class="vragenteller">
+            <div class="kleine_tekst_vet">Vraag 1 van de 2</div>
+        </div>
+        <div class="tijd">
+            <lottie-player
+                src="https://assets10.lottiefiles.com/datafiles/kItAnhBdlG3e377/data.json"  class="heartbeat_small" background="transparent"  speed="1" loop autoplay >
+            </lottie-player>
+            <div class="kleine_tekst_vet" id="tijd">0</div>
+        </div>
+    </container>
+
+    <div class="container">
+        <div class="vragentitel margin-bottom">Vraag 1</div>
+        <div class="medium_tekst vraagtekst margin-bottom">Hoeveel kegels zijn er bij het bowlen?</div>
+        <div class="vragentitel margin-bottom">Oefening</div>
+        <div class="medium_tekst vraagtekst">Springtouwen</div>
+    </div>
+
+
+    <div class="wachten">wachten op de quizmaster</div>
+</body>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+</html>

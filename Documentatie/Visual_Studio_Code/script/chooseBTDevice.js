@@ -1,7 +1,4 @@
 var bluetoothDevice;
-var playerId;
-var socket;
-var joinCode;
 
 function isWebBLEAvailable() {
   if (!navigator.bluetooth) {
@@ -19,13 +16,9 @@ function handleHeartRateMeasurementCharacteristic(characteristic) {
 
 function onHeartRateChanged(event) {
   const characteristic = event.target;
-  const heartrate = parseHeartRate(characteristic.value);
-  console.log(joinCode);
-  socket.emit('newheartrate', { playerid: playerId, joincode: joinCode, heartrate: heartrate.heartRate });
-
-  console.log(heartrate);
-  document.querySelector('#HeartRate').innerHTML = heartrate.heartRate;
-  // geef hartslag weer
+  console.log(parseHeartRate(characteristic.value));
+  //document.querySelector('#HeartRate').innerHTML = parseHeartRate(characteristic.value).heartRate;
+  //geef hartslag weer
 }
 
 function parseHeartRate(data) {
@@ -40,6 +33,7 @@ function parseHeartRate(data) {
     result.heartRate = data.getUint8(index);
     index += 1;
   }
+
   return result;
 }
 
@@ -128,6 +122,7 @@ function time(text) {
 }
 function ShowButton() {
   document.getElementById('Volgende').style.display = 'block';
+  document.getElementById('heartbeat_display').style.display = "block";
   document.getElementById('Zoekweg').style.display = 'none';
 }
 
@@ -140,20 +135,3 @@ document.querySelector('form').addEventListener('submit', function(event) {
     // getDevice();
   }
 });
-
-//#region init
-const init = function() {
-  socket = io('http://172.30.248.137:5500');
-  playerId = localStorage.getItem('playerId');
-  joinCode = localStorage.getItem('joinCode');
-
-  socket.on('connect', function() {
-    socket.emit('clientconnected', { data: "I'm connected!" });
-  });
-};
-
-document.addEventListener('DOMContentLoaded', function() {
-  console.info('Page loaded');
-  init();
-});
-//#endregion
