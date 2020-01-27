@@ -1,92 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>SlimFit Quiz</title>
-    <link rel="stylesheet" href="css/screen.css"/>
-    <!-- <script src="script/speler_wachtruimte.js"></script> -->
-</head>
-<body>
+    <link rel="stylesheet" href="css/screen.css" />
+    <script src="script/speler_wachtruimte.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
+      integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <container class="top-bar">
-        <div class="vragenteller">
-            <div class="titel">Wachtruimte</div>
-        </div>
+      <div class="vragenteller">
+        <div class="titel">Wachtruimte</div>
+      </div>
     </container>
 
-    <div class="rangschikking">8 spelers</div>
-
+    <div class="rangschikking">0 spelers</div>
+    <!-- <a href="speler_vragenscherm.html"> xxx</a>
     <div class="flex-wrap">
-        <div class="rangschikking_list">
-            <div class="speler_wachtruimte">Player1</div>
-            <div class="hartslag_container">
-                <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag">
-                <div class="hartslag_wachtruimte">81</div>
-            </div>
+      <div class="rangschikking_list">
+        <div class="speler_wachtruimte">Player1</div>
+        <div class="hartslag_container">
+          <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag" />
+          <div class="hartslag_wachtruimte">81</div>
         </div>
+      </div>
 
-        <div class="rangschikking_list">
-            <div class="speler_wachtruimte">Player2</div>
-            <div class="hartslag_container">
-                <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag">
-                <div class="hartslag_wachtruimte">92</div>
-            </div>
+      <div class="rangschikking_list">
+        <div class="speler_wachtruimte">Player2</div>
+        <div class="hartslag_container">
+          <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag" />
+          <div class="hartslag_wachtruimte">92</div>
         </div>
+      </div>
 
-        <div class="rangschikking_list">
-            <div class="speler_wachtruimte">Player3</div>
-            <div class="hartslag_container">
-                <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag">
-                <div class="hartslag_wachtruimte">116</div>
-            </div>
+      <div class="rangschikking_list">
+        <div class="speler_wachtruimte">Player3</div>
+        <div class="hartslag_container">
+          <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag" />
+          <div class="hartslag_wachtruimte">116</div>
         </div>
+      </div>
 
-        <div class="rangschikking_list">
-            <div class="speler_wachtruimte">Player4</div>
-            <div class="hartslag_container">
-                <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag">
-                <div class="hartslag_wachtruimte">104</div>
-            </div>
+      <div class="rangschikking_list">
+        <div class="speler_wachtruimte">Player4</div>
+        <div class="hartslag_container">
+          <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag" />
+          <div class="hartslag_wachtruimte">104</div>
         </div>
+      </div>
 
-        <div class="rangschikking_list">
-            <div class="speler_wachtruimte">Player5</div>
-            <div class="hartslag_container">
-                <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag">
-                <div class="hartslag_wachtruimte">92</div>
-            </div>
+      <div class="rangschikking_list">
+        <div class="speler_wachtruimte">Player5</div>
+        <div class="hartslag_container">
+          <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag" />
+          <div class="hartslag_wachtruimte">92</div>
         </div>
+      </div>
 
-        <div class="rangschikking_list">
-            <div class="speler_wachtruimte">Player6</div>
-            <div class="hartslag_container">
-                <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag">
-                <div class="hartslag_wachtruimte">67</div>
-            </div>
+      <div class="rangschikking_list">
+        <div class="speler_wachtruimte">Player6</div>
+        <div class="hartslag_container">
+          <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag" />
+          <div class="hartslag_wachtruimte">67</div>
         </div>
+      </div>
 
-        <div class="rangschikking_list">
-            <div class="speler_wachtruimte">Player7</div>
-            <div class="hartslag_container">
-                <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag">
-                <div class="hartslag_wachtruimte">73</div>
-            </div>
+      <div class="rangschikking_list">
+        <div class="speler_wachtruimte">Player7</div>
+        <div class="hartslag_container">
+          <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag" />
+          <div class="hartslag_wachtruimte">73</div>
         </div>
+      </div>
 
-        <div class="rangschikking_list">
-            <div class="speler_wachtruimte">Player8</div>
-            <div class="hartslag_container">
-                <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag">
-                <div class="hartslag_wachtruimte">80</div>
-            </div>
+      <div class="rangschikking_list">
+        <div class="speler_wachtruimte">Player8</div>
+        <div class="hartslag_container">
+          <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag" />
+          <div class="hartslag_wachtruimte">80</div>
         </div>
-
+      </div> -->
     </div>
 
     <div class="wachten">wachten op de quizmaster</div>
-
-    
-
-</body>
+  </body>
 </html>

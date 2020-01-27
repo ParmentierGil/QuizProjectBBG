@@ -5,9 +5,9 @@ from flask_cors import CORS
 from flask import jsonify
 from urllib import parse
 import sqlalchemy as db
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, relationship
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String, alias
+from sqlalchemy import Column, Integer, String, ForeignKey
 import random
 import string
 import uuid
@@ -55,15 +55,49 @@ class Player(Base):
                                 self.PlayerId, self.Username)
 
 
-class GamePlayer(Base):
-    __tablename__ = 'GamePlayer'
-    PlayerId = Column(String(50), primary_key=True)
-    GameId = Column(String(50))
-    Heartrate = Column(Integer)
+class Question(Base):
+    __tablename__ = 'Question'
+    QuestionId = Column(String(50), primary_key=True)
+    QuestionText = Column(String(200))
+    CorrectAnswer = Column(String(200))
+    WrongAnswer1 = Column(String(200))
+    WrongAnswer2 = Column(String(200))
+    WrongAnswer3 = Column(String(200))
 
     def __repr__(self):
-        return "<Player(PlayerId='%s', GameId='%s', Heartrate='%s')>" % (
-                                self.PlayerId, self.GameId, self.Heartrate)
+        return "<Question(QuestionId='%s', QuestionText='%s', CorrectAnswer='%s', WrongAnswer1='%s', WrongAnswer2='%s', WrongAnswer3='%s')>" % (
+                                self.QuestionId, self.QuestionText, self.CorrectAnswer, self.WrongAnswer1, self.WrongAnswer2, self.WrongAnswer3)
+
+
+class GamePlayer(Base):
+    __tablename__ = 'GamePlayer'
+    PlayerId = Column(String(50), ForeignKey(Player.PlayerId), primary_key=True)
+    GameId = Column(String(50), ForeignKey(Game.GameId), primary_key=True)
+    Heartrate = Column(Integer)
+    RestHeartrate = Column(Integer)
+    game = relationship(Game)
+    player = relationship(Player)
+
+    def __repr__(self):
+        return "<Player(PlayerId='%s', GameId='%s', Heartrate='%s', RestHeartrate='%s')>" % (
+                                self.PlayerId, self.GameId, self.Heartrate, self.RestHeartrate)
+
+
+class GamePlayerQuestion(Base):
+    __tablename__ = 'GamePlayerQuestion'
+    PlayerId = Column(String(50), ForeignKey(Player.PlayerId), primary_key=True)
+    GameId = Column(String(50), ForeignKey(Game.GameId), primary_key=True)
+    QuestionId = Column(String(50), ForeignKey(Question.QuestionId), primary_key=True)
+    Score = Column(Integer)
+
+    game = relationship(Game)
+    player = relationship(Player)
+    question = relationship(Question)
+
+    def __repr__(self):
+        return "<GamePlayerQuestion(PlayerId='%s', GameId='%s', QuestionId='%s', Score='%s')>" % (
+                                self.PlayerId, self.GameId, self.QuestionId, self.Score)
+
 # </editor-fold>
 
 #<editor-fold desc="Useful Functions">
@@ -174,7 +208,8 @@ def game_exists(join_code, player_id):
             print(result)
             return False
         else:
-            game_player = GamePlayer(PlayerId=player_id, GameId=result.GameId)
+            print("game exists id:  " + player_id)
+            game_player = GamePlayer(PlayerId=player_id, GameId=result.GameId, Heartrate=0)
             session.add(game_player)
             session.commit()
             return True
@@ -190,23 +225,29 @@ def connected(data):
 
 @socketio.on('startgame')
 def start_game(data):
-    joincode = data['join code']
+    joincode = data['joincode']
     question_count = get_question_count(joincode)
     game_questions = get_game_questions(question_count)
     exercises = get_exercises(question_count)
     q_and_e_json = game_questions + exercises
     print(game_questions)
-    socketio.emit('game_started_questions', game_questions)
-    socketio.emit('game_started_exercises', exercises)
+    socketio.emit('game_started_questions' + joincode, game_questions)
+    socketio.emit('game_started_exercises' + joincode, exercises)
 
 
 @socketio.on('joingame')
 def join_game(data):
     join_code = data['joincode']
     player_id = data['playerid']
-    print('xxx'+player_id)
     if game_exists(join_code, player_id):
-        emit('joinCodeCorrect'+player_id, join_code)
+        try:
+            socketio.emit('joinCodeCorrect'+player_id, join_code)
+            session = Session()
+            player = session.query(Player).filter(Player.PlayerId == player_id).one().Username
+            print('joinCodeCorrect'+join_code)
+            socketio.emit('joinCodeCorrect'+join_code, player)
+        except Exception as e:
+            print('Couldnt emit')
     else:
         emit('joinCodeFalse'+player_id)
 
@@ -217,16 +258,76 @@ def make_player(data):
     print(username)
     save_player(username)
 
+
 @socketio.on('newheartrate')
 def new_heartrate(data):
     session = Session()
     player_id = data['playerid']
+    join_code = data['joincode']
     heartrate = data['heartrate']
-    #gameplayer = session.query(GamePlayer).filter_by(PlayerId=player_id).first()
-    #gameplayer.Heartrate = heartrate
-    #session.commit()
-    print('hartslag')
+    print("heartrate id:  " + player_id)
+    gameplayer = session.query(GamePlayer).filter(GamePlayer.PlayerId == player_id).one()
+    gameplayer.Heartrate = heartrate
+    session.commit()
+
+    print('hartslag'+ str(heartrate))
     socketio.emit('newheartrate'+player_id, str(heartrate))
+
+    player_names = []
+    #session.query(Player, GamePlayer, Game).filter(Player.PlayerId == GamePlayer.PlayerId, Game.GameId == GamePlayer.GameId, Game.JoinCode == join_code).all():
+    #    player_names.append(p.Username)
+    username = session.query(Player).filter(Player.PlayerId == player_id).one().Username
+    socketio.emit('newheartrate'+join_code, {'heartrate': str(heartrate), 'username': username})
+    session.close()
+
+
+@socketio.on('restheartrate')
+def save_restheartrate(data):
+    rest_heartrate = data['restheartrate']
+    player_id = data['playerid']
+    try:
+        session = Session()
+        gameplayer = session.query(GamePlayer).filter(GamePlayer.PlayerId == player_id).one()
+        gameplayer.RestHeartrate = rest_heartrate
+        session.commit()
+    except Exception as e:
+        print('Error while saving restheartrate '+ str(e))
+
+
+
+@socketio.on('makegame')
+def make_game(data):
+    print(data)
+    joincode = random_string(4)
+    question_count = data['questioncount']
+    game_id = uuid.uuid4()
+    try:
+        session = Session()
+        new_game = Game(GameId=str(game_id), JoinCode=joincode, QuestionCount=question_count)
+        session.add(new_game)
+        session.commit()
+        socketio.emit('gamemade', joincode)
+    except Exception as e:
+        print('Error while making game '+str(e))
+
+
+@socketio.on('answeredcorrectly')
+def save_score(data):
+    player_id = data['playerid']
+    joincode = data['joincode']
+    question_id = data['questionid']
+    score = data['score']
+    session = Session()
+    try:
+        game = session.query(Game).filter(Game.JoinCode == joincode).one()
+        game_id = game.GameId
+        new_gameplayerquestion = GamePlayerQuestion(GameId=game_id, PlayerId=player_id, QuestionId=question_id, Score=score)
+        session.add(new_gameplayerquestion)
+        session.commit()
+        print('player saved')
+        socketio.emit('scoresaved' + player_id)
+    except Exception as e:
+        print('Error while saving ' + str(e))
 
 
 if __name__ == '__main__':
