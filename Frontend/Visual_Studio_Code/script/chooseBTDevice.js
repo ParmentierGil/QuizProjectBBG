@@ -143,6 +143,7 @@ function ShowButton() {
   document.getElementById("BevestigRustHartslag").style.display = "block";
   document.getElementById("heartbeat_display").style.display = "block";
   document.getElementById("Zoekweg").style.display = "none";
+  listenToRestHeartrate();
 }
 
 document.querySelector("form").addEventListener("submit", function(event) {
@@ -157,10 +158,16 @@ document.querySelector("form").addEventListener("submit", function(event) {
 
 const listenToRestHeartrate = function() {
   document
-    .querySelector("#BevestigRusthartslag")
+    .querySelector("#BevestigRustHartslag")
     .addEventListener("click", function() {
       const restHeartrate = document.querySelector(".live_heartbeat").innerHTML;
-      socket.emit("restheartrate", { restheartrate: restHeartrate });
+      socket.emit("restheartrate", {
+        restheartrate: restHeartrate,
+        playerid: playerId
+      });
+      console.log("iere");
+      var win = window.open("speler_wachtruimte.html", "_blank");
+      win.location;
     });
 };
 
@@ -173,7 +180,6 @@ const init = function() {
   socket.on("connect", function() {
     socket.emit("clientconnected", { data: "I'm connected!" });
   });
-  listenToRestHeartrate();
 };
 
 document.addEventListener("DOMContentLoaded", function() {
