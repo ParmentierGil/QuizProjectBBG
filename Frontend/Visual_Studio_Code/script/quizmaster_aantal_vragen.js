@@ -1,3 +1,5 @@
+var socket;
+
 //#region FUNCTIONS
 
 //#region GET
@@ -6,39 +8,38 @@
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 //#region ListenTo
-var alertfunctie = function(){
-    var input = document.querySelector(".aantal_vragen");
-    var submit = document.querySelector(".buttonCodeScreen");
-    var alert = document.querySelector(".alert");
+var listenToMakeGameButton = function() {
+  var input = document.querySelector("#aantal_vragen");
+  var submit = document.querySelector(".buttonCodeScreen");
+  var alert = document.querySelector(".alert");
 
-    submit.addEventListener("click", async function(){
-        valid = true;
-
-        if(input.value == "") {
-            alert.style.display = "block";
-            valid = false;
-            await delay(3000);
-            alert.style.display = "none"
-        }
-
-        else{
-            location.href="quizmaster_wachtruimte.html";
-        }
-
-        return valid;
-    });
-    
-}
-
+  submit.addEventListener("click", async function() {
+    if (input.value == "") {
+      alert.innerHTML = "Geef het aantal vragen op";
+      await delay(3000);
+      alert.innerHTML = "";
+    } else {
+      socket.emit("makegame", { questioncount: input.value });
+    }
+  });
+};
 
 //#region init
 const init = function() {
-    alertfunctie();
-  };
+  socket = io("http://172.30.248.137:5500");
+  listenToMakeGameButton();
+  socket.on("connect", function() {
+    socket.emit("clientconnected", { data: "I'm connected!" });
+  });
+  socket.on("gamemade", function(joincode) {
+    console.log(joincode);
+    localStorage.setItem("joinCode", joincode);
+    location.href = "quizmaster_wachtruimte.html";
+  });
+};
 
-
-document.addEventListener('DOMContentLoaded', function(){
-    console.info("Page loaded");
-    init();
+document.addEventListener("DOMContentLoaded", function() {
+  console.info("Page loaded");
+  init();
 });
 //#endregion
