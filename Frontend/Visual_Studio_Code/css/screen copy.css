@@ -1,20 +1,20 @@
 @font-face {
-  font-family: 'ProzaLibre';
+  font-family: "ProzaLibre";
   font-weight: 400;
-  src: url('../fonts/ProzaLibre-Medium.ttf') format('ttf');
+  src: url("../fonts/ProzaLibre-Medium.ttf") format("ttf");
 }
 
 @font-face {
-  font-family: 'ProzaLibre';
+  font-family: "ProzaLibre";
   font-weight: 600;
-  src: url('../fonts/ProzaLibre-Bold.ttf') format('ttf');
+  src: url("../fonts/ProzaLibre-Bold.ttf") format("ttf");
 }
 
 html {
   padding: 0px;
   margin: 0px;
-  font-family: 'ProzaLibre', Arial, Helvetica, sans-serif;
-  background-color: #59499E;
+  font-family: "ProzaLibre", Arial, Helvetica, sans-serif;
+  background-color: #59499e;
   height: 100%;
   color: White;
 }
@@ -66,7 +66,7 @@ body {
   background-color: transparent;
   border-radius: 5px;
   font-size: 24px;
-  color: #FFC611;
+  color: #ffc611;
   text-align: center;
   text-decoration: none;
   font-weight: 600;
@@ -74,7 +74,7 @@ body {
   border: none;
   box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
   border: 2px solid;
-  border-color: #FFC611;
+  border-color: #ffc611;
   outline: none;
   transition: 0.3;
 }
@@ -92,7 +92,7 @@ body {
   text-decoration: underline;
 }
 
-.quizmaster_button{
+.quizmaster_button {
   font-size: 16px;
   font-weight: 400;
   border: none;
@@ -107,10 +107,10 @@ body {
   width: 100%;
 }
 
-.centerBtn{
+.centerBtn {
   bottom: 24px;
-position: absolute;
-width: 100%;
+  position: absolute;
+  width: 100%;
 }
 
 .centerBtnVolgende {
@@ -228,7 +228,6 @@ hr {
   text-align: center;
 }
 
-
 .SpacebetweenBtns {
   margin-bottom: 24px;
 }
@@ -256,27 +255,42 @@ hr {
   background-color: transparent;
   border-radius: 5px;
   font-size: 24px;
-  color: #FFC611;
+  color: #ffc611;
   text-align: center;
   text-decoration: none;
   font-weight: 600;
   padding: 8px 48px;
   box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
   border: 2px solid;
-  border-color: #FFC611;
+  border-color: #ffc611;
   outline: none;
 }
 
-.alert{
+.buttonCodeScreen2 {
+  background-color: transparent;
+  border-radius: 5px;
+  font-size: 24px;
+  color: #ffc611;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 40px;
+  box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+  border: 2px solid;
+  border-color: #ffc611;
+  outline: none;
+}
+
+.alert {
   margin-bottom: 8px;
   font-size: 16px;
-  color: #FFC75F;
+  color: #ffc75f;
   display: none;
 }
 
 .decoration {
   text-decoration: none;
-  color: #FFC611;
+  color: #ffc611;
 }
 
 .ShowTekst {
@@ -293,8 +307,8 @@ hr {
   transform: translate(-50%, -50%);
 }
 
-.heartbeat{
-  width: 400px; 
+.heartbeat {
+  width: 400px;
   height: 400px;
 
   position: absolute;
@@ -304,7 +318,7 @@ hr {
   transform: translate(-50%, -50%);
 }
 
-.live_heartbeat{
+.live_heartbeat {
   font-size: 40px;
   font-weight: 600;
 
@@ -318,12 +332,11 @@ hr {
   padding-left: 8px;
 }
 
-.heartbeat_lottie{
+.heartbeat_lottie {
   display: none;
 }
 
-@media(min-width: 768px){
-
+@media (min-width: 768px) {
   .grote_titel {
     font-size: 64px;
     font-weight: 600;
@@ -358,7 +371,7 @@ hr {
     color: White;
   }
 
-  .quizmaster_button{
+  .quizmaster_button {
     font-size: 24px;
     font-weight: 400;
     width: 100%;
@@ -378,7 +391,6 @@ hr {
     width: 200px;
   }
 
-  
   .inputColor2 {
     font-weight: 600;
     font-size: 32px;
@@ -390,29 +402,29 @@ hr {
     font-size: 24px;
     width: 200px;
   }
-  
+
   .logodiv {
     margin-top: 8px;
     display: flex;
     justify-content: space-evenly;
   }
-  
+
   .logo {
     width: 136.59px;
     height: 70px;
   }
-  
+
   .logo2 {
     width: 126.12px;
     height: 35px;
     margin-top: 12px;
   }
-  
+
   .logo3 {
     width: 70px;
     height: 70px;
   }
-  
+
   .logo4 {
     width: 130px;
     height: 69.76px;
@@ -447,6 +459,12 @@ hr {
     font-weight: 600;
     padding: 16px 66.7px;
     width: 130px;
+  }
+
+  .buttonCodeScreen2 {
+    font-size: 32px;
+    font-weight: 600;
+    padding: 16px 64px;
   }
 
   .ShowTekst {
