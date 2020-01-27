@@ -140,7 +140,7 @@ function time(text) {
   console.log("[" + new Date().toJSON().substr(11, 8) + "] " + text);
 }
 function ShowButton() {
-  document.getElementById("Volgende").style.display = "block";
+  document.getElementById("BevestigRustHartslag").style.display = "block";
   document.getElementById("heartbeat_display").style.display = "block";
   document.getElementById("Zoekweg").style.display = "none";
 }
@@ -155,6 +155,15 @@ document.querySelector("form").addEventListener("submit", function(event) {
   }
 });
 
+const listenToRestHeartrate = function() {
+  document
+    .querySelector("#BevestigRusthartslag")
+    .addEventListener("click", function() {
+      const restHeartrate = document.querySelector(".live_heartbeat").innerHTML;
+      socket.emit("restheartrate", { restheartrate: restHeartrate });
+    });
+};
+
 //#region init
 const init = function() {
   socket = io("http://172.30.248.137:5500");
@@ -164,6 +173,7 @@ const init = function() {
   socket.on("connect", function() {
     socket.emit("clientconnected", { data: "I'm connected!" });
   });
+  listenToRestHeartrate();
 };
 
 document.addEventListener("DOMContentLoaded", function() {

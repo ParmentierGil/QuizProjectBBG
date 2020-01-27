@@ -150,6 +150,7 @@ body {
 }
 
 .top-bar {
+  width: 100%;
   display: flex;
   padding-top: 24px;
   padding-bottom: 24px;
