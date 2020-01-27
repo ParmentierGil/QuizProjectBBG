@@ -117,6 +117,22 @@ body{
     justify-content: flex-end;
 }
 
+
+ .tijd:hover{
+    animation: 4s linear 0s change-content;
+}
+
+@keyframes change-content {
+    from { justify-content: flex-end; }
+    to { justify-content: flex-start; }
+}
+
+.straftijd{
+    color: #FF9671;
+    margin-left: 16px;
+    display: none;
+}
+
 hr{
     border-width: 1px;
     border: none;
@@ -307,12 +323,6 @@ hr{
     transform: translate(-50%, -50%);
     padding-bottom: 15px;
     z-index: 1;
-}
-
-.straftijd{
-    color: #FF9671;
-    margin-left: 16px;
-    display: none;
 }
 
 
@@ -572,7 +582,7 @@ hr{
     }
 
     .tijd{
-        margin-right: 40px;
+        margin-right: 48px;
         display: flex;
     }
 
