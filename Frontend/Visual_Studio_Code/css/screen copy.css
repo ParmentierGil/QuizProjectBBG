@@ -150,12 +150,12 @@ body {
 }
 
 .top-bar {
-  width: 100%;
   display: flex;
   padding-top: 24px;
   padding-bottom: 24px;
   border: none;
   background-color: #243668;
+  width: 100%;
 }
 
 .Tekst {
