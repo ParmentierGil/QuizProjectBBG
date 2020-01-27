@@ -9,7 +9,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
 //#region ListenTo
 var listenToMakeGameButton = function() {
-  var input = document.querySelector(".aantal_vragen");
+  var input = document.querySelector("#aantal_vragen");
   var submit = document.querySelector(".buttonCodeScreen");
   var alert = document.querySelector(".alert");
 

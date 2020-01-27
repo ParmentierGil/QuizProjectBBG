@@ -1,3 +1,5 @@
+var playerId;
+var socket;
 //#region FUNCTIONS
 
 //#region GET
@@ -6,39 +8,57 @@
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 //#region ListenTo
-var alertfunctie = function(){
-    var input = document.querySelector(".inputColor2");
-    var submit = document.querySelector(".buttonCodeScreen");
-    var alert = document.querySelector(".alert");
 
-    submit.addEventListener("click", async function(){
-        valid = true;
+var alertfunctie = function() {
+  var input = document.querySelector(".inputColor2");
+  var submit = document.querySelector(".buttonCodeScreen");
+  var alert = document.querySelector(".alert");
 
-        if(input.value == "") {
-            alert.style.display = "block";
-            valid = false;
-            await delay(3000);
-            alert.style.display = "none"
-        }
+  submit.addEventListener("click", async function() {
+    if (input.value == "") {
+      alert.innerHTML = "Geef een code in";
+      // valid = false;
+      await delay(3000);
+      alert.innerHTML = "";
+    } else if (input.value.length != 4) {
+      alert.innerHTML = "Ongeldige code";
+      // valid = false;
+      await delay(3000);
+      alert.innerHTML = "";
+    } else {
+      console.log(playerId);
+      socket.emit("joingame", { joincode: input.value, playerid: playerId });
 
-        else{
-            location.href="speler_wachtruimte.html";
-        }
+      // location.href = 'speler_wachtruimte.html';
+    }
 
-        return valid;
-    });
-    
-}
-
+    // return valid;
+  });
+};
 
 //#region init
 const init = function() {
-    alertfunctie();
-  };
+  socket = io("http://172.30.248.137:5500");
 
+  alertfunctie();
 
-document.addEventListener('DOMContentLoaded', function(){
-    console.info("Page loaded");
-    init();
+  playerId = localStorage.getItem("playerId");
+  console.log(playerId);
+
+  socket.on("joinCodeCorrect" + playerId, function(data) {
+    localStorage.setItem("joinCode", data);
+    console.log(data);
+    location.href = "speler_chooseBTDevice.html";
+  });
+  socket.on("joinCodeFalse" + playerId, function() {
+    console.log("False");
+    var alert = document.querySelector(".alert");
+    alert.innerHTML = "Ongeldige code";
+  });
+};
+
+document.addEventListener("DOMContentLoaded", function() {
+  console.info("Page loaded");
+  init();
 });
 //#endregion

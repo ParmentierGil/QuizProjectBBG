@@ -1,8 +1,11 @@
 var bluetoothDevice;
+var playerId;
+var socket;
+var joinCode;
 
 function isWebBLEAvailable() {
   if (!navigator.bluetooth) {
-    console.log('Not available!');
+    console.log("Not available!");
     return false;
   }
   return true;
@@ -10,15 +13,26 @@ function isWebBLEAvailable() {
 
 function handleHeartRateMeasurementCharacteristic(characteristic) {
   return characteristic.startNotifications().then(char => {
-    characteristic.addEventListener('characteristicvaluechanged', onHeartRateChanged);
+    characteristic.addEventListener(
+      "characteristicvaluechanged",
+      onHeartRateChanged
+    );
   });
 }
 
 function onHeartRateChanged(event) {
   const characteristic = event.target;
-  console.log(parseHeartRate(characteristic.value));
-  //document.querySelector('#HeartRate').innerHTML = parseHeartRate(characteristic.value).heartRate;
-  //geef hartslag weer
+  const heartrate = parseHeartRate(characteristic.value);
+  console.log(joinCode);
+  socket.emit("newheartrate", {
+    playerid: playerId,
+    joincode: joinCode,
+    heartrate: heartrate.heartRate
+  });
+
+  console.log(heartrate);
+  document.querySelector(".live_heartbeat").innerHTML = heartrate.heartRate;
+  // geef hartslag weer
 }
 
 function parseHeartRate(data) {
@@ -33,7 +47,6 @@ function parseHeartRate(data) {
     result.heartRate = data.getUint8(index);
     index += 1;
   }
-
   return result;
 }
 
@@ -41,13 +54,13 @@ function onButtonClick() {
   let chosenHeartRateService = null;
 
   bluetoothDevice = null;
-  console.log('Requesting any Bluetooth Device...');
+  console.log("Requesting any Bluetooth Device...");
   navigator.bluetooth
     .requestDevice({
       // filters: [...] <- Prefer filters to save energy & show relevant devices.
       filters: [
         {
-          services: ['heart_rate']
+          services: ["heart_rate"]
         }
       ]
     })
@@ -60,14 +73,20 @@ function onButtonClick() {
       //bluetoothDevice.addEventListener('gattserverdisconnected', onDisconnected);
       // connect();
     )
-    .then(server => server.getPrimaryService('heart_rate'))
+    .then(server => server.getPrimaryService("heart_rate"))
     .then(service => {
       chosenHeartRateService = service;
-      Promise.all(service.getCharacteristic(service.getCharacteristic('heart_rate_measurement').then(handleHeartRateMeasurementCharacteristic)));
+      Promise.all(
+        service.getCharacteristic(
+          service
+            .getCharacteristic("heart_rate_measurement")
+            .then(handleHeartRateMeasurementCharacteristic)
+        )
+      );
     })
     .then(ShowButton)
     .catch(error => {
-      console.log('Argh! ' + error);
+      console.log("Argh! " + error);
     });
 }
 
@@ -80,21 +99,21 @@ function connect() {
     3 /* max retries */,
     2 /* seconds delay */,
     function toTry() {
-      time('Connecting to Bluetooth Device... ');
+      time("Connecting to Bluetooth Device... ");
       return bluetoothDevice.gatt.connect();
     },
     function success() {
-      console.log('> Bluetooth Device connected. Try disconnect it now.');
+      console.log("> Bluetooth Device connected. Try disconnect it now.");
       console.log(bluetoothDevice);
     },
     function fail() {
-      time('Failed to reconnect.');
+      time("Failed to reconnect.");
     }
   );
 }
 
 function onDisconnected() {
-  console.log('> Bluetooth Device disconnected');
+  console.log("> Bluetooth Device disconnected");
   connect();
 }
 
@@ -110,7 +129,7 @@ function exponentialBackoff(max, delay, toTry, success, fail) {
       if (max === 0) {
         return fail();
       }
-      time('Retrying in ' + delay + 's... (' + max + ' tries left)');
+      time("Retrying in " + delay + "s... (" + max + " tries left)");
       setTimeout(function() {
         exponentialBackoff(--max, delay * 2, toTry, success, fail);
       }, delay * 1000);
@@ -118,15 +137,15 @@ function exponentialBackoff(max, delay, toTry, success, fail) {
 }
 
 function time(text) {
-  console.log('[' + new Date().toJSON().substr(11, 8) + '] ' + text);
+  console.log("[" + new Date().toJSON().substr(11, 8) + "] " + text);
 }
 function ShowButton() {
-  document.getElementById('Volgende').style.display = 'block';
-  document.getElementById('heartbeat_display').style.display = "block";
-  document.getElementById('Zoekweg').style.display = 'none';
+  document.getElementById("Volgende").style.display = "block";
+  document.getElementById("heartbeat_display").style.display = "block";
+  document.getElementById("Zoekweg").style.display = "none";
 }
 
-document.querySelector('form').addEventListener('submit', function(event) {
+document.querySelector("form").addEventListener("submit", function(event) {
   event.stopPropagation();
   event.preventDefault();
 
@@ -135,3 +154,20 @@ document.querySelector('form').addEventListener('submit', function(event) {
     // getDevice();
   }
 });
+
+//#region init
+const init = function() {
+  socket = io("http://172.30.248.137:5500");
+  playerId = localStorage.getItem("playerId");
+  joinCode = localStorage.getItem("joinCode");
+
+  socket.on("connect", function() {
+    socket.emit("clientconnected", { data: "I'm connected!" });
+  });
+};
+
+document.addEventListener("DOMContentLoaded", function() {
+  console.info("Page loaded");
+  init();
+});
+//#endregion

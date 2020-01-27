@@ -11,7 +11,7 @@ let connectedPlayers = [];
 //#region show
 
 const showJoinCode = function() {
-  document.querySelector("#spelcode").innerHTML += " " + joinCode;
+  document.querySelector("#spelcode").innerHTML = "Spelcode:  " + joinCode;
 };
 
 const showPlayers = function() {
@@ -19,11 +19,14 @@ const showPlayers = function() {
   let spelerHTML = "";
   for (let i = 0; i < connectedPlayers.length; i++) {
     spelerHTML += `<div class="rangschikking_list">
-    <div class="speler medium_tekst" id=${connectedPlayers[i]}>${connectedPlayers[i]}</div>
-    <div class="aantal_seconden medium_tekst_vet" id=${connectedPlayers[i]}-hartslag>0 hartslag</div>
-  </div>`;
+    <div class="speler_wachtruimte">${connectedPlayers[i]}</div>
+    <div class="hartslag_container">
+        <img src="img/Heart.png" class="hartslag_logo2" alt="hartslag">
+        <div class="hartslag_wachtruimte" id="${connectedPlayers[i]}-hartslag">0</div>
+    </div>
+</div>`;
   }
-  document.querySelector(".speler_list").innerHTML = spelerHTML;
+  document.querySelector(".flex-wrap").innerHTML = spelerHTML;
 };
 
 const showHeartrate = function(username, heartrate) {
