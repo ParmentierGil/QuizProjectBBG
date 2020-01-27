@@ -1,7 +1,7 @@
 var socket;
 var playerId;
 var joinCode;
-var connectedPlayers;
+var connectedPlayers = [];
 
 //#region FUNCTIONS
 
@@ -22,8 +22,13 @@ const showNewPlayer = function() {
   </div>`;
   }
   document.querySelector(".flex-wrap").innerHTML = spelerHTML;
-  document.querySelector(".rangschikking").innerHTML =
-    connectedPlayers.length + " spelers";
+  if (connectedPlayers.length == 1) {
+    document.querySelector(".rangschikking").innerHTML =
+      connectedPlayers.length + " speler";
+  } else {
+    document.querySelector(".rangschikking").innerHTML =
+      connectedPlayers.length + " spelers";
+  }
 };
 
 const showHeartrate = function(username, heartrate) {
@@ -69,14 +74,15 @@ const init = function() {
   });
   socket.on("game_started_exercises" + joinCode, function(data) {
     localStorage.setItem("gameExercises", JSON.stringify(data));
-
     console.log(data);
+    location.href = "speler_vragenscherm.html";
   });
   socket.on("newheartrate" + joinCode, function(data) {
     console.log("hartslagtje");
     let heartrate = data.heartrate;
     let username = data.username;
     if (!connectedPlayers.includes(username)) {
+      connectedPlayers.push(username);
       showNewPlayer();
     }
     showHeartrate(username, heartrate);
