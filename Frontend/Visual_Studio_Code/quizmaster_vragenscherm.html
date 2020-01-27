@@ -9,19 +9,40 @@
     <script src="script/quizmaster_vragenscherm.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="grote_titel margin-bottom">Vraag 1</div>
-        <div class="medium_tekst margin-bottom">Hoeveel kegels zijn er bij het bowlen?</div>
-        <div class="grote_titel margin-bottom">Oefening</div>
-        <div class="medium_tekst">Springtouwen</div>
-    </div>
-
-    <div class="centerBtn">
-        <div class="centerButton2">
-          <div class="button">
-            Start
-          </div>
+  <container class="top-bar">
+    <div class="hartslag">
+      <div id="Volgende">
+        <div id="clickable" class="centerButton2">
+          <a href="speler_spelcode.html" class="stopbutton decoration">
+              Stop
+          </a>
         </div>
       </div>
+    </div>
+    <div class="vragenteller">
+        <div class="kleine_tekst_vet">Vraag 1 van de 2</div>
+    </div>
+    <div class="tijd">
+      <img src="img/KLOK.png" class="klok_logo" alt="Tijd">
+      <div class="kleine_tekst_vet seconden" id="tijd">0</div>
+    </div>
+</container>
+
+
+    <div class="container">
+      <div class="vragentitel margin-bottom">Vraag 1</div>
+      <div class="medium_tekst vraagtekst margin-bottom">Hoeveel kegels zijn er bij het bowlen?</div>
+      <div class="vragentitel margin-bottom">Oefening</div>
+      <div class="medium_tekst vraagtekst">Springtouwen</div>
+  </div>
+
+  <div id="Volgende" class="centerBtn centerBtnVolgende">
+    <div id="clickable" class="centerButton2">
+      <a href="speler_spelcode.html" class="buttonCodeScreen decoration">
+          Start
+      </a>
+    </div>
+  </div>
+
 </body>
 </html>
