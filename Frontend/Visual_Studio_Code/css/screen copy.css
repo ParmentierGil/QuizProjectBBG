@@ -337,6 +337,15 @@ hr {
   display: none;
 }
 
+.onboarding_buttons{
+  position: absolute;
+  bottom: 24px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+
 @media (min-width: 768px) {
   .grote_titel {
     font-size: 64px;
