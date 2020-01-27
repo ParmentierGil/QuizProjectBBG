@@ -1,30 +1,92 @@
 var socket;
+var joinCode;
+let connectedPlayers = [];
 
 //#region FUNCTIONS
+//#endregion
 
 //#region GET
+//#endregion
 
 //#region show
 
-//#region ListenTo
-var nextpage = function(){
-    var button = document.querySelector(".button")
-    button.addEventListener("click", function(){
-        location.href = "quizmaster_vragenscherm.html";
-    })
-}
+const showJoinCode = function() {
+  document.querySelector("#spelcode").innerHTML += " " + joinCode;
+};
 
-//#region init
-const init = function() {
-    nextpage();
-    socket = io('http://localhost:5000');
-    socket.on('connect', function() {
-        socket.emit('clientconnected', {data: 'I\'m connected!'});
+const showPlayers = function() {
+  console.log(connectedPlayers);
+  let spelerHTML = "";
+  for (let i = 0; i < connectedPlayers.length; i++) {
+    spelerHTML += `<div class="rangschikking_list">
+    <div class="speler medium_tekst" id=${connectedPlayers[i]}>${connectedPlayers[i]}</div>
+    <div class="aantal_seconden medium_tekst_vet" id=${connectedPlayers[i]}-hartslag>0 hartslag</div>
+  </div>`;
+  }
+  document.querySelector(".speler_list").innerHTML = spelerHTML;
+};
+
+const showHeartrate = function(username, heartrate) {
+  const playerField = (document.querySelector(
+    `#${username}-hartslag`
+  ).innerHTML = heartrate + " hartslag");
+};
+//#endregion
+
+//#region ListenTo
+
+const listenToStartGame = function() {
+  let startButton = document
+    .querySelector("#startbutton")
+    .addEventListener("click", function() {
+      socket.emit("startgame", { joincode: joinCode });
     });
 };
 
+//#endregion
 
-document.addEventListener('DOMContentLoaded', function(){
+//#region init
+const init = function() {
+  socket = io("http://172.30.248.137:5500");
+
+  socket.on("connect", function() {
+    socket.emit("clientconnected", { data: "I'm connected!" });
+  });
+
+  joinCode = localStorage.getItem("joinCode");
+  showJoinCode();
+
+  console.log("listening on   joinCodeCorrect" + joinCode);
+  socket.on("joinCodeCorrect" + joinCode, function(username) {
+    console.log("joincodecorrect");
+    console.log(username);
+    if (!connectedPlayers.includes(username)) {
+      connectedPlayers.push(username);
+      showPlayers();
+    }
+  });
+
+  socket.on("newheartrate" + joinCode, function(data) {
+    console.log("hartslagtje");
+    let heartrate = data.heartrate;
+    let username = data.username;
+    showHeartrate(username, heartrate);
+  });
+
+  socket.on("game_started_questions" + joinCode, function(data) {
+    localStorage.setItem("questions", JSON.stringify(data));
+    console.log(data);
+  });
+
+  socket.on("game_started_exercises" + joinCode, function(data) {
+    localStorage.setItem("exercises", JSON.stringify(data));
+    location.href = "quizmaster_vragenscherm.html";
+  });
+
+  listenToStartGame();
+};
+
+document.addEventListener("DOMContentLoaded", function() {
   console.info("Page loaded");
   init();
 });
