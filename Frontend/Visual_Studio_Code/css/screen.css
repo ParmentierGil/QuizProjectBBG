@@ -71,6 +71,7 @@ body{
     transform: translate(-50%, -50%);
     align-items: center;
     flex-direction: column;
+    text-align: center;
 }
 
 .margin-bottom{
@@ -140,7 +141,7 @@ hr{
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
-    margin-top: 24px;
+    margin-top: 40px;
     font-size: 24px;
     font-weight: 600;
 }
@@ -197,6 +198,17 @@ hr{
     margin-bottom: 16px;
 }
 
+.rangschikking_list2{
+    padding: 32px 24px;
+    background-color: #8589EF;
+    border-radius: 5px;
+    display: flex;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 24px;
+}
+
 
 .wachten{
     position: absolute;
@@ -212,12 +224,31 @@ hr{
   width: 100%;
 }
 
+.centerBtnVolgende {
+    width: 100%;
+  }
+
 .centerButton2{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
+.buttonCodeScreen {
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 24px;
+    color: #FFC611;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 48px;
+    box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+    border: 2px solid;
+    border-color: #FFC611;
+    outline: none;
+  }
 
 .button{
     background-color: #2c73d2;
@@ -290,7 +321,18 @@ hr{
     font-weight: 400;
 }
 
+.tijd_rangschikking{
+    font-size: 24px;
+    font-weight: 400;
+}
+
 .speler_wachtruimte{
+    font-size: 24px;
+    font-weight: 400;
+    width: 180px;
+}
+
+.speler_rangschikking{
     font-size: 24px;
     font-weight: 400;
     width: 180px;
@@ -395,6 +437,44 @@ hr{
     /* bring your own prefixes */
     transform: translate(-50%, -50%);
     z-index: 1;
+  }
+
+  .tijd_logo2{
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+      margin-top: 1px;
+  }
+
+  .medal{
+      width: 28px;
+      height: 28px;
+      margin-right: 8px;
+  }
+
+  .first_place{
+      background-color: #35BEE0;
+  }
+
+  .second_place{
+    background-color: #0089BA;
+  }
+
+  .third_place{
+    background-color: #008E9B;
+  }
+
+  .jouw_ranking{
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+  }
+
+  .jouw_score{
+      font-size: 20px;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 24px;
   }
 
 
@@ -658,4 +738,72 @@ hr{
         margin-right: auto;
         border-radius: 5px;
     }
+
+    .rangschikking_list2{
+        padding: 24px 40px;
+        background-color: #8589EF;
+        border-radius: 5px;
+        display: flex;
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 24px;
+    }
+
+    .medal{
+        width: 50px;
+        height: 50px;
+        margin-right: 24px;
+    }
+
+    
+    .speler_rangschikking{
+        font-size: 40px;
+        font-weight: 400;
+        width: 320px;
+    }
+
+    .tijd_logo2{
+        width: 44px;
+        height: 44px;
+        margin-right: 16px;
+        margin-top: 1px;
+    }
+
+    .tijd_rangschikking{
+        font-size: 40px;
+        font-weight: 400;
+    }
+
+    .first_place{
+        background-color: #35BEE0;
+    }
+  
+    .second_place{
+      background-color: #0089BA;
+    }
+  
+    .third_place{
+      background-color: #008E9B;
+    }
+
+    .jouw_ranking{
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+    }
+  
+    .jouw_score{
+        font-size: 24px;
+        font-weight: 400;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    .buttonCodeScreen {
+        font-size: 32px;
+        font-weight: 600;
+        padding: 16px 66.7px;
+        width: 180px;
+      }
 }
