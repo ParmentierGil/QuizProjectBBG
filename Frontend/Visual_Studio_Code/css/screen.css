@@ -16,8 +16,7 @@ html{
     padding: 0px;
     margin: 0px;
     font-family: 'ProzaLibre', Arial, Helvetica, sans-serif;
-    background-image: linear-gradient(#845EC2, #D65DB1);
-    background-repeat: no-repeat;
+    background-color: #59499E;
     height: 100%;
     color: White;
     overflow: hidden;
@@ -39,7 +38,7 @@ body{
 }
 
 .titel{
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     text-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
 }
@@ -65,14 +64,14 @@ body{
 }
 
 .container{
-    height: 100%;
     display: flex;
-    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     align-items: center;
-    vertical-align: center;
     flex-direction: column;
-    margin-left: 24px;
-    margin-right: 24px;
+    text-align: center;
 }
 
 .margin-bottom{
@@ -81,23 +80,28 @@ body{
 
 .top-bar{
     display: flex;
-    margin-top: 40px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border: none;
+  background-color: #243668;
 }
 
 .hartslag{
     margin-left: 16px;
     display: flex;
+    width: 75px;
 }
 
 .hartslag_logo{
-    width: 24px;
-    height: 21.86px;
+    width: 20px;
+    height: 21px;
     margin-right: 8px;
 }
 
+
 .klok_logo{
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
     margin-right: 8px;
 }
 
@@ -109,6 +113,8 @@ body{
 .tijd{
     margin-right: 16px;
     display: flex;
+    width: 75px;
+    justify-content: flex-end;
 }
 
 hr{
@@ -117,21 +123,27 @@ hr{
     height: 1px;
     background-color: White;
     color: White;
-    margin-top: 16px;
+    margin-top: 24px;
 }
 
 .vraag{
     display: flex;
     justify-content: center;
-    margin-bottom: 50px;
-    margin-top: 24px;
+    margin-left: 24px;
+    margin-right: 24px;
+    height: 50px;
+    text-align: center;
+    margin-bottom: 48px;
+    margin-top: 64px;
 }
 
 .rangschikking{
     display: flex;
     justify-content: center;
-    margin-bottom: 80px;
-    margin-top: 24px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    font-size: 24px;
+    font-weight: 600;
 }
 
 .square{
@@ -176,23 +188,34 @@ hr{
 }
 
 .rangschikking_list{
-    padding: 24px;
+    padding: 6px 24px;
+    background-color: #8589EF;
+    border: none;
+    display: flex;
+    width: 250px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 16px;
 }
 
-.speler{
-    float: left;
+.rangschikking_list2{
+    padding: 32px 24px;
+    background-color: #8589EF;
+    border-radius: 5px;
+    display: flex;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 24px;
 }
 
-.aantal_seconden{
-    float: right;
-}
 
 .wachten{
     position: absolute;
     bottom: 24px;
     text-align: center;
     width: 100%;
-    color: #FFC75F;
+    color: #FFC611;
 }
 
 .centerBtn{
@@ -201,12 +224,31 @@ hr{
   width: 100%;
 }
 
+.centerBtnVolgende {
+    width: 100%;
+  }
+
 .centerButton2{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
+
+.buttonCodeScreen {
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 24px;
+    color: #FFC611;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 48px;
+    box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+    border: 2px solid;
+    border-color: #FFC611;
+    outline: none;
+  }
 
 .button{
     background-color: #2c73d2;
@@ -274,6 +316,184 @@ hr{
 }
 
 
+.hartslag_wachtruimte{
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.tijd_rangschikking{
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.speler_wachtruimte{
+    font-size: 24px;
+    font-weight: 400;
+    width: 180px;
+}
+
+.speler_rangschikking{
+    font-size: 24px;
+    font-weight: 400;
+    width: 180px;
+}
+
+.hartslag_container{
+    display: flex;
+    position: relative;
+    left: 8px;
+}
+
+.hartslag_logo2{
+    width: 24px;
+    height: 21.86px;
+    margin-right: 8px;
+    margin-top: 2px;
+}
+
+.vragentitel{
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.vraagtekst{
+    width: 350px;
+    text-align: center;
+}
+
+.heartbeat_small{
+    width: 35px;
+    margin-right: 4px;
+}
+
+.seconden{
+    width: 15px;
+}
+
+.antwoord{
+    font-size: 20px;
+    font-weight: 400;
+    text-align: center;
+    padding-top: 12px;
+}
+
+.antwoord1{
+    background-color: #5CBA47;
+}
+
+.antwoord2{
+    background-color: #2C73D2;
+}
+
+.antwoord3{
+    background-color: #FFC611;
+}
+
+.antwoord4{
+    background-color: #F56A8B;
+}
+
+.box{
+    width: 250px;
+    height: 50px;
+    margin-bottom: 40px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px;
+}
+
+
+.wazig{
+    width: auto;
+    -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: blur(10px);
+}
+
+.live_heartbeat{
+    font-size: 40px;
+    font-weight: 600;
+  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding-bottom: 16px;
+    padding-left: 8px;
+    z-index: 2;
+  }
+
+  .heartbeat{
+    width: 400px; 
+    height: 400px;
+  
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
+  .tijd_logo2{
+      width: 24px;
+      height: 24px;
+      margin-right: 8px;
+      margin-top: 1px;
+  }
+
+  .medal{
+      width: 28px;
+      height: 28px;
+      margin-right: 8px;
+  }
+
+  .first_place{
+      background-color: #35BEE0;
+  }
+
+  .second_place{
+    background-color: #0089BA;
+  }
+
+  .third_place{
+    background-color: #008E9B;
+  }
+
+  .jouw_ranking{
+      font-size: 24px;
+      font-weight: 600;
+      text-align: center;
+  }
+
+  .jouw_score{
+      font-size: 20px;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 24px;
+  }
+
+.stopbutton{
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 12px;
+    color: #FFC611;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 400;
+    padding: 4px 8px;
+    box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+    border: 2px solid;
+    border-color: #FFC611;
+    outline: none;
+    margin-top : -4px;
+}
+
+
 @media(min-width: 768px){
     .titel{
         font-size: 40px;
@@ -309,8 +529,19 @@ hr{
       }
 
     .rangschikking_list{
-        padding-bottom: 32px;
-        padding-top: 16px;
+        padding-bottom: 15px;
+        padding-top: 15px;
+        width: 350px;
+        margin-bottom: 24px;
+    }
+
+    .rangschikking{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+        margin-top: 40px;
+        font-size: 40px;
+        font-weight: 600;
     }
 
     .wachten{
@@ -382,8 +613,12 @@ hr{
     .vraag{
         display: flex;
         justify-content: center;
-        margin-bottom: 50px;
-        margin-top: 50px;
+        margin-bottom: 40px;
+        margin-top: 60px;
+        height: 75px;
+        text-align: center;
+        margin-left: 40px;
+        margin-right: 40px;
     }
 
     
@@ -445,5 +680,162 @@ hr{
         font-size: 64px;
     }
 
+    .flex-wrap{
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+
+    .hartslag_wachtruimte{
+        font-size: 32px;
+        font-weight: 400;
+    }
     
+    .speler_wachtruimte{
+        font-size: 32px;
+        font-weight: 400;
+        width: 220px;
+        margin-left: 16px;
+    }
+    
+    .hartslag_container{
+        display: flex;
+        position: relative;
+        left: 8px;
+    }
+    
+    .hartslag_logo2{
+        width: 36px;
+        height: 32px;
+        margin-right: 16px;
+        margin-top: 2px;
+    }
+
+    
+    .vragentitel{
+        font-size: 40px;
+        font-weight: 600;
+    }
+
+    .vraagtekst{
+        width: 600px;
+        text-align: center;
+    }
+
+    .heartbeat_small{
+        width: 55px;
+        margin-right: 10px;
+    }
+
+    .seconden{
+        width: 20px;
+    }
+    
+    
+    .antwoord{
+        font-size: 32px;
+        font-weight: 400;
+        padding: 16px 190px;
+    }
+
+
+    .antwoord{
+        font-size: 32px;
+        font-weight: 400;
+        text-align: center;
+        padding-top: 20px;
+    }
+
+    .box{
+        width: 400px;
+        height: 75px;
+        margin-bottom: 40px;
+        margin-left: auto;
+        margin-right: auto;
+        border-radius: 5px;
+    }
+
+    .rangschikking_list2{
+        padding: 24px 40px;
+        background-color: #8589EF;
+        border-radius: 5px;
+        display: flex;
+        width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-bottom: 24px;
+    }
+
+    .medal{
+        width: 50px;
+        height: 50px;
+        margin-right: 24px;
+    }
+
+    
+    .speler_rangschikking{
+        font-size: 40px;
+        font-weight: 400;
+        width: 320px;
+    }
+
+    .tijd_logo2{
+        width: 44px;
+        height: 44px;
+        margin-right: 16px;
+        margin-top: 1px;
+    }
+
+    .tijd_rangschikking{
+        font-size: 40px;
+        font-weight: 400;
+    }
+
+    .first_place{
+        background-color: #35BEE0;
+    }
+  
+    .second_place{
+      background-color: #0089BA;
+    }
+  
+    .third_place{
+      background-color: #008E9B;
+    }
+
+    .jouw_ranking{
+        font-size: 24px;
+        font-weight: 600;
+        text-align: center;
+    }
+  
+    .jouw_score{
+        font-size: 24px;
+        font-weight: 400;
+        text-align: center;
+        margin-bottom: 16px;
+    }
+
+    .buttonCodeScreen {
+        font-size: 32px;
+        font-weight: 600;
+        padding: 16px 66.7px;
+        width: 180px;
+      }
+
+      .stopbutton{
+        background-color: transparent;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #FFC611;
+        text-align: center;
+        text-decoration: none;
+        font-weight: 600;
+        padding: 8px 16px;
+        box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+        border: 2px solid;
+        border-color: #FFC611;
+        outline: none;
+        margin-top: 0px;
+    }
 }

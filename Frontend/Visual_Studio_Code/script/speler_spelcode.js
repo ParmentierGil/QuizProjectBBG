@@ -7,7 +7,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
 //#region ListenTo
 var alertfunctie = function(){
-    var input = document.querySelector(".inputColor");
+    var input = document.querySelector(".inputColor2");
     var submit = document.querySelector(".buttonCodeScreen");
     var alert = document.querySelector(".alert");
 

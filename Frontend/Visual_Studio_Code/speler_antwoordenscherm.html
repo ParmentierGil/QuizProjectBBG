@@ -7,6 +7,7 @@
     <title>SlimFit Quiz</title>
     <link rel="stylesheet" href="css/screen.css"/>
     <script src="script/speler_antwoordenscherm.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 <body>
     <container class="top-bar">
@@ -19,42 +20,46 @@
         </div>
         <div class="tijd">
             <img src="img/KLOK.png" class="klok_logo" alt="Tijd">
-            <div class="kleine_tekst_vet" id="tijd">0</div>
+            <div class="kleine_tekst_vet seconden" id="tijd">0</div>
             <div class="kleine_tekst_vet straftijd" id="straftijd">+10</div>
         </div>
     </container>
-    <hr>
 
-    <div class="medium_tekst vraag">Hoeveel kegels zijn er bij het bowlen?</div>
 
-    <container class="antwoorden">
-        <div class="rij_antwoorden">
-            <div class="square square1 square_left fout1">
-                <img class="fout_img kruis1" src="img/1024px-Red_X.svg.png" alt="Fout">
-                <div class="optie kleine_tekst">9</div>
-            </div>
-            <div class="square square2 square_right juist">
-                <img class="juist_img vinkje" src="img/Vinkje_creativ_media.png" alt="Fout">
-                <div class="optie kleine_tekst">10</div>
-            </div>
-        </div>
+    <div class="heartbeat_lottie" id="heartbeat_display">
+        <lottie-player
+        src="https://assets8.lottiefiles.com/datafiles/SQ0k61ourxXtNpw/data.json" class="heartbeat" background="transparent" speed="1" loop autoplay >
+        </lottie-player>
+    
+        <div class="live_heartbeat">120</div>
+    
+      </div>
+    
+    <div class="wazig">
 
-        <div class="live_hartslag">
-            <div class="titel live_hartslagteller">101</div>
-            <img class="live_hart_logo" src="img/hartje-png-4.png" alt="live hartslag">
-        </div>
+        <div class="medium_tekst vraag">Hoeveel kegels zijn er bij het bowlen?</div>
 
-        <div class="rij_antwoorden">
-            <div class="square square3 square_left fout2">
-                <img class="fout_img kruis2" src="img/1024px-Red_X.svg.png" alt="Fout">
-                <div class="optie kleine_tekst">8</div>
+        <container class="antwoorden">
+            <div class="box antwoord1">
+                <div class="antwoord">9</div>
             </div>
-            <div class="square square4 square_right fout3">
-                <img class="fout_img kruis3" src="img/1024px-Red_X.svg.png" alt="Fout">
-                <div class="optie kleine_tekst">6</div>
+            <div class="box antwoord2">
+                <div class="antwoord">10</div>
             </div>
-        </div>
-    </container>
+            <div class="box antwoord3">
+                <div class="antwoord">8</div>
+            </div>
+            <div class="box antwoord4">
+                <div class="antwoord">6</div>
+            </div>
+
+            <!-- <div class="live_hartslag">
+                <div class="titel live_hartslagteller">101</div>
+                <img class="live_hart_logo" src="img/hartje-png-4.png" alt="live hartslag">
+            </div> -->
+        </container>
+
+    </div>
 
 </body>
 </html>

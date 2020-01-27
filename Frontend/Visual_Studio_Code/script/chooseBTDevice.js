@@ -8,7 +8,38 @@ function isWebBLEAvailable() {
   return true;
 }
 
+function handleHeartRateMeasurementCharacteristic(characteristic) {
+  return characteristic.startNotifications().then(char => {
+    characteristic.addEventListener('characteristicvaluechanged', onHeartRateChanged);
+  });
+}
+
+function onHeartRateChanged(event) {
+  const characteristic = event.target;
+  console.log(parseHeartRate(characteristic.value));
+  //document.querySelector('#HeartRate').innerHTML = parseHeartRate(characteristic.value).heartRate;
+  //geef hartslag weer
+}
+
+function parseHeartRate(data) {
+  const flags = data.getUint8(0);
+  const rate16Bits = flags & 0x1;
+  const result = {};
+  let index = 1;
+  if (rate16Bits) {
+    result.heartRate = data.getUint16(index, /*littleEndian=*/ true);
+    index += 2;
+  } else {
+    result.heartRate = data.getUint8(index);
+    index += 1;
+  }
+
+  return result;
+}
+
 function onButtonClick() {
+  let chosenHeartRateService = null;
+
   bluetoothDevice = null;
   console.log('Requesting any Bluetooth Device...');
   navigator.bluetooth
@@ -20,16 +51,29 @@ function onButtonClick() {
         }
       ]
     })
-    .then(device => {
-      bluetoothDevice = device;
-      bluetoothDevice.addEventListener('gattserverdisconnected', onDisconnected);
-      connect();
+    .then(
+      device => {
+        bluetoothDevice = device;
+        console.log(bluetoothDevice);
+        return device.gatt.connect();
+      }
+      //bluetoothDevice.addEventListener('gattserverdisconnected', onDisconnected);
+      // connect();
+    )
+    .then(server => server.getPrimaryService('heart_rate'))
+    .then(service => {
+      chosenHeartRateService = service;
+      Promise.all(service.getCharacteristic(service.getCharacteristic('heart_rate_measurement').then(handleHeartRateMeasurementCharacteristic)));
     })
     .then(ShowButton)
     .catch(error => {
       console.log('Argh! ' + error);
     });
 }
+
+// function getDevice() {
+//   navigator.bluetooth.requestDevice().then(device => console.log(device.name));
+// }
 
 function connect() {
   exponentialBackoff(
@@ -78,13 +122,16 @@ function time(text) {
 }
 function ShowButton() {
   document.getElementById('Volgende').style.display = 'block';
+  document.getElementById('heartbeat_display').style.display = "block";
   document.getElementById('Zoekweg').style.display = 'none';
 }
+
 document.querySelector('form').addEventListener('submit', function(event) {
   event.stopPropagation();
   event.preventDefault();
 
   if (isWebBLEAvailable) {
     onButtonClick();
+    // getDevice();
   }
 });
