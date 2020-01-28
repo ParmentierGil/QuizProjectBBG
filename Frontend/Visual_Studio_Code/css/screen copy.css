@@ -81,6 +81,13 @@ body {
 
 .button:hover {
   cursor: pointer;
+  color: White;
+}
+
+.button:active {
+  cursor: pointer;
+  color: White;
+  background-color: #ffc611;
 }
 
 
@@ -102,6 +109,14 @@ body {
   font-weight: 400;
   border: none;
   text-decoration: underline;
+  color: White;
+}
+
+.quizmaster_button:hover {
+  color: #ffc611;
+}
+
+.quizmaster_button:active {
   color: White;
 }
 
@@ -274,7 +289,14 @@ hr {
 
 .buttonCodeScreen:hover {
   cursor: pointer;
+  color: White;
 }
+
+.buttonCodeScreen:active {
+  cursor: pointer;
+  background-color: #FFC611;
+}
+
 
 
 .buttonCodeScreen2 {
@@ -294,6 +316,12 @@ hr {
 
 .buttonCodeScreen2:hover {
   cursor: pointer;
+  color: White;
+}
+
+.buttonCodeScreen:active {
+  cursor: pointer;
+  background-color: #FFC611;
 }
 
 
@@ -376,6 +404,16 @@ hr {
   margin-right: 8px;
 }
 
+.OverslaanButton:hover{
+  color: White;
+  cursor: pointer;
+}
+
+.OverslaanButton:active{
+  color: White;
+  background-color:#ffc611;
+}
+
 .VolgendeButton{
   background-color: #243668;
   border-radius: 5px;
@@ -389,6 +427,16 @@ hr {
   border: none;
   outline: none;
   margin-left: 8px;
+}
+
+.VolgendeButton:hover{
+  color: #FFC611;
+}
+
+.VolgendeButton:active{
+  color: #FFC611;
+  background-color: transparent;
+  border: 2px solid #FFC611;
 }
 
 .stap{
