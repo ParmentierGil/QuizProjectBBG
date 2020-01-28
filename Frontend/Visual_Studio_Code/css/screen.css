@@ -1,19 +1,19 @@
 @font-face {
-  font-family: 'ProzaLibre';
+  font-family: "ProzaLibre";
   font-weight: 400;
-  src: url('../fonts/ProzaLibre-Medium.ttf') format('ttf');
+  src: url("../fonts/ProzaLibre-Medium.ttf") format("ttf");
 }
 
 @font-face {
-  font-family: 'ProzaLibre';
+  font-family: "ProzaLibre";
   font-weight: 600;
-  src: url('../fonts/ProzaLibre-Bold.ttf') format('ttf');
+  src: url("../fonts/ProzaLibre-Bold.ttf") format("ttf");
 }
 
 html {
   padding: 0px;
   margin: 0px;
-  font-family: 'ProzaLibre', Arial, Helvetica, sans-serif;
+  font-family: "ProzaLibre", Arial, Helvetica, sans-serif;
   background-color: #59499e;
   height: 100%;
   color: White;
@@ -108,6 +108,7 @@ body {
 }
 
 .tijd {
+  margin-left: 16px;
   margin-right: 16px;
   display: flex;
   width: 75px;
@@ -265,20 +266,6 @@ hr {
   outline: none;
 }
 
-.buttonCodeScreen3 {
-  background-color: transparent;
-  border-radius: 5px;
-  font-size: 24px;
-  color: #ffc611;
-  text-align: center;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 8px 48px;
-  box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
-  border: 2px solid;
-  border-color: #ffc611;
-  outline: none;
-}
 .button {
   background-color: #2c73d2;
   border-radius: 35px;
@@ -833,12 +820,7 @@ hr {
     padding: 16px 66.7px;
     width: 180px;
   }
-  .buttonCodeScreen3 {
-    font-size: 32px;
-    font-weight: 600;
-    padding: 16px 66.7px;
-    width: 216px;
-  }
+
   .stopbutton {
     background-color: transparent;
     border-radius: 5px;

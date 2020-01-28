@@ -11,12 +11,12 @@ let connectedPlayers = [];
 //#region show
 
 const showJoinCode = function() {
-  document.querySelector('#spelcode').innerHTML = 'Spelcode:  ' + joinCode;
+  document.querySelector("#spelcode").innerHTML = "Spelcode:  " + joinCode;
 };
 
 const showPlayers = function() {
   console.log(connectedPlayers);
-  let spelerHTML = '';
+  let spelerHTML = "";
   for (let i = 0; i < connectedPlayers.length; i++) {
     spelerHTML += `<div class="rangschikking_list">
     <div class="speler_wachtruimte">${connectedPlayers[i]}</div>
@@ -26,38 +26,42 @@ const showPlayers = function() {
     </div>
 </div>`;
   }
-  document.querySelector('.flex-wrap').innerHTML = spelerHTML;
+  document.querySelector(".flex-wrap").innerHTML = spelerHTML;
 };
 
 const showHeartrate = function(username, heartrate) {
-  const playerField = (document.querySelector(`#${username}-hartslag`).innerHTML = heartrate);
+  const playerField = (document.querySelector(
+    `#${username}-hartslag`
+  ).innerHTML = heartrate);
 };
 //#endregion
 
 //#region ListenTo
 
 const listenToStartGame = function() {
-  let startButton = document.querySelector('#startbutton').addEventListener('click', function() {
-    socket.emit('startgame', { joincode: joinCode });
-  });
+  let startButton = document
+    .querySelector("#startbutton")
+    .addEventListener("click", function() {
+      socket.emit("startgame", { joincode: joinCode });
+    });
 };
 
 //#endregion
 
 //#region init
 const init = function() {
-  socket = io('http://172.30.248.87:5500');
+  socket = io("http://172.30.248.87:5500");
 
-  socket.on('connect', function() {
-    socket.emit('clientconnected', { data: "I'm connected!" });
+  socket.on("connect", function() {
+    socket.emit("clientconnected", { data: "I'm connected!" });
   });
 
-  joinCode = localStorage.getItem('joinCode');
+  joinCode = localStorage.getItem("joinCode");
   showJoinCode();
 
-  console.log('listening on   joinCodeCorrect' + joinCode);
-  socket.on('joinCodeCorrect' + joinCode, function(username) {
-    console.log('joincodecorrect');
+  console.log("listening on   joinCodeCorrect" + joinCode);
+  socket.on("joinCodeCorrect" + joinCode, function(username) {
+    console.log("joincodecorrect");
     console.log(username);
     if (!connectedPlayers.includes(username)) {
       connectedPlayers.push(username);
@@ -65,28 +69,28 @@ const init = function() {
     }
   });
 
-  socket.on('newheartrate' + joinCode, function(data) {
-    console.log('hartslagtje');
+  socket.on("newheartrate" + joinCode, function(data) {
+    console.log("hartslagtje");
     let heartrate = data.heartrate;
     let username = data.username;
     showHeartrate(username, heartrate);
   });
 
-  socket.on('game_started_questions' + joinCode, function(data) {
-    localStorage.setItem('questions', JSON.stringify(data));
+  socket.on("game_started_questions" + joinCode, function(data) {
+    localStorage.setItem("questions", JSON.stringify(data));
     console.log(data);
   });
 
-  socket.on('game_started_exercises' + joinCode, function(data) {
-    localStorage.setItem('exercises', JSON.stringify(data));
-    location.href = 'quizmaster_vragenscherm.html';
+  socket.on("game_started_exercises" + joinCode, function(data) {
+    localStorage.setItem("exercises", JSON.stringify(data));
+    location.href = "quizmaster_vragenscherm.html";
   });
 
   listenToStartGame();
 };
 
-document.addEventListener('DOMContentLoaded', function() {
-  console.info('Page loaded');
+document.addEventListener("DOMContentLoaded", function() {
+  console.info("Page loaded");
   init();
 });
 //#endregion
