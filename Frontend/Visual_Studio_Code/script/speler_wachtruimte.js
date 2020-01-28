@@ -59,7 +59,7 @@ var listenToSocket = function() {
 
 const init = function() {
   //   nextpage();
-  socket = io("http://172.30.248.137:5500");
+  socket = io("http://172.30.248.87:5500");
   joinCode = localStorage.getItem("joinCode");
   playerId = localStorage.getItem("playerId");
   //   listenToSocket();

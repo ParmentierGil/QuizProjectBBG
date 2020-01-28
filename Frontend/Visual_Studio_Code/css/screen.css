@@ -388,6 +388,10 @@ hr{
     padding-top: 12px;
 }
 
+.antwoord:hover{
+    cursor: pointer;
+}
+
 .antwoord1{
     background-color: #5CBA47;
 }
@@ -411,7 +415,14 @@ hr{
     margin-left: auto;
     margin-right: auto;
     border-radius: 5px;
+    display: flex;
+    justify-content: center;
 }
+
+.box:hover{
+    cursor: pointer;
+}
+
 
 
 .wazig{
@@ -504,6 +515,24 @@ hr{
     margin-top : -4px;
 }
 
+.correct_style{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 85px;
+    margin-top: 2px;
+    display: none;
+}
+
+.wrong_style{
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    right: 85px;
+    margin-top: 2px;
+    display: none;
+}
+
 @media(min-width: 768px){
     .titel{
         font-size: 40px;
@@ -584,11 +613,25 @@ hr{
     .tijd{
         margin-right: 48px;
         display: flex;
+        width: 200px;
+    justify-content: flex-end;
+    }
+
+    /* @keyframes change-content {
+        from { justify-content: flex-end; }
+        to { justify-content: flex-start; }
+    } */
+
+    .straftijd{
+        color: #FF9671;
+        margin-left: 40px;
+        display: none;
     }
 
     .hartslag{
         margin-left: 40px;
         display: flex;
+        width: 200px;
     }
     
     .square{
@@ -752,8 +795,10 @@ hr{
     .antwoord{
         font-size: 32px;
         font-weight: 400;
-        text-align: center;
         padding-top: 20px;
+        text-align: center;
+        padding-left: 75px;
+        padding-right: 75px;
     }
 
     .box{

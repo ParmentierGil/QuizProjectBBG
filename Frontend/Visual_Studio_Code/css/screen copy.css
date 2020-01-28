@@ -79,6 +79,11 @@ body {
   transition: 0.3;
 }
 
+.button:hover {
+  cursor: pointer;
+}
+
+
 .centerButton {
   display: flex;
   justify-content: center;
@@ -267,6 +272,11 @@ hr {
   outline: none;
 }
 
+.buttonCodeScreen:hover {
+  cursor: pointer;
+}
+
+
 .buttonCodeScreen2 {
   background-color: transparent;
   border-radius: 5px;
@@ -281,6 +291,11 @@ hr {
   border-color: #ffc611;
   outline: none;
 }
+
+.buttonCodeScreen2:hover {
+  cursor: pointer;
+}
+
 
 .alert {
   margin-bottom: 8px;
@@ -374,6 +389,73 @@ hr {
   border: none;
   outline: none;
   margin-left: 8px;
+}
+
+.stap{
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.stappen_centraal{
+  margin-top: 24px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.uitleg{
+  font-size: 16px;
+  text-align: center;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.fotokader{
+  border: 2px solid White;
+  width: 350px;
+  height: 300px;
+  margin-bottom: 0px;
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.wachten{
+  position: absolute;
+  bottom: 24px;
+  text-align: center;
+  width: 100%;
+  color: #FFC611;
+}
+
+.polar_foto{
+  width: 250px;
+  height: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.bluetooth_device_foto{
+  border: 2px solid White;
+  width: 350px;
+  height: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.lottie_onboarding{
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -554,4 +636,64 @@ hr {
     outline: none;
     margin-left: 16px;
   }
+
+  .stap{
+    font-size: 32px;
+    font-weight: 600;
+  }
+  
+  .stappen_centraal{
+    margin-top: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+  
+  .uitleg{
+    font-size: 20px;
+    text-align: center;
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+  
+  .fotokader{
+    border: 2px solid White;
+    width: 350px;
+    height: 300px;
+    margin-bottom: 50px;
+    margin-top: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+  justify-content: center;
+  }
+  
+  .polar_foto{
+    border: 2px solid White;
+    width: 250px;
+    height: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .bluetooth_device_foto{
+    border: 2px solid White;
+    width: 500px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .wachten{
+    position: absolute;
+    bottom: 24px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    width: 100%;
+    color: #FFC75F;
+}
 }
