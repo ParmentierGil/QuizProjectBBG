@@ -1,6 +1,8 @@
 var socket;
 var joinCode;
 let connectedPlayers = [];
+let playerCount;
+let playersFinished = [];
 
 //#region FUNCTIONS
 //#endregion
@@ -10,11 +12,7 @@ let connectedPlayers = [];
 
 //#region show
 
-const showJoinCode = function() {
-  document.querySelector("#spelcode").innerHTML = "Spelcode:  " + joinCode;
-};
-
-const showPlayers = function() {
+const showNewPlayer = function() {
   console.log(connectedPlayers);
   let spelerHTML = "";
   for (let i = 0; i < connectedPlayers.length; i++) {
@@ -38,13 +36,11 @@ const showHeartrate = function(username, heartrate) {
 
 //#region ListenTo
 
-const listenToStartGame = function() {
-  let startButton = document
-    .querySelector("#startbutton")
-    .addEventListener("click", function() {
-      socket.emit("startgame", { joincode: joinCode });
-      localStorage.setItem("playerCount", connectedPlayers.length);
-    });
+const listenToStopGame = function() {
+  var button = document.querySelector("#stop");
+  button.addEventListener("click", function() {
+    location.href = "global_startpagina.html";
+  });
 };
 
 //#endregion
@@ -53,41 +49,35 @@ const listenToStartGame = function() {
 const init = function() {
   socket = io("http://172.30.248.87:5500");
 
-  socket.on("connect", function() {
-    socket.emit("clientconnected", { data: "I'm connected!" });
-  });
-
   joinCode = localStorage.getItem("joinCode");
-  showJoinCode();
-
-  console.log("listening on   joinCodeCorrect" + joinCode);
-  socket.on("joinCodeCorrect" + joinCode, function(username) {
-    console.log("joincodecorrect");
-    console.log(username);
-    if (!connectedPlayers.includes(username)) {
-      connectedPlayers.push(username);
-      showPlayers();
-    }
-  });
+  playerCount = localStorage.getItem("playerCount");
 
   socket.on("newheartrate" + joinCode, function(data) {
     console.log("hartslagtje");
     let heartrate = data.heartrate;
     let username = data.username;
+    if (!connectedPlayers.includes(username)) {
+      connectedPlayers.push(username);
+      showNewPlayer();
+    }
     showHeartrate(username, heartrate);
   });
 
-  socket.on("game_started_questions" + joinCode, function(data) {
-    localStorage.setItem("questions", JSON.stringify(data));
-    console.log(data);
+  socket.on("alltotalscores" + joinCode, function(data) {
+    if (!playersFinished.includes(data.username)) {
+      playersFinished.push(data.username);
+    }
+    console.log(
+      "Playercount: " +
+        playerCount +
+        "FinishedPlayers: " +
+        playersFinished.length
+    );
+    if (playersFinished.length == playerCount) {
+      location.href = "quizmaster_rangschikking_scherm.html";
+    }
   });
-
-  socket.on("game_started_exercises" + joinCode, function(data) {
-    localStorage.setItem("exercises", JSON.stringify(data));
-    location.href = "quizmaster_vragenscherm.html";
-  });
-
-  listenToStartGame();
+  listenToStopGame();
 };
 
 document.addEventListener("DOMContentLoaded", function() {

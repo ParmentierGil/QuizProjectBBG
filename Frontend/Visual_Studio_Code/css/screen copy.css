@@ -283,10 +283,10 @@ hr {
 }
 
 .alert {
-  margin-bottom: 8px;
+  margin-bottom: 24px;
   font-size: 16px;
   color: #ffc75f;
-  display: none;
+  text-align: center;
 }
 
 .decoration {

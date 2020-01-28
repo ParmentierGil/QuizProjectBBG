@@ -1,48 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>SlimFit Quiz</title>
-    <link rel="stylesheet" href="css/screen.css"/>
+    <link rel="stylesheet" href="css/screen.css" />
     <script src="script/quizmaster_vragenscherm.js"></script>
-</head>
-<body>
-  <container class="top-bar">
-    <div class="hartslag">
-      <div id="Volgende">
-        <div id="clickable" class="centerButton2">
-          <a href="speler_spelcode.html" class="stopbutton decoration">
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
+      integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I="
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <container class="top-bar">
+      <div class="hartslag">
+        <div id="stop">
+          <div id="clickable" class="centerButton2">
+            <a class="stopbutton decoration">
               Stop
-          </a>
+            </a>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="vragenteller">
-        <div class="kleine_tekst_vet">Vraag 1 van de 2</div>
-    </div>
-    <div class="tijd">
-      <img src="img/KLOK.png" class="klok_logo" alt="Tijd">
-      <div class="kleine_tekst_vet seconden" id="tijd">0</div>
-    </div>
-</container>
-
+      <div class="vragenteller">
+        <div class="kleine_tekst_vet" id="questionCountOf">
+          Vraag 1 van de 2
+        </div>
+      </div>
+      <div class="tijd">
+        <img src="img/KLOK.png" class="klok_logo" alt="Tijd" />
+        <div class="kleine_tekst_vet seconden" id="tijd">0</div>
+      </div>
+    </container>
 
     <div class="container">
-      <div class="vragentitel margin-bottom">Vraag 1</div>
-      <div class="medium_tekst vraagtekst margin-bottom">Hoeveel kegels zijn er bij het bowlen?</div>
+      <div class="vragentitel margin-bottom" id="questionCount">Vraag 1</div>
+      <div class="medium_tekst vraagtekst margin-bottom" id="gameQuestion">
+        Hoeveel kegels zijn er bij het bowlen?
+      </div>
       <div class="vragentitel margin-bottom">Oefening</div>
-      <div class="medium_tekst vraagtekst">Springtouwen</div>
-  </div>
-
-  <div id="Volgende" class="centerBtn centerBtnVolgende">
-    <div id="clickable" class="centerButton2">
-      <a href="speler_spelcode.html" class="buttonCodeScreen decoration">
-          Start
-      </a>
+      <div class="medium_tekst vraagtekst" id="gameExercise">Springtouwen</div>
     </div>
-  </div>
 
-</body>
+    <div id="Volgende" class="centerBtn centerBtnVolgende">
+      <div id="clickable" class="centerButton2">
+        <a class="buttonCodeScreen decoration">
+          Start Oefening
+        </a>
+      </div>
+    </div>
+  </body>
 </html>

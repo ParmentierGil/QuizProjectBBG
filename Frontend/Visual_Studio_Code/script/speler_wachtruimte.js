@@ -38,13 +38,6 @@ const showHeartrate = function(username, heartrate) {
 };
 
 //#region ListenTo
-var nextpage = function() {
-  var button = document.querySelector(".button");
-  button.addEventListener("click", function() {
-    location.href = "quizmaster_vragenscherm.html";
-    socket.emit("start game", { joincode: joinCode });
-  });
-};
 
 //#endregion
 
@@ -58,10 +51,10 @@ var listenToSocket = function() {
 //#region init
 
 const init = function() {
-  //   nextpage();
-  socket = io("http://172.30.248.137:5500");
+  socket = io("http://172.30.248.87:5500");
   joinCode = localStorage.getItem("joinCode");
   playerId = localStorage.getItem("playerId");
+  console.log("init" + joinCode);
   //   listenToSocket();
 
   socket.on("connect", function() {
@@ -73,6 +66,7 @@ const init = function() {
     console.log(data);
   });
   socket.on("game_started_exercises" + joinCode, function(data) {
+    console.log(joinCode);
     localStorage.setItem("gameExercises", JSON.stringify(data));
     console.log(data);
     location.href = "speler_vragenscherm.html";

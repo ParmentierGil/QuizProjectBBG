@@ -68,6 +68,8 @@ function onButtonClick() {
       device => {
         bluetoothDevice = device;
         console.log(bluetoothDevice);
+        document.querySelector(".alert").innerHTML =
+          "Verbinden met de hartslagmeter...";
         return device.gatt.connect();
       }
       //bluetoothDevice.addEventListener('gattserverdisconnected', onDisconnected);
@@ -87,6 +89,8 @@ function onButtonClick() {
     .then(ShowButton)
     .catch(error => {
       console.log("Argh! " + error);
+      document.querySelector(".alert").innerHTML =
+        "Verbinding mislukt. Probeer opnieuw";
     });
 }
 
@@ -173,7 +177,7 @@ const listenToRestHeartrate = function() {
 
 //#region init
 const init = function() {
-  socket = io("http://172.30.248.137:5500");
+  socket = io("http://172.30.248.87:5500");
   playerId = localStorage.getItem("playerId");
   joinCode = localStorage.getItem("joinCode");
 
