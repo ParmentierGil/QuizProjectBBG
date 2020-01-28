@@ -388,6 +388,10 @@ hr{
     padding-top: 12px;
 }
 
+.antwoord:hover{
+    cursor: pointer;
+}
+
 .antwoord1{
     background-color: #5CBA47;
 }
@@ -412,6 +416,11 @@ hr{
     margin-right: auto;
     border-radius: 5px;
 }
+
+.box:hover{
+    cursor: pointer;
+}
+
 
 
 .wazig{

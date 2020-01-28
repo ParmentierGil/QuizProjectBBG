@@ -38,7 +38,7 @@ var alertfunctie = function() {
 
 //#region init
 const init = function() {
-  socket = io("http://172.30.248.137:5500");
+  socket = io("http://172.30.248.87:5500");
 
   alertfunctie();
 

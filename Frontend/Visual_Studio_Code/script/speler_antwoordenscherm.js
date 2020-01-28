@@ -119,7 +119,7 @@ const init = function() {
   getNumberQuestion();
   getAntwoorden();
 
-  socket = io("http://172.30.248.137:5500");
+  socket = io("http://172.30.248.87:5500");
   //   listenToSocket();
 
   socket.on("connect", function() {
