@@ -21,10 +21,14 @@ function onHeartRateChanged(event) {
   const characteristic = event.target;
   const heartrate = parseHeartRate(characteristic.value);
   console.log(joinCode);
-  socket.emit('newheartrate', { playerid: playerId, joincode: joinCode, heartrate: heartrate.heartRate });
+  socket.emit('newheartrate', {
+    playerid: playerId,
+    joincode: joinCode,
+    heartrate: heartrate.heartRate
+  });
 
   console.log(heartrate);
-  document.querySelector('#HeartRate').innerHTML = heartrate.heartRate;
+  document.querySelector('.live_heartbeat').innerHTML = heartrate.heartRate;
   // geef hartslag weer
 }
 
@@ -127,8 +131,10 @@ function time(text) {
   console.log('[' + new Date().toJSON().substr(11, 8) + '] ' + text);
 }
 function ShowButton() {
-  document.getElementById('Volgende').style.display = 'block';
+  document.getElementById('BevestigRustHartslag').style.display = 'block';
+  document.getElementById('heartbeat_display').style.display = 'block';
   document.getElementById('Zoekweg').style.display = 'none';
+  listenToRestHeartrate();
 }
 
 document.querySelector('form').addEventListener('submit', function(event) {
@@ -141,9 +147,22 @@ document.querySelector('form').addEventListener('submit', function(event) {
   }
 });
 
+const listenToRestHeartrate = function() {
+  document.querySelector('#BevestigRustHartslag').addEventListener('click', function() {
+    const restHeartrate = document.querySelector('.live_heartbeat').innerHTML;
+    socket.emit('restheartrate', {
+      restheartrate: restHeartrate,
+      playerid: playerId
+    });
+    console.log('iere');
+    var win = window.open('speler_wachtruimte.html', '_blank');
+    win.location;
+  });
+};
+
 //#region init
 const init = function() {
-  socket = io('http://172.30.248.137:5500');
+  socket = io('http://172.30.248.87:5500');
   playerId = localStorage.getItem('playerId');
   joinCode = localStorage.getItem('joinCode');
 

@@ -1,6 +1,3 @@
-var playerId;
-var socket;
-
 //#region FUNCTIONS
 
 //#region GET
@@ -9,11 +6,14 @@ var socket;
 
 //#region ListenTo
 
-//#region init
-const init = function() {};
 
-document.addEventListener('DOMContentLoaded', function() {
-  console.info('Page loaded');
-  init();
+//#region init
+const init = function() {
+  };
+
+
+document.addEventListener('DOMContentLoaded', function(){
+    console.info("Page loaded");
+    init();
 });
 //#endregion

@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>SlimFit Quiz</title>
     <link rel="stylesheet" href="css/screen copy.css" />
-    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
   </head>
 </html>
 <body>
@@ -14,9 +13,7 @@
     <div class="Tekst">
       <div class="TopTekst">Verbind je hartslagmeter</div>
     </div>
-    <div class="horizontale_lijn"></div>
   </container>
-  <hr />
   <div class="legediv"></div>
 
   <form>
@@ -24,18 +21,35 @@
       <button class="button buttonBTVerbind">Zoek</button>
     </div>
   </form>
+  <div class="heartbeat_lottie" id="heartbeat_display">
+    <lottie-player
+      src="https://assets8.lottiefiles.com/datafiles/SQ0k61ourxXtNpw/data.json"
+      class="heartbeat"
+      background="transparent"
+      speed="1"
+      loop
+      autoplay
+    >
+    </lottie-player>
 
-  <div id="Volgende" class="centerBtnVolgende CenterfindBT">
-    <div class="centerButton2">
-      <p class="ShowTekst">Verbonden met hartslagmeter</p>
-      <div id="clickable" class="button">
-        <a class="decoration" href="speler_wachtruimte.html" target="_blank">Volgende</a>
+    <div class="live_heartbeat">120</div>
+  </div>
+
+  <div id="BevestigRustHartslag" class="centerBtn centerBtnVolgende">
+    <div id="clickable" class="centerButton2">
+      <div class="buttonCodeScreen2 decoration">
+        Bevestig rusthartslag
       </div>
     </div>
-    <p id="HeartRate"></p>
   </div>
 </body>
 <script src="script/chooseBTDevice.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
+  integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I="
+  crossorigin="anonymous"
+></script>
 <!-- <script>
   function isWebBLEAvailable() {
     if (!navigator.bluetooth) {

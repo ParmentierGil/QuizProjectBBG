@@ -4,12 +4,13 @@ var questionNumber;
 var questions;
 var score;
 var joinCode;
+var timer;
 
 //#region FUNCTIONS
 
 //#region GET
 var getAntwoorden = function() {
-  var opties = document.querySelectorAll('.optie');
+  var opties = document.querySelectorAll('.antwoord');
   var randomIndex = Math.floor(Math.random() * 4);
   var juistAntwoord = questions[questionNumber].CorrectAnswer;
   opties[randomIndex].innerHTML = juistAntwoord;
@@ -27,7 +28,7 @@ var getAntwoorden = function() {
     }
   }
   listenToCorrectAnswer();
-  //listenToWrongAnswer();
+  listenToWrongAnswer();
 };
 
 var getNumberQuestion = function() {
@@ -39,7 +40,7 @@ var getNumberQuestion = function() {
 var getGameQuestions = function() {
   var questiontext = questions[questionNumber].QuestionText;
   console.log(questiontext);
-  questionweergave = document.getElementById('gameQuestion');
+  questionweergave = document.querySelector('.vraag');
   questionweergave.innerHTML = questiontext;
 };
 //#region show
@@ -47,7 +48,7 @@ const delay = ms => new Promise(res => setTimeout(res, ms));
 
 //#region ListenTo
 var timerfunctie = function() {
-  var timer = document.querySelector('#tijd');
+  timer = document.querySelector('#tijd');
   score = 0;
   var interval = setInterval(timeIt, 1000);
   timer.innerhtml = score;
@@ -56,15 +57,27 @@ var timerfunctie = function() {
     score++;
     timer.innerHTML = score;
   }
+};
 
+const listenToCorrectAnswer = function() {
+  let correctAnswer = document.querySelector('.juist');
+  correctAnswer.addEventListener('click', function() {
+    socket.emit('answeredcorrectly', {
+      playerid: playerId,
+      joincode: joinCode,
+      questionid: questions[questionNumber].QuestionId,
+      score: score
+    });
+  });
+};
+
+const listenToWrongAnswer = function() {
   var fout1 = document.querySelector('.fout1');
   var fout2 = document.querySelector('.fout2');
   var fout3 = document.querySelector('.fout3');
   var kruis1 = document.querySelector('.kruis1');
   var kruis2 = document.querySelector('.kruis2');
   var kruis3 = document.querySelector('.kruis3');
-  var juist = document.querySelector('.juist');
-  var vinkje = document.querySelector('.vinkje');
   var straftijd = document.querySelector('.straftijd');
 
   fout1.addEventListener('click', async function() {
@@ -91,25 +104,6 @@ var timerfunctie = function() {
     await delay(2000);
     kruis3.style.display = 'none';
   });
-
-  juist.addEventListener('click', async function() {
-    var score = timer;
-    clearInterval(interval);
-    vinkje.style.display = 'flex';
-    await delay(3000);
-  });
-};
-
-const listenToCorrectAnswer = function() {
-  let correctAnswer = document.querySelector('.juist');
-  correctAnswer.addEventListener('click', function() {
-    socket.emit('answeredcorrectly', {
-      playerid: playerId,
-      joincode: joinCode,
-      questionid: questions[questionNumber].QuestionId,
-      score: score
-    });
-  });
 };
 
 //#region init
@@ -124,15 +118,18 @@ const init = function() {
   getNumberQuestion();
   getAntwoorden();
 
-  socket = io('http://172.30.248.137:5500');
+  socket = io('http://172.30.248.87:5500');
   //   listenToSocket();
 
   socket.on('connect', function() {
     socket.emit('clientconnected', { data: "I'm connected!" });
   });
-  socket.on('newheartrate' + playerId, function(data) {
-    console.log(data);
-    document.getElementById('hartslag').innerHTML = data;
+  socket.on('newheartrate' + playerId, function(heartrate) {
+    document.querySelector('.live_heartbeat').innerHTML = heartrate;
+    if (parseInt(heartrate) > 100) {
+      document.querySelector('.wazig').style.filter = 'blur(0px)';
+      document.querySelector('.heartbeat_lottie').style.display = 'none';
+    }
   });
   socket.on('scoresaved' + playerId, function() {
     location.href = 'speler_rangschikking_scherm.html';

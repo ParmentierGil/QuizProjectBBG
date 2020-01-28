@@ -1,21 +1,20 @@
 @font-face {
-  font-family: 'ProzaLibre';
+  font-family: "ProzaLibre";
   font-weight: 400;
-  src: url('../fonts/ProzaLibre-Medium.ttf') format('ttf');
+  src: url("../fonts/ProzaLibre-Medium.ttf") format("ttf");
 }
 
 @font-face {
-  font-family: 'ProzaLibre';
+  font-family: "ProzaLibre";
   font-weight: 600;
-  src: url('../fonts/ProzaLibre-Bold.ttf') format('ttf');
+  src: url("../fonts/ProzaLibre-Bold.ttf") format("ttf");
 }
 
 html {
   padding: 0px;
   margin: 0px;
-  font-family: 'ProzaLibre', Arial, Helvetica, sans-serif;
-  background-image: linear-gradient(#845ec2, #d65db1);
-  background-repeat: no-repeat;
+  font-family: "ProzaLibre", Arial, Helvetica, sans-serif;
+  background-color: #59499e;
   height: 100%;
   color: White;
 }
@@ -56,24 +55,26 @@ body {
 
 .StartTitle {
   text-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
-  padding-bottom: 40px;
+  margin-bottom: 24px;
   text-align: center;
   display: flex;
   justify-content: center;
+  width: 300px;
 }
 
 .button {
-  background-color: #2c73d2;
-  border-radius: 35px;
+  background-color: transparent;
+  border-radius: 5px;
   font-size: 24px;
-  color: white;
+  color: #ffc611;
   text-align: center;
   text-decoration: none;
   font-weight: 600;
-  padding: 16px 66.7px;
+  padding: 8px 42px;
   border: none;
   box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
-  border: none;
+  border: 2px solid;
+  border-color: #ffc611;
   outline: none;
   transition: 0.3;
 }
@@ -86,15 +87,30 @@ body {
 .btn2 {
   cursor: pointer;
   font-size: 16px;
+  font-weight: 400;
   border: none;
   text-decoration: underline;
+}
+
+.quizmaster_button {
+  font-size: 16px;
+  font-weight: 400;
+  border: none;
+  text-decoration: underline;
+  color: White;
 }
 
 .centerBtn2 {
   position: absolute;
   bottom: 24px;
-  width: 100%;
   text-align: center;
+  width: 100%;
+}
+
+.centerBtn {
+  bottom: 24px;
+  position: absolute;
+  width: 100%;
 }
 
 .centerBtnVolgende {
@@ -103,40 +119,43 @@ body {
 }
 
 .logodiv {
-  padding-top: 32px;
+  margin-top: 8px;
   display: flex;
   justify-content: space-evenly;
 }
 
 .logo {
   width: 48px;
-  height: 24.62px;
 }
 
 .logo2 {
-  width: 23.69px;
-  height: 32px;
+  width: 48px;
+  height: 13.32px;
+  margin-top: 8px;
 }
 
 .logo3 {
-  width: 48px;
-  height: 13.32px;
+  width: 30px;
 }
 
 .logo4 {
   width: 48px;
-  height: 25.67px;
+  margin-top: 4px;
 }
 
 .TopTekst {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
   text-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
 }
 
 .top-bar {
   display: flex;
-  margin-top: 40px;
+  padding-top: 24px;
+  padding-bottom: 24px;
+  border: none;
+  background-color: #243668;
+  width: 100%;
 }
 
 .Tekst {
@@ -150,7 +169,7 @@ hr {
   height: 1px;
   background-color: White;
   color: White;
-  margin-top: 16px;
+  margin-top: 24px;
 }
 
 .centerButton2 {
@@ -169,33 +188,33 @@ hr {
 }
 
 .inputbox {
-  background-color: #203159;
+  background-color: #243668;
   border: none;
-  border-radius: 35px;
+  border-radius: 5px;
   outline: none;
   box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
-  padding: 16px 33px;
+  padding: 8px 16px;
 }
 
 .inputColor {
-  background-color: #203159;
+  background-color: #243668;
   border: none;
   outline: none;
   font-weight: 600;
   font-size: 24px;
   width: 132px;
-  color: #b3b3b3;
+  color: White;
   text-align: center;
 }
 
 .inputColor2 {
-  background-color: #203159;
+  background-color: #243668;
   border: none;
   outline: none;
   font-weight: 600;
   font-size: 24px;
   width: 175px;
-  color: #b3b3b3;
+  color: White;
   text-align: center;
 }
 
@@ -210,22 +229,8 @@ hr {
   text-align: center;
 }
 
-.button {
-  background-color: #2c73d2;
-  border-radius: 35px;
-  font-size: 24px;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font-weight: 600;
-  padding: 16px 48px;
-  box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
-  border: none;
-  outline: none;
-}
-
 .SpacebetweenBtns {
-  padding-bottom: 24px;
+  margin-bottom: 24px;
 }
 
 .BTDeviceList {
@@ -248,28 +253,46 @@ hr {
 }
 
 .buttonCodeScreen {
-  background-color: #2c73d2;
-  border-radius: 35px;
+  background-color: transparent;
+  border-radius: 5px;
   font-size: 24px;
-  color: white;
+  color: #ffc611;
   text-align: center;
   text-decoration: none;
   font-weight: 600;
-  padding: 16px 66.7px;
+  padding: 8px 48px;
   box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
-  border: none;
+  border: 2px solid;
+  border-color: #ffc611;
   outline: none;
 }
+
+.buttonCodeScreen2 {
+  background-color: transparent;
+  border-radius: 5px;
+  font-size: 24px;
+  color: #ffc611;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 40px;
+  box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+  border: 2px solid;
+  border-color: #ffc611;
+  outline: none;
+}
+
 
 .alert {
   margin-bottom: 8px;
   font-size: 16px;
   color: #ffc75f;
+  display: none;
 }
 
 .decoration {
   text-decoration: none;
-  color: white;
+  color: #ffc611;
 }
 
 .ShowTekst {
@@ -279,11 +302,40 @@ hr {
   color: #1fad61;
 }
 .CenterfindBT {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
+}
+
+.heartbeat {
+  width: 400px;
+  height: 400px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+.live_heartbeat {
+  font-size: 40px;
+  font-weight: 600;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding-bottom: 16px;
+  padding-left: 8px;
+}
+
+.heartbeat_lottie {
+  display: none;
 }
 
 @media (min-width: 768px) {
@@ -295,6 +347,7 @@ hr {
   .button {
     font-size: 32px;
     font-weight: 600;
+    padding: 15px 57px;
   }
 
   .button2 {
@@ -320,6 +373,15 @@ hr {
     color: White;
   }
 
+  .quizmaster_button {
+    font-size: 24px;
+    font-weight: 400;
+    width: 100%;
+    border: none;
+    text-decoration: underline;
+    color: White;
+  }
+
   .TopTekst {
     font-size: 40px;
     font-weight: 600;
@@ -329,7 +391,6 @@ hr {
     font-weight: 600;
     font-size: 32px;
     width: 200px;
-    text-transform: uppercase;
   }
 
   .inputColor2 {
@@ -345,29 +406,30 @@ hr {
   }
 
   .logodiv {
-    padding-top: 32px;
+    margin-top: 8px;
     display: flex;
     justify-content: space-evenly;
   }
 
   .logo {
-    width: 136.5px;
+    width: 136.59px;
     height: 70px;
   }
 
   .logo2 {
-    width: 51.83px;
-    height: 70px;
+    width: 126.12px;
+    height: 35px;
+    margin-top: 12px;
   }
 
   .logo3 {
-    width: 126.12px;
-    height: 35px;
+    width: 70px;
+    height: 70px;
   }
 
   .logo4 {
-    width: 130.45px;
-    height: 70px;
+    width: 130px;
+    height: 69.76px;
   }
 
   .BTDeviceList {
@@ -401,8 +463,10 @@ hr {
     width: 130px;
   }
 
-  .SpacebetweenBtns {
-    padding-bottom: 40px;
+  .buttonCodeScreen2 {
+    font-size: 32px;
+    font-weight: 600;
+    padding: 16px 64px;
   }
 
   .ShowTekst {
@@ -410,5 +474,14 @@ hr {
     font-size: 24px;
     text-align: center;
     color: #1fad61;
+  }
+
+  .StartTitle {
+    margin-bottom: 40px;
+    width: 400px;
+  }
+
+  .inputbox {
+    padding: 16px 32px;
   }
 }

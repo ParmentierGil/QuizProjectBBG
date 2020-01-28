@@ -30,8 +30,7 @@ var alertfunctie = function() {
 };
 //#region init
 const init = function() {
-  alertfunctie();
-  socket = io('http://172.30.248.137:5500');
+  socket = io('http://172.30.248.87:5500');
 
   socket.on('connect', function() {
     socket.emit('clientconnected', { data: "I'm connected!" });
@@ -41,6 +40,8 @@ const init = function() {
     localStorage.setItem('playerId', data);
     location.href = 'speler_spelcode.html';
   });
+
+  alertfunctie();
 };
 
 document.addEventListener('DOMContentLoaded', function() {

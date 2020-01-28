@@ -1,5 +1,3 @@
-
-
 function connect() {
   exponentialBackoff(
     3 /* max retries */,

@@ -51,17 +51,21 @@ var listenToSocket = function() {
 
 const init = function() {
   questionNumber = parseInt(localStorage.getItem('questionNumber'));
+  playerId = localStorage.getItem('playerId');
   //   console.log(questionNumber);
   getNumberQuestion();
   getSportExercise();
 
   getGameQuestions();
   //   nextpage();
-  socket = io('http://172.30.248.137:5500');
+  socket = io('http://172.30.248.87:5500');
   //   listenToSocket();
 
   socket.on('connect', function() {
     socket.emit('clientconnected', { data: "I'm connected!" });
+  });
+  socket.on('newheartrate' + playerId, function(data) {
+    document.querySelector('#live_hartslag').innerHTML = data;
   });
 };
 
