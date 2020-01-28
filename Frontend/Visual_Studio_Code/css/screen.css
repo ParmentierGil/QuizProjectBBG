@@ -267,6 +267,16 @@ hr{
     outline: none;
   }
 
+  .buttonCodeScreen:hover{
+    cursor: pointer;
+    color: White;
+  }
+
+  .buttonCodeScreen:active{
+    cursor: pointer;
+    background-color: #FFC611;
+  }
+
 .button{
     background-color: #2c73d2;
   border-radius: 35px;
@@ -421,6 +431,12 @@ hr{
 
 .box:hover{
     cursor: pointer;
+    box-shadow: 5px 5px 8px White;
+}
+
+.box:active{
+    cursor: pointer;
+    box-shadow: 2.5px 2.5px 4px White;
 }
 
 
