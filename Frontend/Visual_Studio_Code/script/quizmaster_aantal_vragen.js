@@ -26,7 +26,7 @@ var listenToMakeGameButton = function() {
 
 //#region init
 const init = function() {
-  socket = io("http://172.30.248.87:5500");
+  socket = io("http://172.30.248.102:5500");
   listenToMakeGameButton();
   socket.on("connect", function() {
     socket.emit("clientconnected", { data: "I'm connected!" });
@@ -34,6 +34,7 @@ const init = function() {
   socket.on("gamemade", function(joincode) {
     console.log(joincode);
     localStorage.setItem("joinCode", joincode);
+    localStorage.setItem("questionNumber", 0);
     location.href = "quizmaster_wachtruimte.html";
   });
 };
