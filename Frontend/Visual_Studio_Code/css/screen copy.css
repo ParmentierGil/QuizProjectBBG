@@ -90,7 +90,6 @@ body {
   background-color: #ffc611;
 }
 
-
 .centerButton {
   display: flex;
   justify-content: center;
@@ -294,10 +293,8 @@ hr {
 
 .buttonCodeScreen:active {
   cursor: pointer;
-  background-color: #FFC611;
+  background-color: #ffc611;
 }
-
-
 
 .buttonCodeScreen2 {
   background-color: transparent;
@@ -321,15 +318,15 @@ hr {
 
 .buttonCodeScreen:active {
   cursor: pointer;
-  background-color: #FFC611;
+  background-color: #ffc611;
 }
 
-
 .alert {
-  margin-bottom: 8px;
+  margin-bottom: 24px;
   font-size: 16px;
   color: #ffc75f;
-  display: none;
+  width: 300px;
+  text-align: center;
 }
 
 .decoration {
@@ -353,7 +350,7 @@ hr {
 
 .heartbeat {
   width: 400px;
-  height: 400px;
+  height: 1000px;
 
   position: absolute;
   top: 50%;
@@ -377,10 +374,11 @@ hr {
 }
 
 .heartbeat_lottie {
+  height: 100%;
   display: none;
 }
 
-.onboarding_buttons{
+.onboarding_buttons {
   position: absolute;
   bottom: 24px;
   display: flex;
@@ -388,7 +386,7 @@ hr {
   width: 100%;
 }
 
-.OverslaanButton{
+.OverslaanButton {
   background-color: transparent;
   border-radius: 5px;
   font-size: 24px;
@@ -404,17 +402,17 @@ hr {
   margin-right: 8px;
 }
 
-.OverslaanButton:hover{
+.OverslaanButton:hover {
   color: White;
   cursor: pointer;
 }
 
-.OverslaanButton:active{
+.OverslaanButton:active {
   color: White;
-  background-color:#ffc611;
+  background-color: #ffc611;
 }
 
-.VolgendeButton{
+.VolgendeButton {
   background-color: #243668;
   border-radius: 5px;
   font-size: 24px;
@@ -429,35 +427,35 @@ hr {
   margin-left: 8px;
 }
 
-.VolgendeButton:hover{
-  color: #FFC611;
+.VolgendeButton:hover {
+  color: #ffc611;
 }
 
-.VolgendeButton:active{
-  color: #FFC611;
+.VolgendeButton:active {
+  color: #ffc611;
   background-color: transparent;
-  border: 2px solid #FFC611;
+  border: 2px solid #ffc611;
 }
 
-.stap{
+.stap {
   font-size: 24px;
   font-weight: 600;
 }
 
-.stappen_centraal{
+.stappen_centraal {
   margin-top: 24px;
   margin-bottom: 24px;
   text-align: center;
 }
 
-.uitleg{
+.uitleg {
   font-size: 16px;
   text-align: center;
   margin-left: 16px;
   margin-right: 16px;
 }
 
-.fotokader{
+.fotokader {
   border: 2px solid White;
   width: 350px;
   height: 300px;
@@ -469,16 +467,15 @@ hr {
   margin-right: auto;
 }
 
-
-.wachten{
+.wachten {
   position: absolute;
   bottom: 24px;
   text-align: center;
   width: 100%;
-  color: #FFC611;
+  color: #ffc611;
 }
 
-.polar_foto{
+.polar_foto {
   width: 250px;
   height: 350px;
   margin-left: auto;
@@ -487,7 +484,7 @@ hr {
   justify-content: center;
 }
 
-.bluetooth_device_foto{
+.bluetooth_device_foto {
   border: 2px solid White;
   width: 350px;
   height: 250px;
@@ -497,7 +494,7 @@ hr {
   justify-content: center;
 }
 
-.lottie_onboarding{
+.lottie_onboarding {
   width: 350px;
   height: 350px;
   display: flex;
@@ -505,7 +502,6 @@ hr {
   margin-left: auto;
   margin-right: auto;
 }
-
 
 @media (min-width: 768px) {
   .grote_titel {
@@ -654,7 +650,7 @@ hr {
     padding: 16px 32px;
   }
 
-  .OverslaanButton{
+  .OverslaanButton {
     background-color: transparent;
     border-radius: 5px;
     font-size: 24px;
@@ -669,8 +665,8 @@ hr {
     outline: none;
     margin-right: 16px;
   }
-  
-  .VolgendeButton{
+
+  .VolgendeButton {
     background-color: #243668;
     border-radius: 5px;
     font-size: 24px;
@@ -685,25 +681,25 @@ hr {
     margin-left: 16px;
   }
 
-  .stap{
+  .stap {
     font-size: 32px;
     font-weight: 600;
   }
-  
-  .stappen_centraal{
+
+  .stappen_centraal {
     margin-top: 24px;
     margin-bottom: 24px;
     text-align: center;
   }
-  
-  .uitleg{
+
+  .uitleg {
     font-size: 20px;
     text-align: center;
     margin-left: 150px;
     margin-right: 150px;
   }
-  
-  .fotokader{
+
+  .fotokader {
     border: 2px solid White;
     width: 350px;
     height: 300px;
@@ -712,10 +708,10 @@ hr {
     margin-left: auto;
     margin-right: auto;
     display: flex;
-  justify-content: center;
+    justify-content: center;
   }
-  
-  .polar_foto{
+
+  .polar_foto {
     border: 2px solid White;
     width: 250px;
     height: 350px;
@@ -725,7 +721,7 @@ hr {
     justify-content: center;
   }
 
-  .bluetooth_device_foto{
+  .bluetooth_device_foto {
     border: 2px solid White;
     width: 500px;
     height: 300px;
@@ -735,13 +731,13 @@ hr {
     justify-content: center;
   }
 
-  .wachten{
+  .wachten {
     position: absolute;
     bottom: 24px;
     text-align: center;
     font-size: 24px;
     font-weight: 600;
     width: 100%;
-    color: #FFC75F;
-}
+    color: #ffc75f;
+  }
 }

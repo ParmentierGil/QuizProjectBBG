@@ -41,12 +41,18 @@ var alertfunctie = function() {
 
 //#region init
 const init = function() {
-  socket = io("http://172.30.248.102:5500");
+  socket = io("ws://testsocketquiz.azurewebsites.net:80/", {
+    transport: ["websocket"],
+    upgrade: true,
+    reconnection: false
+  });
 
   alertfunctie();
 
   playerId = localStorage.getItem("playerId");
   console.log(playerId);
+  socket.emit("chat message", "Jongeeeee");
+  socket.emit("my event");
 
   socket.on("joinCodeCorrect" + playerId, function(data) {
     localStorage.setItem("joinCode", data);
@@ -57,6 +63,10 @@ const init = function() {
     console.log("False");
     var alert = document.querySelector(".alert");
     alert.innerHTML = "Ongeldige code";
+  });
+
+  socket.on("my response", function(data) {
+    console.log(data);
   });
 };
 
