@@ -72,6 +72,17 @@ const showTopScores = function(scores) {
 
 //#region ListenTo
 
+const listenToNextQuestion = function() {
+  document
+    .querySelector("#volgendevraag")
+    .addEventListener("click", function() {
+      socket.emit("nextquestion", { joincode: joinCode });
+      questionNumber += 1;
+      localStorage.setItem("questionNumber", questionNumber);
+      location.href = "quizmaster_vragenscherm.html";
+    });
+};
+
 const listenToStopGame = function() {
   var button = document.querySelector("#stop");
   button.addEventListener("click", function() {
@@ -85,7 +96,7 @@ const init = function() {
   questions = JSON.parse(localStorage.getItem("gameQuestions"));
   joinCode = localStorage.getItem("joinCode");
 
-  socket = io("http://172.30.248.87:5500");
+  socket = io("http://192.168.1.178:5500");
 
   socket.emit("alltotalscores", { joincode: joinCode });
 
@@ -94,6 +105,7 @@ const init = function() {
     showTopScores(data);
   });
   listenToStopGame();
+  listenToNextQuestion();
   showNumberQuestionOf();
 };
 

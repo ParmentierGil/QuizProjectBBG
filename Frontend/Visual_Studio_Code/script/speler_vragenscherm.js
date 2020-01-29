@@ -50,7 +50,7 @@ const showRequiredHeartrate = function() {
 //#region init
 
 const init = function() {
-  socket = io("http://172.30.248.87:5500");
+  socket = io("http://192.168.1.178:5500");
 
   joinCode = localStorage.getItem("joinCode");
   questionNumber = parseInt(localStorage.getItem("questionNumber"));

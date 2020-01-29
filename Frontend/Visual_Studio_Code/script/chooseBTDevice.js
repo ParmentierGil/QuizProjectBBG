@@ -147,6 +147,7 @@ function ShowButton() {
   document.getElementById("BevestigRustHartslag").style.display = "block";
   document.getElementById("heartbeat_display").style.display = "block";
   document.getElementById("Zoekweg").style.display = "none";
+  document.querySelector(".TopTekst").innerHTML = "Probeer te rusten";
   listenToRestHeartrate();
 }
 
@@ -177,7 +178,7 @@ const listenToRestHeartrate = function() {
 
 //#region init
 const init = function() {
-  socket = io("http://172.30.248.87:5500");
+  socket = io("http://192.168.1.178:5500");
   playerId = localStorage.getItem("playerId");
   joinCode = localStorage.getItem("joinCode");
 
