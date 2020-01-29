@@ -1,1 +1,0 @@
-polar -> frontend (gsm) -> backend database -> frontend (gsm)
