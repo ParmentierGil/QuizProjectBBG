@@ -8,6 +8,14 @@ var questionScore;
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 //#region FUNCTIONS
+const soundEffect = function() {
+  var clickeffect = new Audio();
+  clickeffect.src = 'select.mp3';
+  var naam = document.getElementById('sound');
+  naam.addEventListener('click', function() {
+    clickeffect.play();
+  });
+};
 
 const isNull = function(x) {
   return x.score != null && x.score != 0;
@@ -18,7 +26,7 @@ const isNull = function(x) {
 //#region show
 
 const showQuestionScore = function() {
-  document.querySelector("#vraagscore").innerHTML = questionScore;
+  document.querySelector('#vraagscore').innerHTML = questionScore;
 };
 
 const showTopScores = function(scores) {
@@ -30,7 +38,7 @@ const showTopScores = function(scores) {
   });
   //sortedScores.reverse();
 
-  let top3HTML = "";
+  let top3HTML = '';
   for (let i = 0; i < 3; i++) {
     if (sortedScores[i] != undefined) {
       if (i == 0) {
@@ -63,37 +71,38 @@ const showTopScores = function(scores) {
       }
     }
   }
-  document.querySelector(".rangschikkinglijst").innerHTML = top3HTML;
+  document.querySelector('.rangschikkinglijst').innerHTML = top3HTML;
 };
 
 //#region ListenTo
 
 //#region init
 const init = function() {
-  questionNumber = parseInt(localStorage.getItem("questionNumber"));
-  playerId = localStorage.getItem("playerId");
-  joinCode = localStorage.getItem("joinCode");
-  requiredHeartrate = localStorage.getItem("requiredHeartrate");
-  questionScore = localStorage.getItem("questionScore");
+  questionNumber = parseInt(localStorage.getItem('questionNumber'));
+  playerId = localStorage.getItem('playerId');
+  joinCode = localStorage.getItem('joinCode');
+  requiredHeartrate = localStorage.getItem('requiredHeartrate');
+  questionScore = localStorage.getItem('questionScore');
+  soundEffect();
 
   showQuestionScore();
 
-  socket = io("http://172.30.248.87:5500");
+  socket = io('http://172.30.248.87:5500');
 
-  socket.emit("alltotalscores", { joincode: joinCode });
+  socket.emit('alltotalscores', { joincode: joinCode });
 
-  socket.on("newheartrate" + playerId, function(heartrate) {
-    document.querySelector("#live_hartslag").innerHTML = heartrate;
+  socket.on('newheartrate' + playerId, function(heartrate) {
+    document.querySelector('#live_hartslag').innerHTML = heartrate;
   });
 
-  socket.on("alltotalscores" + joinCode, function(data) {
+  socket.on('alltotalscores' + joinCode, function(data) {
     console.log(data);
     showTopScores(data);
   });
 };
 
-document.addEventListener("DOMContentLoaded", function() {
-  console.info("Page loaded");
+document.addEventListener('DOMContentLoaded', function() {
+  console.info('Page loaded');
   init();
 });
 //#endregion
