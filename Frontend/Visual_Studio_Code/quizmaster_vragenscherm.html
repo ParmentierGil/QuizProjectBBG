@@ -7,20 +7,27 @@
     <title>SlimFit Quiz</title>
     <link rel="stylesheet" href="css/screen.css" />
     <script src="script/quizmaster_vragenscherm.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
+      integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I="
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <container class="top-bar">
       <div class="hartslag">
-        <div id="Volgende">
+        <div id="stop">
           <div id="clickable" class="centerButton2">
-            <a href="speler_spelcode.html" class="stopbutton decoration">
+            <a class="stopbutton decoration">
               Stop
             </a>
           </div>
         </div>
       </div>
       <div class="vragenteller">
-        <div class="kleine_tekst_vet">Vraag 1 van de 2</div>
+        <div class="kleine_tekst_vet" id="questionCountOf">
+          Vraag 1 van de 2
+        </div>
       </div>
       <div class="tijd">
         <img src="img/KLOK.png" class="klok_logo" alt="Tijd" />
@@ -29,17 +36,17 @@
     </container>
 
     <div class="container">
-      <div class="vragentitel margin-bottom">Vraag 1</div>
-      <div class="medium_tekst vraagtekst margin-bottom">
+      <div class="vragentitel margin-bottom" id="questionCount">Vraag 1</div>
+      <div class="medium_tekst vraagtekst margin-bottom" id="gameQuestion">
         Hoeveel kegels zijn er bij het bowlen?
       </div>
       <div class="vragentitel margin-bottom">Oefening</div>
-      <div class="medium_tekst vraagtekst">Springtouwen</div>
+      <div class="medium_tekst vraagtekst" id="gameExercise">Springtouwen</div>
     </div>
 
     <div id="Volgende" class="centerBtn centerBtnVolgende">
       <div id="clickable" class="centerButton2">
-        <a href="speler_spelcode.html" class="buttonCodeScreen decoration">
+        <a class="buttonCodeScreen decoration">
           Start Oefening
         </a>
       </div>

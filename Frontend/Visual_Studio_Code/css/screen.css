@@ -108,11 +108,18 @@ body {
 }
 
 .tijd {
-  margin-left: 16px;
-  margin-right: 16px;
+  margin-right: 20px;
   display: flex;
   width: 75px;
   justify-content: flex-end;
+}
+
+.kleine_hartslaggroep {
+  margin-right: 16px;
+  display: flex;
+  width: 75px;
+  justify-content: flex-start;
+  margin-left: 8px;
 }
 
 .tijd:hover {
@@ -266,6 +273,16 @@ hr {
   outline: none;
 }
 
+.buttonCodeScreen:hover {
+  cursor: pointer;
+  color: White;
+}
+
+.buttonCodeScreen:active {
+  cursor: pointer;
+  background-color: #ffc611;
+}
+
 .button {
   background-color: #2c73d2;
   border-radius: 35px;
@@ -372,7 +389,7 @@ hr {
 
 .heartbeat_small {
   width: 35px;
-  margin-right: 4px;
+  margin-right: 8px;
 }
 
 .seconden {
@@ -384,6 +401,10 @@ hr {
   font-weight: 400;
   text-align: center;
   padding-top: 12px;
+}
+
+.antwoord:hover {
+  cursor: pointer;
 }
 
 .antwoord1 {
@@ -409,6 +430,18 @@ hr {
   margin-left: auto;
   margin-right: auto;
   border-radius: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.box:hover {
+  cursor: pointer;
+  box-shadow: 5px 5px 8px White;
+}
+
+.box:active {
+  cursor: pointer;
+  box-shadow: 2.5px 2.5px 4px White;
 }
 
 .wazig {
@@ -437,7 +470,7 @@ hr {
 
 .heartbeat {
   width: 400px;
-  height: 400px;
+  height: 1000px;
 
   position: absolute;
   top: 50%;
@@ -499,6 +532,24 @@ hr {
   border-color: #ffc611;
   outline: none;
   margin-top: -4px;
+}
+
+.correct_style {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 85px;
+  margin-top: 2px;
+  display: none;
+}
+
+.wrong_style {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  right: 85px;
+  margin-top: 2px;
+  display: none;
 }
 
 @media (min-width: 768px) {
@@ -581,11 +632,25 @@ hr {
   .tijd {
     margin-right: 48px;
     display: flex;
+    width: 200px;
+    justify-content: flex-end;
+  }
+
+  /* @keyframes change-content {
+        from { justify-content: flex-end; }
+        to { justify-content: flex-start; }
+    } */
+
+  .straftijd {
+    color: #ff9671;
+    margin-left: 40px;
+    display: none;
   }
 
   .hartslag {
     margin-left: 40px;
     display: flex;
+    width: 200px;
   }
 
   .square {
@@ -741,8 +806,10 @@ hr {
   .antwoord {
     font-size: 32px;
     font-weight: 400;
-    text-align: center;
     padding-top: 20px;
+    text-align: center;
+    padding-left: 75px;
+    padding-right: 75px;
   }
 
   .box {
@@ -835,5 +902,23 @@ hr {
     border-color: #ffc611;
     outline: none;
     margin-top: 0px;
+  }
+
+  .correct_style {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 320px;
+    margin-top: 10px;
+    display: none;
+  }
+  
+  .wrong_style {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    right: 320px;
+    margin-top: 10px;
+    display: none;
   }
 }

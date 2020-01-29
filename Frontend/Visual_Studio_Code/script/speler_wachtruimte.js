@@ -51,7 +51,7 @@ var listenToSocket = function() {
 //#region init
 
 const init = function() {
-  socket = io("http://172.30.248.87:5500");
+  socket = io("http://172.30.248.102:5500");
   joinCode = localStorage.getItem("joinCode");
   playerId = localStorage.getItem("playerId");
   console.log("init" + joinCode);

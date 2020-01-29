@@ -8,6 +8,14 @@ var requiredHeartrate;
 
 //#region GET
 
+var showNumberQuestionOf = function() {
+  number = questionNumber;
+  console.log(number);
+  numberweergave = document.getElementById("questionCountOf");
+  numberweergave.innerHTML =
+    "Vraag " + parseInt(number + 1) + " van de " + questions.length;
+};
+
 var showNumberQuestion = function() {
   number = questionNumber;
   console.log(number);
@@ -34,27 +42,15 @@ const showRequiredHeartrate = function() {
 };
 
 //#region ListenTo
-var nextpage = function() {
-  var button = document.querySelector(".button");
-  button.addEventListener("click", function() {
-    location.href = "quizmaster_vragenscherm.html";
-    socket.emit("start game", { "join code": "KBIS" });
-  });
-};
 
 //#endregion
 
 //#region ListenToSocket
-var listenToSocket = function() {
-  socket.on("game started", function(QA) {
-    console.log(QA);
-  });
-};
 
 //#region init
 
 const init = function() {
-  socket = io("http://172.30.248.87:5500");
+  socket = io("http://172.30.248.102:5500");
 
   joinCode = localStorage.getItem("joinCode");
   questionNumber = parseInt(localStorage.getItem("questionNumber"));
@@ -77,9 +73,15 @@ const init = function() {
     showRequiredHeartrate();
   });
 
+  showNumberQuestionOf();
   showNumberQuestion();
   showSportExercise();
   showGameQuestion();
+
+  console.log(joinCode);
+  socket.on("exercisestarted" + joinCode, function() {
+    location.href = "speler_antwoordenscherm.html";
+  });
 
   socket.on("newheartrate" + playerId, function(data) {
     document.querySelector("#live_hartslag").innerHTML = data;

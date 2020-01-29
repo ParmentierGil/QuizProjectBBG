@@ -79,6 +79,17 @@ body {
   transition: 0.3;
 }
 
+.button:hover {
+  cursor: pointer;
+  color: White;
+}
+
+.button:active {
+  cursor: pointer;
+  color: White;
+  background-color: #ffc611;
+}
+
 .centerButton {
   display: flex;
   justify-content: center;
@@ -97,6 +108,14 @@ body {
   font-weight: 400;
   border: none;
   text-decoration: underline;
+  color: White;
+}
+
+.quizmaster_button:hover {
+  color: #ffc611;
+}
+
+.quizmaster_button:active {
   color: White;
 }
 
@@ -267,6 +286,16 @@ hr {
   outline: none;
 }
 
+.buttonCodeScreen:hover {
+  cursor: pointer;
+  color: White;
+}
+
+.buttonCodeScreen:active {
+  cursor: pointer;
+  background-color: #ffc611;
+}
+
 .buttonCodeScreen2 {
   background-color: transparent;
   border-radius: 5px;
@@ -282,10 +311,21 @@ hr {
   outline: none;
 }
 
+.buttonCodeScreen2:hover {
+  cursor: pointer;
+  color: White;
+}
+
+.buttonCodeScreen:active {
+  cursor: pointer;
+  background-color: #ffc611;
+}
+
 .alert {
   margin-bottom: 24px;
   font-size: 16px;
   color: #ffc75f;
+  width: 300px;
   text-align: center;
 }
 
@@ -310,7 +350,7 @@ hr {
 
 .heartbeat {
   width: 400px;
-  height: 400px;
+  height: 1000px;
 
   position: absolute;
   top: 50%;
@@ -334,7 +374,133 @@ hr {
 }
 
 .heartbeat_lottie {
+  height: 100%;
   display: none;
+}
+
+.onboarding_buttons {
+  position: absolute;
+  bottom: 24px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.OverslaanButton {
+  background-color: transparent;
+  border-radius: 5px;
+  font-size: 24px;
+  color: #ffc611;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 24px;
+  box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+  border: 2px solid;
+  border-color: #ffc611;
+  outline: none;
+  margin-right: 8px;
+}
+
+.OverslaanButton:hover {
+  color: White;
+  cursor: pointer;
+}
+
+.OverslaanButton:active {
+  color: White;
+  background-color: #ffc611;
+}
+
+.VolgendeButton {
+  background-color: #243668;
+  border-radius: 5px;
+  font-size: 24px;
+  color: White;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 8px 24px;
+  box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+  border: none;
+  outline: none;
+  margin-left: 8px;
+}
+
+.VolgendeButton:hover {
+  color: #ffc611;
+}
+
+.VolgendeButton:active {
+  color: #ffc611;
+  background-color: transparent;
+  border: 2px solid #ffc611;
+}
+
+.stap {
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.stappen_centraal {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.uitleg {
+  font-size: 16px;
+  text-align: center;
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.fotokader {
+  border: 2px solid White;
+  width: 350px;
+  height: 300px;
+  margin-bottom: 0px;
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.wachten {
+  position: absolute;
+  bottom: 24px;
+  text-align: center;
+  width: 100%;
+  color: #ffc611;
+}
+
+.polar_foto {
+  width: 250px;
+  height: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.bluetooth_device_foto {
+  border: 2px solid White;
+  width: 350px;
+  height: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.lottie_onboarding {
+  width: 350px;
+  height: 350px;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 @media (min-width: 768px) {
@@ -482,5 +648,96 @@ hr {
 
   .inputbox {
     padding: 16px 32px;
+  }
+
+  .OverslaanButton {
+    background-color: transparent;
+    border-radius: 5px;
+    font-size: 24px;
+    color: #ffc611;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 16px 64px;
+    box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+    border: 2px solid;
+    border-color: #ffc611;
+    outline: none;
+    margin-right: 16px;
+  }
+
+  .VolgendeButton {
+    background-color: #243668;
+    border-radius: 5px;
+    font-size: 24px;
+    color: White;
+    text-align: center;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 16px 64px;
+    box-shadow: 0px 4px 6px rgb(0, 0, 0, 16%);
+    border: none;
+    outline: none;
+    margin-left: 16px;
+  }
+
+  .stap {
+    font-size: 32px;
+    font-weight: 600;
+  }
+
+  .stappen_centraal {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  .uitleg {
+    font-size: 20px;
+    text-align: center;
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+
+  .fotokader {
+    border: 2px solid White;
+    width: 350px;
+    height: 300px;
+    margin-bottom: 50px;
+    margin-top: 24px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .polar_foto {
+    border: 2px solid White;
+    width: 250px;
+    height: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .bluetooth_device_foto {
+    border: 2px solid White;
+    width: 500px;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+  }
+
+  .wachten {
+    position: absolute;
+    bottom: 24px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 600;
+    width: 100%;
+    color: #ffc75f;
   }
 }
