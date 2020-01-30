@@ -32,7 +32,7 @@ var alertfunctie = function() {
 };
 //#region init
 const init = function() {
-  socket = io("http://172.30.248.102:5500");
+  socket = io("http://192.168.1.178:5500");
 
   socket.on("connect", function() {
     socket.emit("clientconnected", { data: "I'm connected!" });

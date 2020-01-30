@@ -1,4 +1,4 @@
-#!D:\Documenten\NMCT\Semester_3\Project2\SlimFitQuiz\venv\Scripts\python.exe
+#!D:\Documenten\NMCT\Semester_3\Project2\QuizProjectBBG\Backend\SlimFitQuiz\venv\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'pip==19.0.3','console_scripts','pip'
 __requires__ = 'pip==19.0.3'
 import re

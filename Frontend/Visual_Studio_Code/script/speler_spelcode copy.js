@@ -42,9 +42,7 @@ var alertfunctie = function() {
 //#region init
 const init = function() {
   socket = io("ws://testsocketquiz.azurewebsites.net:80/", {
-    transport: ["websocket"],
-    upgrade: true,
-    reconnection: false
+    transport: ["websocket"]
   });
 
   alertfunctie();

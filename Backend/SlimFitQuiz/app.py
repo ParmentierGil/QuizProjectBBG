@@ -11,6 +11,7 @@ from sqlalchemy import Column, Integer, String, ForeignKey
 import random
 import string
 import uuid
+import math
 import json
 
 
@@ -29,8 +30,7 @@ Base = declarative_base()
 
 CORS(app)
 app.config['SECRET_KEY'] = 'secret!'
-socketio = SocketIO(app, cors_allowed_origins="*")
-socketio.emit('connect')
+socketio = SocketIO(app)
 
 
 # <editor-fold desc="Classes">
@@ -75,6 +75,8 @@ class GamePlayer(Base):
     GameId = Column(String(50), ForeignKey(Game.GameId), primary_key=True)
     Heartrate = Column(Integer)
     RestHeartrate = Column(Integer)
+    TotalScore = Column(Integer)
+
     game = relationship(Game)
     player = relationship(Player)
 
@@ -107,7 +109,7 @@ def random_string(string_length):
     return ''.join(random.choice(letters) for i in range(string_length))
 #</editor-fold>
 
-#<editor-fold desc="Approutes">
+
 @app.route('/')
 def hello_world():
     return 'Hello World'
@@ -209,7 +211,7 @@ def game_exists(join_code, player_id):
             return False
         else:
             print("game exists id:  " + player_id)
-            game_player = GamePlayer(PlayerId=player_id, GameId=result.GameId, Heartrate=0)
+            game_player = GamePlayer(PlayerId=player_id, GameId=result.GameId, Heartrate=0, TotalScore=0)
             session.add(game_player)
             session.commit()
             return True
@@ -217,12 +219,28 @@ def game_exists(join_code, player_id):
         print('Error while checking if game exists ' + str(e))
 
 
+def emit_scores(join_code):
+    try:
+        session = Session()
+        game_id = session.query(Game).filter(Game.JoinCode == join_code).one().GameId
+        gameplayers = session.query(GamePlayer).filter(GamePlayer.GameId == game_id)
+
+        all_scores = []
+        for gp in gameplayers:
+            username = session.query(Player).filter(Player.PlayerId == gp.PlayerId).one().Username
+            userscore = {'username': username, 'score': gp.TotalScore}
+            all_scores.append(userscore)
+        print('emitting all scores '+join_code)
+        socketio.emit("alltotalscores"+join_code, all_scores)
+    except Exception as e:
+        print('Error while getting all total scores '+str(e))
+'''
 #SOCKET IO
 @socketio.on('clientconnected')
 def connected(data):
     print('client connected to the socket')
 
-
+'''
 @socketio.on('startgame')
 def start_game(data):
     joincode = data['joincode']
@@ -265,12 +283,10 @@ def new_heartrate(data):
     player_id = data['playerid']
     join_code = data['joincode']
     heartrate = data['heartrate']
-    print("heartrate id:  " + player_id)
     gameplayer = session.query(GamePlayer).filter(GamePlayer.PlayerId == player_id).one()
     gameplayer.Heartrate = heartrate
     session.commit()
 
-    print('hartslag'+ str(heartrate))
     socketio.emit('newheartrate'+player_id, str(heartrate))
 
     player_names = []
@@ -285,14 +301,42 @@ def new_heartrate(data):
 def save_restheartrate(data):
     rest_heartrate = data['restheartrate']
     player_id = data['playerid']
+    join_code = data['joincode']
     try:
         session = Session()
         gameplayer = session.query(GamePlayer).filter(GamePlayer.PlayerId == player_id).one()
         gameplayer.RestHeartrate = rest_heartrate
         session.commit()
+        socketio.emit('restheartbeatset'+join_code)
     except Exception as e:
         print('Error while saving restheartrate '+ str(e))
 
+
+@socketio.on('requiredheartrate')
+def required_heartrate(data):
+    join_code = data['joincode']
+    player_id = data['playerid']
+    question_number = data['questionnumber']
+    question_count = data['questioncount']
+    try:
+        session = Session()
+        game_id = session.query(Game).filter(Game.JoinCode == join_code).one().GameId
+        rest_heartrate = session.query(GamePlayer).filter(GamePlayer.PlayerId == player_id, GamePlayer.GameId == game_id).one().RestHeartrate
+        factor = 1.4
+        for x in range(0, question_count):
+            if x == question_number:
+                break
+            else:
+                factor += 0.2
+        print('Factor: '+str(factor))
+        max_180 = min(rest_heartrate * factor, 180)
+        min_110 = max(110, max_180)
+        req_heartrate = math.ceil(min_110)
+        print('Req: '+str(req_heartrate))
+        socketio.emit('requiredheartrate'+player_id, req_heartrate)
+        session.close()
+    except Exception as e:
+        print('Error while getting rest heartrate ' + str(e))
 
 
 @socketio.on('makegame')
@@ -324,11 +368,70 @@ def save_score(data):
         new_gameplayerquestion = GamePlayerQuestion(GameId=game_id, PlayerId=player_id, QuestionId=question_id, Score=score)
         session.add(new_gameplayerquestion)
         session.commit()
+        gameplayer = session.query(GamePlayer).filter(GamePlayer.GameId == game_id, GamePlayer.PlayerId == player_id).one()
+        gameplayer.TotalScore += score
+        session.commit()
         print('player saved')
         socketio.emit('scoresaved' + player_id)
+        print('trying to emit all scores on: '+joincode)
+        emit_scores(joincode)
+        session.close()
     except Exception as e:
         print('Error while saving ' + str(e))
 
+@socketio.on('alltotalscores')
+def all_totalscores(data):
+    join_code = data['joincode']
+    emit_scores(join_code)
+
+
+@socketio.on('mytotalscore')
+def my_totalscore(data):
+    player_id = data['playerid']
+    join_code = data['joincode']
+    try:
+        session = Session()
+        game_id = session.query(Game).filter(Game.JoinCode == join_code).one().GameId
+        total_score = session.query(GamePlayer).filter(GamePlayer.GameId == game_id, GamePlayer.PlayerId == player_id).one().TotalScore
+        username = session.query(Player).filter(Player.PlayerId == player_id).one().Username
+        emit('playertotalscore'+player_id, {'score': total_score, 'username': username})
+    except Exception as e:
+        print('Error while getting personal total score '+str(e))
+
+
+@socketio.on('exercisestarted')
+def exercise_started(data):
+    join_code = data['joincode']
+    print('exercise started' + join_code)
+    socketio.emit('exercisestarted' + join_code)
+
+
+@socketio.on('nextquestion')
+def next_question(data):
+    join_code = data['joincode']
+    print("Next question "+join_code)
+    socketio.emit("nextquestion"+join_code)
+
+@socketio.on('totalscore')
+def totalscore(data):
+    join_code = data['joincode']
+    player_id = data['playerid']
+    try:
+        session = Session()
+        game_id = session.query(Game).filter(Game.JoinCode == join_code).one().GameId
+        total_score = session.query(GamePlayer).filter(GamePlayer.GameId == game_id, GamePlayer.PlayerId == player_id).one().TotalScore;
+        print("Total score: " + str(total_score))
+        socketio.emit("totalscore"+player_id, total_score)
+        session.close()
+    except Exception as e:
+        print('Error while getting total score '+str(e))
+
+@socketio.on('gamestopped')
+def game_stopped(data):
+    join_code = data['joincode']
+    print("Game stopped")
+    socketio.emit("gamestopped"+join_code)
+
 
 if __name__ == '__main__':
-    socketio.run(app, host="0.0.0.0", port="5500", debug=True)
+    socketio.run(app, host="0.0.0.0", port=5500)#, host="0.0.0.0", port=5500, debug=True)

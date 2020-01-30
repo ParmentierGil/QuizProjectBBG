@@ -168,7 +168,8 @@ const listenToRestHeartrate = function() {
       const restHeartrate = document.querySelector(".live_heartbeat").innerHTML;
       socket.emit("restheartrate", {
         restheartrate: restHeartrate,
-        playerid: playerId
+        playerid: playerId,
+        joincode: joinCode
       });
       console.log("iere");
       var win = window.open("speler_wachtruimte.html", "_blank");
@@ -178,12 +179,15 @@ const listenToRestHeartrate = function() {
 
 //#region init
 const init = function() {
-  socket = io("http://172.30.248.102:5500");
+  socket = io("http://192.168.1.178:5500");
   playerId = localStorage.getItem("playerId");
   joinCode = localStorage.getItem("joinCode");
 
   socket.on("connect", function() {
     socket.emit("clientconnected", { data: "I'm connected!" });
+  });
+  socket.on("gamestopped" + joinCode, function() {
+    location.href = "global_startpagina.html";
   });
 };
 

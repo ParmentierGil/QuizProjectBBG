@@ -102,7 +102,7 @@ const init = function() {
 
   showQuestionScore();
 
-  socket = io("http://172.30.248.102:5500");
+  socket = io("http://192.168.1.178:5500");
 
   socket.emit("mytotalscore", { playerid: playerId, joincode: joinCode });
   socket.emit("alltotalscores", { joincode: joinCode });
@@ -127,6 +127,10 @@ const init = function() {
     questionNumber += 1;
     localStorage.setItem("questionNumber", questionNumber);
     location.href = "speler_vragenscherm.html";
+  });
+
+  socket.on("gamestopped" + joinCode, function() {
+    location.href = "global_startpagina.html";
   });
 
   showNumberQuestionOf();

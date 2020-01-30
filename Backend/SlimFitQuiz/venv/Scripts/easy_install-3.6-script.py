@@ -1,4 +1,4 @@
-#!D:\Documenten\NMCT\Semester_3\Project2\SlimFitQuiz\venv\Scripts\python.exe
+#!D:\Documenten\NMCT\Semester_3\Project2\QuizProjectBBG\Backend\SlimFitQuiz\venv\Scripts\python.exe
 # EASY-INSTALL-ENTRY-SCRIPT: 'setuptools==40.8.0','console_scripts','easy_install-3.6'
 __requires__ = 'setuptools==40.8.0'
 import re
