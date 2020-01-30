@@ -1,5 +1,5 @@
 @echo off
-set "VIRTUAL_ENV=D:\Documenten\NMCT\Semester_3\Project2\SlimFitQuiz\venv"
+set "VIRTUAL_ENV=D:\Documenten\NMCT\Semester_3\Project2\QuizProjectBBG\Backend\SlimFitQuiz\venv"
 
 if not defined PROMPT (
     set "PROMPT=$P$G"

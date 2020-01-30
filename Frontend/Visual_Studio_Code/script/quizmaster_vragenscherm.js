@@ -49,7 +49,18 @@ var listenToStartExercise = function() {
 const listenToStopGame = function() {
   var button = document.querySelector("#stop");
   button.addEventListener("click", function() {
+    document.querySelector(".stopspel").style.display = "block";
+    listenToConfirmation();
+  });
+};
+
+const listenToConfirmation = function() {
+  document.querySelector(".stopknopja").addEventListener("click", function() {
+    socket.emit("gamestopped", { joincode: joinCode });
     location.href = "global_startpagina.html";
+  });
+  document.querySelector(".stopknopnee").addEventListener("click", function() {
+    document.querySelector(".stopspel").style.display = "none";
   });
 };
 
@@ -60,7 +71,7 @@ const listenToStopGame = function() {
 //#region init
 
 const init = function() {
-  socket = io("http://172.30.248.102:5500");
+  socket = io("http://192.168.1.178:5500");
 
   joinCode = localStorage.getItem("joinCode");
   questionNumber = parseInt(localStorage.getItem("questionNumber"));

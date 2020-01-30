@@ -3,11 +3,22 @@ var joinCode;
 let connectedPlayers = [];
 let playerCount;
 let playersFinished = [];
-var vraagScore;
-var totalScore;
+let questionCount;
+let questions;
 var opteller = 0;
 
 //#region FUNCTIONS
+
+var timerfunctie = function() {
+  timer = document.querySelector("#tijd");
+  interval = setInterval(timeIt, 1000);
+  timer.innerhtml = opteller;
+
+  function timeIt() {
+    opteller = opteller + 1;
+    timer.innerHTML = opteller;
+  }
+};
 //#endregion
 
 //#region GET
@@ -39,35 +50,33 @@ const showHeartrate = function(username, heartrate) {
 
 //#region ListenTo
 
-var timerfunctie = function() {
-  timer = document.querySelector("#tijd");
-  interval = setInterval(timeIt, 1000);
-  timer.innerhtml = totalScore;
-
-  function timeIt() {
-    opteller = opteller + 1;
-    timer.innerHTML = opteller;
-
-  }
-};
-
 const listenToStopGame = function() {
   var button = document.querySelector("#stop");
   button.addEventListener("click", function() {
-    location.href = "global_startpagina.html";
+    document.querySelector(".stopspel").style.display = "block";
+    listenToConfirmation();
   });
 };
 
+const listenToConfirmation = function() {
+  document.querySelector(".stopknopja").addEventListener("click", function() {
+    socket.emit("gamestopped", { joincode: joinCode });
+    location.href = "global_startpagina.html";
+  });
+  document.querySelector(".stopknopnee").addEventListener("click", function() {
+    document.querySelector(".stopspel").style.display = "none";
+  });
+};
 //#endregion
 
 //#region init
 const init = function() {
-  socket = io("http://172.30.248.102:5500");
-
-  timerfunctie();
+  socket = io("http://192.168.1.178:5500");
 
   joinCode = localStorage.getItem("joinCode");
   playerCount = localStorage.getItem("playerCount");
+  questionNumber = parseInt(localStorage.getItem("questionNumber"));
+  questions = JSON.parse(localStorage.getItem("gameQuestions"));
 
   socket.on("newheartrate" + joinCode, function(data) {
     console.log("hartslagtje");
@@ -91,10 +100,17 @@ const init = function() {
         playersFinished.length
     );
     if (playersFinished.length == playerCount) {
-      location.href = "quizmaster_rangschikking_scherm.html";
+      if (questionNumber + 1 == questions.length) {
+        location.href = "quizmaster_eindscore.html";
+        console.log("QC: " + questionNumber + "QL: " + questions.length);
+      } else {
+        location.href = "quizmaster_rangschikking_scherm.html";
+        console.log("QC: " + questionNumber + "QL: " + questions.length);
+      }
     }
   });
   listenToStopGame();
+  timerfunctie();
 };
 
 document.addEventListener("DOMContentLoaded", function() {

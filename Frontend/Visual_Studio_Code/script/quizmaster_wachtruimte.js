@@ -1,6 +1,7 @@
 var socket;
 var joinCode;
 let connectedPlayers = [];
+var restHeartrateSetPlayers = 0;
 
 //#region FUNCTIONS
 //#endregion
@@ -51,7 +52,7 @@ const listenToStartGame = function() {
 
 //#region init
 const init = function() {
-  socket = io("http://172.30.248.102:5500");
+  socket = io("http://192.168.1.178:5500");
 
   socket.on("connect", function() {
     socket.emit("clientconnected", { data: "I'm connected!" });
@@ -76,14 +77,36 @@ const init = function() {
     let username = data.username;
     showHeartrate(username, heartrate);
   });
+  // socket.on("newheartrate" + joinCode, function(data) {
+  //   console.log("hartslagtje");
+  //   let heartrate = data.heartrate;
+  //   let username = data.username;
+  //   if (!connectedPlayers.includes(username)) {
+  //     connectedPlayers.push(username);
+  //     showNewPlayer();
+  //   }
+  //   showHeartrate(username, heartrate);
+  // });
+
+  socket.on("restheartbeatset" + joinCode, function(username) {
+    restHeartrateSetPlayers += 1;
+    if (
+      restHeartrateSetPlayers == connectedPlayers.length &&
+      restHeartrateSetPlayers > 0
+    ) {
+      document.querySelector("#startspel").style.display = "block";
+    } else {
+      document.querySelector("#startspel").style.display = "none";
+    }
+  });
 
   socket.on("game_started_questions" + joinCode, function(data) {
-    localStorage.setItem("questions", JSON.stringify(data));
+    localStorage.setItem("gameQuestions", JSON.stringify(data));
     console.log(data);
   });
 
   socket.on("game_started_exercises" + joinCode, function(data) {
-    localStorage.setItem("exercises", JSON.stringify(data));
+    localStorage.setItem("gameExercises", JSON.stringify(data));
     location.href = "quizmaster_vragenscherm.html";
   });
 

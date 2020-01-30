@@ -51,7 +51,7 @@ var listenToSocket = function() {
 //#region init
 
 const init = function() {
-  socket = io("http://172.30.248.102:5500");
+  socket = io("http://192.168.1.178:5500");
   joinCode = localStorage.getItem("joinCode");
   playerId = localStorage.getItem("playerId");
   console.log("init" + joinCode);
@@ -80,6 +80,9 @@ const init = function() {
       showNewPlayer();
     }
     showHeartrate(username, heartrate);
+  });
+  socket.on("gamestopped" + joinCode, function() {
+    location.href = "global_startpagina.html";
   });
 
   var questionNumber = 0;

@@ -70,7 +70,7 @@ const showRequiredHeartrate = function() {
 //#region ListenTo
 const soundEffect = function() {
   var clickeffect = new Audio();
-  clickeffect.src = 'sound/correct.mp3';
+  clickeffect.src = "sound/correct.mp3";
   clickeffect.play();
   // var naam = document.getElementById('sound');
   // naam.addEventListener('click', function() {
@@ -80,7 +80,7 @@ const soundEffect = function() {
 
 const soundEffectIncorrect = function() {
   var clickeffect = new Audio();
-  clickeffect.src = 'sound/incorrect.mp3';
+  clickeffect.src = "sound/incorrect.mp3";
   clickeffect.play();
   // var naam = document.getElementById('sound');
   // naam.addEventListener('click', function() {
@@ -176,13 +176,13 @@ const init = function() {
   showAntwoorden();
   showRequiredHeartrate();
 
-  socket = io("http://172.30.248.102:5500");
+  socket = io("http://192.168.1.178:5500");
 
   socket.emit("totalscore", { joincode: joinCode, playerid: playerId });
 
   socket.on("newheartrate" + playerId, function(heartrate) {
     document.querySelector(".live_heartbeat").innerHTML = heartrate;
-    if (parseInt(heartrate) >= requiredHeartrate) {
+    if (parseInt(heartrate) >= 60) {
       document.querySelector(".wazig").style.filter = "blur(0px)";
       document.querySelector(".heartbeat_lottie").style.display = "none";
     }
@@ -196,7 +196,17 @@ const init = function() {
 
   socket.on("scoresaved" + playerId, async function() {
     await delay(1500);
-    location.href = "speler_rangschikking_scherm.html";
+    if (questionNumber + 1 == questions.length) {
+      location.href = "speler_eindscore.html";
+      console.log("QC: " + questionNumber + "QL: " + questions.length);
+    } else {
+      location.href = "speler_rangschikking_scherm.html";
+      console.log("QC: " + questionNumber + "QL: " + questions.length);
+    }
+  });
+
+  socket.on("gamestopped" + joinCode, function() {
+    location.href = "global_startpagina.html";
   });
 };
 
