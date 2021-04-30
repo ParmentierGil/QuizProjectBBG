@@ -9,7 +9,7 @@ Flask-SQLAlchemy==2.4.1
 requests==2.22.0
 mysqlclient==1.4.6
 pyodbc==4.0.28
-urllib3==1.25.7
+urllib3==1.25.8
 Flask-SocketIO==4.2.1
 eventlet==0.25.1
 Flask-CORS==3.0.8
