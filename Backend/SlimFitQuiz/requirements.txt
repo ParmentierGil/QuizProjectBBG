@@ -11,7 +11,7 @@ mysqlclient==1.4.6
 pyodbc==4.0.28
 urllib3==1.25.7
 Flask-SocketIO==4.2.1
-eventlet==0.25.1
+eventlet==0.31.0
 Flask-CORS==3.0.8
 dnspython==1.16.0
 greenlet==0.4.15
